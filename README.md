@@ -1,6 +1,6 @@
 # Clone 
 
-git clone https://github.com/Cyclo/dotfiles ~/dotfiles
+  git clone https://github.com/Cyclo/dotfiles ~/dotfiles
 
 # ZSH and tmux
 
@@ -19,7 +19,7 @@ Create symlinks:
 Create Symlinks:
 
 	ln -s ~/dotfiles/vim ~/.vim
-	ln -s ~/dotfiles/vim/vimrc ~/.vimrc
+  ln -s ~/dotfiles/vim/vimrc ~/.vimrc
 
 Install Bundles:
 
