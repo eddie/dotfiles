@@ -2,6 +2,7 @@
 
   ```git clone https://github.com/Cyclo/dotfiles ~/dotfiles```
 
+
 # ZSH and tmux
 
 Install oh-my-zsh
@@ -12,7 +13,12 @@ Create symlinks:
 
   ```ln -s ~/dotfiles/tmux.conf ~/.tmux.conf```
   ```ln -s ~/dotfiles/zshrc ~/.zshrc```
+  ```ln -s ~/dotfiles/tmux-powerlinerc ~/.tmux-powerlinerc```
 
+Setup a patched font:
+
+  cd ~/.fonts/ && git clone https://github.com/scotu/ubuntu-mono-powerline.git && cd ~
+  fc-cache -vf
 
 # Vim Installation and Setup
 
