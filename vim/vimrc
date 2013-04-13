@@ -1,0 +1,99 @@
+syntax enable
+syntax on
+filetype off
+filetype plugin indent on
+
+set noswapfile
+set tabstop=2
+set shiftwidth=2
+set smarttab
+set expandtab
+set cindent
+set autoindent
+set showmatch
+set background=dark
+set laststatus=2
+
+set encoding=utf-8
+set history=50
+set number ruler
+set encoding=utf8
+set fileencoding=utf8
+
+set mouse=nicr
+set makeprg=make
+
+set nu
+set showmatch
+set hlsearch
+set ignorecase
+set smartcase
+set nowrap
+set incsearch
+set showcmd
+
+set virtualedit=onemore
+set history=1000
+set spell
+
+" Bundles
+set rtp+=~/.vim/vundle/ 
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+Bundle 'airblade/vim-gitgutter'
+Bundle 'kien/ctrlp.vim'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'mattn/zencoding-vim'
+Bundle 'tpope/vim-fugitive'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'scrooloose/syntastic'
+
+
+" Vundle required
+filetype plugin indent on
+ 
+" Yank text to the OS X clipboard
+noremap <leader>y "*y
+noremap <leader>yy "*Y
+
+" Preserve indentation while pasting text from the OS X clipboard
+noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
+
+" Zen-coding tab
+let g:user_zen_leader_key = '<C-Z>'
+autocmd FileType html,xhtml,tt2,tt2html,css imap <buffer> <Tab> <C-Z>, | imap <buffer> <C-N> <C-Z>n
+
+"ruby
+autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
+autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+"improve autocomplete menu color
+
+highlight Pmenu ctermbg=238 gui=bold
+
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlPMixed'
+let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
+let g:ctrlp_working_path_mode = 'ra'  " search for nearest ancestor like .git, .hg, and the directory of the current file
+let g:ctrlp_match_window_bottom = 0   " show the match window at the top of the screen
+let g:ctrlp_max_height = 10       " maxiumum height of match window
+let g:ctrlp_switch_buffer = 'et'    " jump to a file if it's open already
+let g:ctrlp_use_caching = 1       " enable caching
+let g:ctrlp_clear_cache_on_exit=0     " speed up by not removing clearing cache evertime
+let g:ctrlp_show_hidden = 1       " show me dotfiles
+let g:ctrlp_mruf_max = 250        " number of recently opened files
+
+nnoremap <F5> :set invpaste paste?<Enter>
+imap <F5> <C-O><F5>
+set pastetoggle=<F5> " Hit f5 before pasting into terminal
+
+cmap w!! w !sudo tee % >/dev/null 
+
+nnoremap j gj
+noremap k gk
+

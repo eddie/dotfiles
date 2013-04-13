@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/home/eddie'
+let g:netrw_dirhist_2='/home/eddie/.gconf'
+let g:netrw_dirhist_3='/home/eddie/.gconf/desktop'
+let g:netrw_dirhist_4='/home/eddie/code/manifest'
+let g:netrw_dirhist_5='/home/eddie/code'
+let g:netrw_dirhist_6='/home/eddie/code/manifest'
