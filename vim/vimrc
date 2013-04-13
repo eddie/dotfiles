@@ -51,7 +51,7 @@ Bundle 'mattn/zencoding-vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'scrooloose/syntastic'
-
+Bundle "Markdown"
 
 " Vundle required
 filetype plugin indent on
