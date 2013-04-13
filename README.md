@@ -1,6 +1,6 @@
 # Clone 
 
-git clone https://x.com/dotfiles.git "~/dotfiles"
+git clone https://github.com/Cyclo/dotfiles ~/dotfiles
 
 # ZSH and tmux
 
