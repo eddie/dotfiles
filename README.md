@@ -1,6 +1,7 @@
 # Clone 
 
-  ```git clone https://github.com/Cyclo/dotfiles ~/dotfiles```
+  git clone https://github.com/Cyclo/dotfiles ~/dotfiles
+  cd ~/dotfiles && git submodule init
 
 
 # ZSH and tmux
@@ -17,6 +18,7 @@ Create symlinks:
 
 Setup a patched font:
 
+  mkdir ~/.fonts && ln -s ~/dotfiles/ubuntu-mono-powerline/* ~/.fonts
   cd ~/.fonts/ && git clone https://github.com/scotu/ubuntu-mono-powerline.git && cd ~
   fc-cache -vf
 
