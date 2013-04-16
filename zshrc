@@ -11,6 +11,7 @@ ZSH_THEME="cloud"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias gs="git status"
+alias cb="xsel --clipboard"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
