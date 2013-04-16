@@ -152,6 +152,12 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
+" Unmap arrow keys
+noremap <Up> <nop>
+noremap <Down> <nop>
+noremap <Left> <nop>
+noremap <Right> <nop>
+
 " Close the current buffer
 map <leader>bd :Bclose<cr>
 
@@ -303,6 +309,8 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'scrooloose/syntastic'
 Bundle "Markdown"
 Bundle "scrooloose/nerdtree"
+Bundle 'flazz/vim-colorschemes'
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Zen Coding
