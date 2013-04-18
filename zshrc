@@ -12,6 +12,7 @@ ZSH_THEME="cloud"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias gs="git status"
 alias cb="xsel --clipboard"
+alias tmux="TERM=xterm-256color tmux -2"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"

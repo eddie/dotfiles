@@ -1,6 +1,30 @@
-syntax enable
 
+syntax enable
+set mouse=nicr
 " Orignal: http://amix.dk/vim/vimrc.html
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vundle Bundles
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set rtp+=~/.vim/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required!
+Bundle 'gmarik/vundle'
+Bundle 'airblade/vim-gitgutter'
+Bundle 'kien/ctrlp.vim'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'mattn/zencoding-vim'
+Bundle 'tpope/vim-fugitive'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'scrooloose/syntastic'
+Bundle "Markdown"
+Bundle "scrooloose/nerdtree"
+Bundle 'flazz/vim-colorschemes'
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -78,7 +102,11 @@ set mat=2
 " Enable syntax highlighting
 syntax enable
 
+" Default dark background
 set background=dark
+
+" Enable 256 colours
+set t_Co=256
 
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
@@ -119,10 +147,13 @@ set si "Smart indent
 set wrap "Wrap lines
 
 " Remove ME
-set laststatus=2
-set mouse=nicr
-set virtualedit=onemore
+"set mouse=nicr
+"set virtualedit=onemore
+
 " RemoveMe
+
+" line numbers
+set number
 
 """"""""""""""""""""""""""""""
 " => Visual mode related
@@ -183,12 +214,6 @@ try
   set stal=2
 catch
 endtry
-
-" Return to last edit position when opening files (You want this!)
-autocmd BufReadPost *
-      \ if line("'\"") > 0 && line("'\"") <= line("$") |
-      \   exe "normal! g`\"" |
-      \ endif
 
 " Remember info about open buffers on close
 set viminfo^=%
@@ -289,36 +314,13 @@ map <leader>q :e ~/buffer<cr>
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vundle Bundles
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set rtp+=~/.vim/vundle/
-call vundle#rc()
-
-" let Vundle manage Vundle
-" required!
-Bundle 'gmarik/vundle'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'kien/ctrlp.vim'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'mattn/zencoding-vim'
-Bundle 'tpope/vim-fugitive'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'scrooloose/syntastic'
-Bundle "Markdown"
-Bundle "scrooloose/nerdtree"
-Bundle 'flazz/vim-colorschemes'
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Zen Coding
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Zen-coding tab completion
 let g:user_zen_leader_key = '<C-Z>'
-autocmd FileType html,xhtml,tt2,tt2html,css imap <buffer> <Tab> <C-Z>, | imap <buffer> <C-N> <C-Z>n
+autocmd FileType html,xhtml,tt2,tt2html,css,htmldjango imap <buffer> <Tab> <C-Z>, | imap <buffer> <C-N> <C-Z>n
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
