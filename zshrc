@@ -1,11 +1,15 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
+print "$fg[white]------------------"
+print "$fg[blue]✔ Check your todo!"
+print "$fg[white]------------------"
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="cloud"
+ZSH_THEME="robbyrussell"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -13,6 +17,7 @@ ZSH_THEME="cloud"
 alias gs="git status"
 alias cb="xsel --clipboard"
 alias tmux="TERM=xterm-256color tmux -2"
+alias todo="vim ~/docs/on-going"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
