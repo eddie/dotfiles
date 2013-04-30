@@ -1,5 +1,5 @@
 
-syntax enable
+
 " Orignal: http://amix.dk/vim/vimrc.html
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -7,6 +7,9 @@ syntax enable
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set rtp+=~/.vim/vundle/
 call vundle#rc()
+
+syntax on
+filetype off
 
 " let Vundle manage Vundle
 " required!
@@ -25,6 +28,7 @@ Bundle 'flazz/vim-colorschemes'
 Bundle 'tpope/vim-surround'
 Bundle 'vim-scripts/mru.vim'
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -32,8 +36,7 @@ Bundle 'vim-scripts/mru.vim'
 set history=700
 
 " Enable filetype plugins
-filetype plugin on
-filetype indent on
+filetype plugin indent on
 
 " Set to auto read when a file is changed from the outside
 set autoread
@@ -109,6 +112,7 @@ syntax enable
 
 " Default dark background
 set background=dark
+colorscheme solarized
 
 " Enable 256 colours
 set t_Co=256
