@@ -128,7 +128,7 @@ syntax enable
 
 " Default dark background
 set background=dark
-colorscheme solarized
+colorscheme xoria256 
 
 " Enable 256 colours
 set t_Co=256
