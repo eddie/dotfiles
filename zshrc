@@ -16,9 +16,8 @@ ZSH_THEME="robbyrussell"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias gs="git status"
 alias cb="xsel --clipboard"
-alias tmux="TERM=xterm-256color tmux -2"
+alias tmux="tmux -2"
 alias todo="vim ~/docs/on-going"
-
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 

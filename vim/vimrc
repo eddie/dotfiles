@@ -13,13 +13,14 @@ filetype off
 
 " let Vundle manage Vundle
 " required!
+"Bundle 'godlygeek/csapprox'
 Bundle 'gmarik/vundle'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'kien/ctrlp.vim'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'Lokaltog/vim-powerline'
-Bundle 'mattn/zencoding-vim'
 Bundle 'tpope/vim-fugitive'
+Bundle 'rstacruz/sparkup'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'scrooloose/syntastic'
 Bundle 'Markdown'
@@ -27,7 +28,18 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'flazz/vim-colorschemes'
 Bundle 'tpope/vim-surround'
 Bundle 'vim-scripts/mru.vim'
+Bundle 'majutsushi/tagbar'
+Bundle 'xolox/vim-session'
+Bundle 'mileszs/ack.vim'
 
+Bundle 'tomtom/tlib_vim'
+Bundle 'honza/vim-snippets.git'
+Bundle 'vim-scripts/vim-addon-mw-utils'
+Bundle 'garbas/vim-snipmate'
+
+Bundle 'gregsexton/MatchTag'
+Bundle 'jeetsukumaran/vim-buffergator'
+Bundle 'vim-scripts/Align'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -51,6 +63,13 @@ nmap <leader>w :w!<cr>
 
 " Fast quitting 
 nmap <leader>q :q<cr>
+nmap <leader>x :qa!<cr>
+
+" Fast Mode change
+set timeoutlen=1000 ttimeoutlen=0
+
+" Fast buffer alternation
+noremap <Leader><Leader> <C-^>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -120,6 +139,9 @@ set encoding=utf8
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 
+" Column at 100
+set colorcolumn=100
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -140,9 +162,10 @@ set smarttab
 " Auto indent when on next line
 " set autoindent
 
-" 1 tab == 4 spaces
+" Setup default ts
 set shiftwidth=2
 set tabstop=2
+set softtabstop=2
 
 " Linebreak on 500 characters
 set lbr
@@ -154,9 +177,6 @@ set wrap "Wrap lines
 
 " Remove ME
 set mouse=nicr
-"set virtualedit=onemore
-
-" RemoveMe
 
 " line numbers
 set number
@@ -168,6 +188,14 @@ set number
 " Super useful! From an idea by Michael Naumann
 vnoremap <silent> * :call VisualSelection('f')<CR>
 vnoremap <silent> # :call VisualSelection('b')<CR>
+
+" Retain visual selection after identing
+vnoremap < <gv
+vnoremap > >gv
+
+" Smash escape
+inoremap jk <Esc>
+inoremap kj <Esc>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
@@ -202,14 +230,14 @@ map <leader>bd :Bclose<cr>
 map <leader>ba :1,1000 bd!<cr>
 
 " Useful mappings for managing tabs
-map <leader>tn :tabnew<cr>
-map <leader>to :tabonly<cr>
-map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove
+"map <leader>tn :tabnew<cr>
+"map <leader>to :tabonly<cr>
+"map <leader>tc :tabclose<cr>
+"map <leader>tm :tabmove
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
-map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
+"map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
@@ -317,13 +345,27 @@ noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Zen Coding
+" => Buffergator 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:buffergator_suppress_keymaps = 1
+let g:buffergator_viewport_split_policy = "B"
+
+map <leader>b :BuffergatorOpen<cr>
+map <leader>B :BuffergatorClose<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Session 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Zen-coding tab completion
-let g:user_zen_leader_key = '<C-Z>'
-autocmd FileType html,xhtml,tt2,tt2html,css,htmldjango imap <buffer> <Tab> <C-Z>, | imap <buffer> <C-N> <C-Z>n
+let g:session_autoload = 'no'
+let g:session_autosave = 'no'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Tagbar 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <leader>t :TagbarToggle<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -332,12 +374,12 @@ autocmd FileType html,xhtml,tt2,tt2html,css,htmldjango imap <buffer> <Tab> <C-Z>
 
 highlight Pmenu ctermbg=238 gui=bold
 
-let g:ctrlp_map = '<Leader>t'
+let g:ctrlp_map = '<C-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
 let g:ctrlp_working_path_mode = 'ra'  " search for nearest ancestor like .git, .hg, and the directory of the current file
-let g:ctrlp_match_window_bottom = 0   " show the match window at the top of the screen
-let g:ctrlp_max_height = 10       " maxiumum height of match window
+let g:ctrlp_match_window_bottom = 1   " show the match window at the top of the screen
+let g:ctrlp_max_height = 8      " maxiumum height of match window
 let g:ctrlp_switch_buffer = 'et'    " jump to a file if it's open already
 let g:ctrlp_use_caching = 1       " enable caching
 let g:ctrlp_clear_cache_on_exit=0     " speed up by not removing clearing cache evertime
