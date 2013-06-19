@@ -49,5 +49,6 @@ export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/u
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)" # or equivalent
 
+export TERM="screen-256color"
 gi() { gem install $@; rbenv rehash; rehash }
 

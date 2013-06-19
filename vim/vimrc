@@ -1,5 +1,3 @@
-
-
 " Orignal: http://amix.dk/vim/vimrc.html
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -11,35 +9,43 @@ call vundle#rc()
 syntax on
 filetype off
 
-" let Vundle manage Vundle
-" required!
-"Bundle 'godlygeek/csapprox'
+
 Bundle 'gmarik/vundle'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'kien/ctrlp.vim'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'tpope/vim-fugitive'
-Bundle 'rstacruz/sparkup'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'scrooloose/syntastic'
-Bundle 'Markdown'
-Bundle 'scrooloose/nerdtree'
-Bundle 'flazz/vim-colorschemes'
-Bundle 'tpope/vim-surround'
-Bundle 'vim-scripts/mru.vim'
-Bundle 'majutsushi/tagbar'
-Bundle 'xolox/vim-session'
+
+" Fuzzy search
+Bundle 'Shougo/vimproc.vim'
+Bundle 'Shougo/unite.vim'
+Bundle 'thinca/vim-unite-history'
 Bundle 'mileszs/ack.vim'
 
-Bundle 'tomtom/tlib_vim'
-Bundle 'honza/vim-snippets.git'
-Bundle 'vim-scripts/vim-addon-mw-utils'
-Bundle 'garbas/vim-snipmate'
+" Code completion
+Bundle 'Shougo/neocomplcache'
+
+" File browsing
+Bundle 'scrooloose/nerdtree'
+Bundle 'Shougo/vimfiler'
+Bundle 'kien/ctrlp.vim'
+
+
+" Git
+Bundle 'tpope/vim-fugitive'
+Bundle 'airblade/vim-gitgutter'
+
+" UI
+Bundle 'majutsushi/tagbar'
+Bundle 'Lokaltog/vim-powerline' 
+
+" required!
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'vim-scripts/Align'
+Bundle 'scrooloose/syntastic'
+
+Bundle 'flazz/vim-colorschemes'
+Bundle 'tpope/vim-surround'
 
 Bundle 'gregsexton/MatchTag'
-Bundle 'jeetsukumaran/vim-buffergator'
-Bundle 'vim-scripts/Align'
+
+Bundle 'jnwhiteh/vim-golang'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -292,38 +298,6 @@ autocmd BufWrite *.coffee :call DeleteTrailingWS()
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vimgrep searching and cope displaying
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" When you press gv you vimgrep after the selected text
-vnoremap <silent> gv :call VisualSelection('gv')<CR>
-
-" Open vimgrep and put the cursor in the right position
-map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
-
-" Vimgreps in the current file
-map <leader><space> :vimgrep // <C-R>%<C-A><right><right><right><right><right><right><right><right><right>
-
-" When you press <leader>r you can search and replace the selected text
-vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
-
-" Do :help cope if you are unsure what cope is. It's super useful!
-"
-" When you search with vimgrep, display your results in cope by doing:
-"   <leader>cc
-"
-" To go to the next search result do:
-"   <leader>n
-"
-" To go to the previous search results do:
-"   <leader>p
-"
-map <leader>cc :botright cope<cr>
-map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
-map <leader>n :cn<cr>
-map <leader>p :cp<cr>
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Pressing ,ss will toggle and untoggle spell checking
@@ -345,15 +319,6 @@ noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Buffergator 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:buffergator_suppress_keymaps = 1
-let g:buffergator_viewport_split_policy = "B"
-
-map <leader>b :BuffergatorOpen<cr>
-map <leader>B :BuffergatorClose<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Session 
@@ -394,16 +359,40 @@ set pastetoggle=<F5> " Hit f5 before pasting into terminal
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => MRU>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>f :MRU<CR>
+" map <leader>f :MRU<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Nerd Tree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let NERDTreeIgnore=['\~$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
+
 :nmap ,e :NERDTreeToggle<CR>
 map <leader>nn :NERDTreeToggle<cr>
 map <leader>nb :NERDTreeFromBookmark 
 map <leader>nf :NERDTreeFind<cr>
+
+
+"===============================================================================
+" Powerline
+"===============================================================================
+
+" Use the fancy version of Powerline symbols
+let g:Powerline_symbols = 'fancy'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Unite
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Use the fuzzy matcher for everything
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+
+" Use the rank sorter for everything
+call unite#filters#sorter_default#use(['sorter_rank'])
+
+nnoremap <C-p> :Unite file_rec/async<cr>
+nnoremap <space>/ :Unite grep:.<cr>
+nnoremap <space>y :Unite history/yanks<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
