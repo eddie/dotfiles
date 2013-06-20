@@ -203,6 +203,10 @@ vnoremap > >gv
 inoremap jk <Esc>
 inoremap kj <Esc>
 
+" Yank to Clipboard 
+nnoremap <C-y> "+y
+vnoremap <C-y> "+y
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
