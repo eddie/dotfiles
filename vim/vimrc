@@ -393,6 +393,11 @@ call unite#filters#sorter_default#use(['sorter_rank'])
 nnoremap <C-p> :Unite file_rec/async<cr>
 nnoremap <space>/ :Unite grep:.<cr>
 nnoremap <space>y :Unite history/yanks<cr>
+nnoremap <leader>f :Unite -start-insert file_rec<cr>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Syntastic 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:syntastic_java_javac_config_file_enabled = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
