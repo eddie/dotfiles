@@ -46,6 +46,7 @@ Bundle 'tpope/vim-surround'
 Bundle 'gregsexton/MatchTag'
 
 Bundle 'jnwhiteh/vim-golang'
+Bundle 'groenewege/vim-less'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
