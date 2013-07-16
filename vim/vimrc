@@ -33,7 +33,8 @@ Bundle 'airblade/vim-gitgutter'
 
 " UI
 Bundle 'majutsushi/tagbar'
-Bundle 'Lokaltog/vim-powerline' 
+"Bundle 'Lokaltog/vim-powerline' 
+Bundle 'bling/vim-airline'
 
 " required!
 Bundle 'kchmck/vim-coffee-script'
