@@ -1,5 +1,5 @@
 " Orignal: http://amix.dk/vim/vimrc.html
-
+set nocompatible
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vundle Bundles
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -19,13 +19,13 @@ Bundle 'thinca/vim-unite-history'
 Bundle 'mileszs/ack.vim'
 
 " Code completion
-Bundle 'Shougo/neocomplcache'
+Bundle 'Raimondi/delimitMate'
+Bundle 'shawncplus/phpcomplete.vim'
 
 " File browsing
 Bundle 'scrooloose/nerdtree'
 Bundle 'Shougo/vimfiler'
 Bundle 'kien/ctrlp.vim'
-
 
 " Git
 Bundle 'tpope/vim-fugitive'
@@ -33,7 +33,6 @@ Bundle 'airblade/vim-gitgutter'
 
 " UI
 Bundle 'majutsushi/tagbar'
-"Bundle 'Lokaltog/vim-powerline' 
 Bundle 'bling/vim-airline'
 
 " required!
@@ -48,6 +47,8 @@ Bundle 'gregsexton/MatchTag'
 
 Bundle 'jnwhiteh/vim-golang'
 Bundle 'groenewege/vim-less'
+Bundle 'othree/html5.vim'
+Bundle 'plasticboy/vim-markdown'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -404,6 +405,10 @@ nnoremap <leader>f :Unite -start-insert file_rec<cr>
 " => Syntastic 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:syntastic_java_javac_config_file_enabled = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Omnicomplete 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions

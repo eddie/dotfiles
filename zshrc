@@ -12,12 +12,17 @@ print "$fg[white]------------------"
 ZSH_THEME="robbyrussell"
 
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 alias gs="git status"
 alias cb="xsel --clipboard"
 alias tmux="tmux -2"
 alias todo="vim ~/docs/on-going"
+alias open="gnome-open"
+alias ccat="pygmentize -g"
+alias v="vim"
+alias g="git status"
+alias l="ls"
+alias pg='grep -H -r --include="*.php"'
+
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
