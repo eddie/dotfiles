@@ -149,6 +149,10 @@ vnoremap <C-y> "+y
 map j gj
 map k gk
 
+" Home row jump to start and end of line
+noremap H ^
+noremap L $
+
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
 map <space> /
 map <c-space> ?
