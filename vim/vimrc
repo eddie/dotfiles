@@ -1,9 +1,5 @@
 set nocompatible
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vundle Bundles
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 set rtp+=~/.vim/vundle/
 call vundle#rc()
 
@@ -54,17 +50,11 @@ Bundle 'scrooloose/syntastic'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Sets how many lines of history VIM has to remember
-set history=700
+filetype plugin indent on " Enable filetype plugins
 
-" Enable filetype plugins
-filetype plugin indent on
+set history=700           " Sets how many lines of history VIM has to remember
+set autoread              " Set to auto read when a file is changed from the outside
 
-" Set to auto read when a file is changed from the outside
-set autoread
-
-" With a map leader it's possible to do extra key combinations
-" like <leader>w saves the current file
 let mapleader = ","
 let g:mapleader = ","
 
@@ -76,7 +66,7 @@ nmap <leader>q :q<cr>
 nmap <leader>x :qa!<cr>
 
 " Fast Mode change
-set timeoutlen=1000 ttimeoutlen=0
+set timeoutlen=1000 ttimeoutlen=0 
 
 " Fast buffer alternation
 noremap <Leader><Leader> <C-^>
@@ -84,109 +74,57 @@ noremap <Leader><Leader> <C-^>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Set 7 lines to the cursor - when moving vertically using j/k
-set so=7
 
-" Turn on the WiLd menu, better command completion
-set wildmenu
-
-" Ignore compiled files
-set wildignore=*.o,*~,*.pyc
-
-"Always show current position
-set ruler
-
-" Height of the command bar
-set cmdheight=1
-
-" A buffer becomes hidden when it is abandoned
-set hid
-
-" Configure backspace so it acts as it should act
-set backspace=eol,start,indent
+set so=7                       " Set 7 lines to the cursor - when moving vertically using j/k
+set wildmenu                   " Turn on the WiLd menu, better command completion
+set wildignore=*.o,*~,*.pyc    " Ignore compiled files
+set ruler                      " Always show current position
+set cmdheight=1                " Height of the command bar
+set hid                        " A buffer becomes hidden when it is abandoned
+set backspace=eol,start,indent " Configure backspace so it acts as it should act
 set whichwrap+=<,>,h,l
-
-" Ignore case when searching
-set ignorecase
-
-" When searching try to be smart about cases
-set smartcase
-
-" Highlight search results
-set hlsearch
-
-" Makes search act like search in modern browsers
-set incsearch
-
-" Don't redraw while executing macros (good performance config)
-set lazyredraw
-
-" For regular expressions turn magic on
-set magic
-
-" Show matching brackets when text indicator is over them
-set showmatch
-
-" How many tenths of a second to blink when matching brackets
-set mat=2
+set ignorecase                 " Ignore case when searching
+set smartcase                  " When searching try to be smart about cases
+set hlsearch                   " Highlight search results
+set incsearch                  " Makes search act like search in modern browsers
+set lazyredraw                 " Don't redraw while executing macros (good performance config)
+set magic                      " For regular expressions turn magic on
+set showmatch                  " Show matching brackets when text indicator is over them
+set mat=2                      " How many tenths of a second to blink when matching brackets
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Enable syntax highlighting
-syntax enable
 
-" Default dark background
-set background=dark
-colorscheme 256-grayvim "xoria256 
-
-" Enable 256 colours
-set t_Co=256
-
-" Set utf8 as standard encoding and en_US as the standard language
-set encoding=utf8
-
-" Use Unix as the standard file type
-set ffs=unix,dos,mac
+syntax enable           " Enable syntax highlighting
+set background=dark     " Default dark background
+colorscheme 256-grayvim " xoria256
+set t_Co=256            " Enable 256 colours
+set encoding=utf8       " Set utf8 as standard encoding and en_US as the standard language
+set ffs=unix,dos,mac    " Use Unix as the standard file type
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Turn backup off, since most stuff is in SVN, git et.c anyway...
-set nobackup
+set nobackup " Turn backup off, since most stuff is in SVN, git et.c anyway...
 set nowb
 set noswapfile
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Use spaces instead of tabs
-set expandtab
-
-" Be smart when using tabs ;)
-set smarttab
-
-" Auto indent when on next line
-" set autoindent
-
-" Setup default ts
-set shiftwidth=2
+set expandtab     " Use spaces instead of tabs
+set smarttab      " Be smart when using tabs ;)
+set shiftwidth=2  " Setup default ts
 set tabstop=2
 set softtabstop=2
-
-" Linebreak on 500 characters
-set lbr
+set lbr           " Linebreak on 500 characters
 set tw=500
-
-set ai "Auto indent
-set si "Smart indent
-set wrap "Wrap lines
-
-" Remove ME
-set mouse=nicr
-
-" line numbers
-set number
+set ai            " Auto indent
+set si            " Smart indent
+set wrap          " Wrap lines
+set mouse=nicr    " Remove ME
+set number        " line numbers
 
 """"""""""""""""""""""""""""""
 " => Visual mode related
@@ -240,14 +178,12 @@ try
 catch
 endtry
 
-" Remember info about open buffers on close
-set viminfo^=%
+set viminfo^=% " Remember info about open buffers on close
 
 """"""""""""""""""""""""""""""
 " => Status line
 """"""""""""""""""""""""""""""
-" Always show the status line
-set laststatus=2
+set laststatus=2 " Always show the status line
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
@@ -294,24 +230,6 @@ let g:session_autosave = 'no'
 map <leader>t :TagbarToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => CtrlP
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"highlight Pmenu ctermbg=238 gui=bold
-
-"let g:ctrlp_map = '<C-p>'
-"let g:ctrlp_cmd = 'CtrlP'
-"let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
-"let g:ctrlp_working_path_mode = 'ra' " search for nearest ancestor like .git, .hg, and the directory of the current file
-"let g:ctrlp_match_window_bottom = 1  " show the match window at the top of the screen
-"let g:ctrlp_max_height = 8           " maxiumum height of match window
-"let g:ctrlp_switch_buffer = 'et'     " jump to a file if it's open already
-"let g:ctrlp_use_caching = 1          " enable caching
-"let g:ctrlp_clear_cache_on_exit=0    " speed up by not removing clearing cache evertime
-"let g:ctrlp_show_hidden = 1          " show me dotfiles
-"let g:ctrlp_mruf_max = 250           " number of recently opened files
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Nerd Tree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let NERDTreeIgnore=['\~$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
@@ -340,7 +258,6 @@ call unite#filters#matcher_default#use(['matcher_fuzzy'])
 " Use the rank sorter for everything
 call unite#filters#sorter_default#use(['sorter_rank'])
 
-"nnoremap <C-p> :Unite file_rec/async<cr>
 nnoremap <space>/ :Unite grep:.<cr>
 nnoremap <space>y :Unite history/yank<cr>
 nnoremap <leader>f :Unite file_rec<cr>
