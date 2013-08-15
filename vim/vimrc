@@ -19,6 +19,7 @@ Bundle 'Shougo/unite.vim'
 Bundle 'thinca/vim-unite-history'
 Bundle 'mileszs/ack.vim'
 
+
 " Code completion
 Bundle 'Raimondi/delimitMate'
 Bundle 'shawncplus/phpcomplete.vim'
@@ -58,12 +59,18 @@ set autoread              " Set to auto read when a file is changed from the out
 let mapleader = ","
 let g:mapleader = ","
 
+nmap ; :
+
 " Fast saving
 nmap <leader>w :w!<cr>
 
 " Fast quitting 
 nmap <leader>q :q<cr>
 nmap <leader>x :qa!<cr>
+
+
+" Fast run makefile
+nnoremap <leader>m :silent make\|redraw!\|cc<CR>
 
 " Fast Mode change
 set timeoutlen=1000 ttimeoutlen=0 
@@ -248,6 +255,8 @@ let g:unite_data_directory='~/.vim/.cache/unite'
 let g:unite_source_rec_max_cache_files=5000
 let g:unite_enable_start_insert = 1
 let g:unite_split_rule = "botright"
+let g:unite_force_overwrite_statusline = 0
+let g:unite_winheight = 10
 
 call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
       \ 'ignore_pattern', join([
@@ -265,7 +274,22 @@ call unite#filters#sorter_default#use(['sorter_rank'])
 nnoremap <space>/ :Unite grep:.<cr>
 nnoremap <space>y :Unite history/yank<cr>
 nnoremap <leader>f :Unite file_rec<cr>
-nnoremap <C-p> :Unite file_rec/async<cr>
+nnoremap <C-P> :<C-u>Unite  -buffer-name=files   -start-insert buffer file_rec/async:!<cr>
+
+autocmd FileType unite call s:unite_settings()
+
+function! s:unite_settings()
+  let b:SuperTabDisabled=1
+  "imap <buffer> <C-j> <NOP>
+  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+  imap <silent><buffer><expr> <C-x> unite#do_action('split')
+  imap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
+  imap <silent><buffer><expr> <C-t> unite#do_action('tabopen')
+
+  nmap <buffer> <ESC> <Plug>(unite_exit)
+
+endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Syntastic 
