@@ -9,7 +9,7 @@ print "$fg[white]------------------"
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+ZSH_THEME="bira"
 
 # Example aliases
 alias gs="git status"
@@ -18,6 +18,7 @@ alias tmux="tmux -2"
 alias todo="vim ~/docs/on-going"
 alias open="gnome-open"
 alias ccat="pygmentize -g"
+alias vim="vim -X"
 alias v="vim"
 alias g="git status"
 alias l="ls"
