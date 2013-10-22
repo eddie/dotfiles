@@ -9,8 +9,8 @@ filetype off
 Bundle 'gmarik/vundle'
 
 " UI
-"Bundle 'bling/vim-airline'
-"Bundle 'bling/vim-bufferline'
+Bundle 'bling/vim-airline'
+Bundle 'bling/vim-bufferline'
 "Bundle 'Lokaltog/powerline'
 Bundle 'flazz/vim-colorschemes'
 Bundle 'ujihisa/unite-colorscheme'
@@ -73,7 +73,7 @@ nmap <leader>x :qa!<cr>
 nnoremap <leader>m :silent make\|redraw!\|cc<CR>
 
 " Fast Mode change
-set timeoutlen=1000 ttimeoutlen=0 
+set timeoutlen=300 ttimeoutlen=50 
 
 " Fast buffer alternation
 noremap <Leader><Leader> <C-^>
@@ -99,6 +99,10 @@ set magic                      " For regular expressions turn magic on
 set showmatch                  " Show matching brackets when text indicator is over them
 set mat=2                      " How many tenths of a second to blink when matching brackets
 set fillchars+=vert:\          " Window split styling
+set cursorline
+
+autocmd WinLeave * setlocal nocursorline
+autocmd WinEnter * setlocal cursorline
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
@@ -118,6 +122,11 @@ set nobackup " Turn backup off, since most stuff is in SVN, git et.c anyway...
 set nowb
 set noswapfile
 
+if exists('+undofile')
+  set undofile
+  set undodir=~/.vim/.cache/undo
+endif
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -132,7 +141,17 @@ set ai            " Auto indent
 set si            " Smart indent
 set wrap          " Wrap lines
 set mouse=nicr    " Remove ME
+set mousehide
 set number        " line numbers
+set list
+set listchars=tab:│\ ,trail:•,extends:❯,precedes:❮
+set linebreak
+let &showbreak='↪ '
+
+set scrolljump=5 "minimum number of lines to scroll
+set ttyfast
+set viewoptions=folds,options,cursor,unix,slash     "unix/windows compatibility
+
 
 """"""""""""""""""""""""""""""
 " => Visual mode related
@@ -177,8 +196,8 @@ map <C-l> <C-W>l
 " Unmap arrow keys
 noremap <Up> <c-W>k
 noremap <Down> <c-W>j
-noremap <Left> <c-W>h
-noremap <Right> <c-W>l
+noremap <Left> :bprev <CR>
+noremap <Right> :bnext<CR>
 
 " Adjust viewports to the same size
 map <Leader>= <C-w>=
@@ -190,7 +209,7 @@ try
 catch
 endtry
 
-set viminfo^=% " Remember info about open buffers on close
+" set viminfo^=% " Remember info about open buffers on close
 
 """"""""""""""""""""""""""""""
 " => Status line
@@ -307,7 +326,10 @@ let g:vim_markdown_folding_disabled=1
 " => Airline 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:bufferline_echo=0
-let g:airline_theme='dark'
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Golang 
