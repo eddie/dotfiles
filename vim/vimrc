@@ -11,7 +11,6 @@ Bundle 'gmarik/vundle'
 " UI
 Bundle 'bling/vim-airline'
 Bundle 'bling/vim-bufferline'
-"Bundle 'Lokaltog/powerline'
 Bundle 'flazz/vim-colorschemes'
 Bundle 'ujihisa/unite-colorscheme'
 
