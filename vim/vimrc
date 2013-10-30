@@ -117,7 +117,7 @@ autocmd WinEnter * setlocal cursorline
 
 syntax enable         " Enable syntax highlighting
 set background=dark   " Default dark background
-colorscheme solarized " molokai xoria256
+colorscheme wombat256mod " molokai xoria256
 set t_Co=256          " Enable 256 colours
 set encoding=utf8     " Set utf8 as standard encoding and en_US as the standard language
 set ffs=unix,dos,mac  " Use Unix as the standard file type
