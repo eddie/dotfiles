@@ -115,12 +115,12 @@ autocmd WinEnter * setlocal cursorline
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-syntax enable         " Enable syntax highlighting
-set background=dark   " Default dark background
+syntax enable            " Enable syntax highlighting
+set background=dark      " Default dark background
 colorscheme wombat256mod " molokai xoria256
-set t_Co=256          " Enable 256 colours
-set encoding=utf8     " Set utf8 as standard encoding and en_US as the standard language
-set ffs=unix,dos,mac  " Use Unix as the standard file type
+set t_Co=256             " Enable 256 colours
+set encoding=utf8        " Set utf8 as standard encoding and en_US as the standard language
+set ffs=unix,dos,mac     " Use Unix as the standard file type
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
@@ -154,6 +154,7 @@ set list
 set listchars=tab:│\ ,trail:•,extends:❯,precedes:❮
 set linebreak
 let &showbreak='↪ '
+set iskeyword-=_  " Word breaks around underscores
 
 set scrolljump=5 "minimum number of lines to scroll
 set ttyfast
@@ -257,12 +258,6 @@ set pastetoggle=<F5> " Hit f5 before pasting into terminal
 nnoremap <C-n> :NumbersToggle<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Session 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:session_autoload = 'no'
-let g:session_autosave = 'no'
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tagbar 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <leader>t :TagbarToggle<CR>
@@ -272,12 +267,6 @@ map <leader>t :TagbarToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let NERDTreeIgnore=['\~$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
 :nmap ,e :NERDTreeToggle<CR>
-
-
-" => Tagbar 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>t :TagbarToggle<CR>
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => CtrlP
@@ -297,10 +286,6 @@ let g:ctrlp_clear_cache_on_exit=0     " speed up by not removing clearing cache 
 let g:ctrlp_show_hidden = 1       " show me dotfiles
 let g:ctrlp_mruf_max = 250        " number of recently opened files
 
-
-nnoremap <F5> :set invpaste paste?<Enter>
-imap <F5> <C-O><F5>
-set pastetoggle=<F5> " Hit f5 before pasting into terminal
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Unite
@@ -344,7 +329,6 @@ function! s:unite_settings()
   imap <silent><buffer><expr> <C-t> unite#do_action('tabopen')
 
   nmap <buffer> <ESC> <Plug>(unite_exit)
-
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -356,22 +340,8 @@ let g:syntastic_always_populate_loc_list=1
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 
-
 map <leader>x :Errors<CR>
 map <leader>a :%!astyle --mode=c --style=ansi -s2 <CR><CR>
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Scons 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd BufReadPre SConstruct set filetype=scons
-autocmd BufReadPre SConscript set filetype=scons
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vim Markdown
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:vim_markdown_folding_disabled=1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Airline
@@ -406,8 +376,6 @@ set completeopt=menuone,menu,longest
  let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 
 
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Gundo 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -427,3 +395,10 @@ func! DeleteTrailingWS()
   exe "normal `z"
 endfunc
 
+function! DeleteHiddenBuffers()
+    let tpbl=[]
+    call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
+    for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
+        silent execute 'bwipeout' buf
+    endfor
+endfunction
