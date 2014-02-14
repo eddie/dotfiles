@@ -1,15 +1,11 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
-print "$fg[white]------------------"
-print "$fg[blue]✔ Check your todo!"
-print "$fg[white]------------------"
-
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="bira"
+ZSH_THEME="alanpeabody"
 
 # Example aliases
 alias gs="git status"
@@ -23,6 +19,7 @@ alias v="vim"
 alias g="git status"
 alias l="ls"
 alias pg='grep -H -r --include="*.php"'
+alias h='history | grep'
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
