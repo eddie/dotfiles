@@ -12,7 +12,6 @@ alias gs="git status"
 alias cb="xsel --clipboard"
 alias tmux="tmux -2"
 alias todo="vim ~/docs/on-going"
-alias open="gnome-open"
 alias ccat="pygmentize -g"
 alias vim="vim -X"
 alias v="vim"
@@ -20,6 +19,7 @@ alias g="git status"
 alias l="ls"
 alias pg='grep -H -r --include="*.php"'
 alias h='history | grep'
+alias rake='noglob rake'
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -54,4 +54,12 @@ eval "$(rbenv init -)" # or equivalent
 
 export TERM="screen-256color"
 gi() { gem install $@; rbenv rehash; rehash }
+
+# pip should only run if there is a virtualenv currently activated
+export PIP_REQUIRE_VIRTUALENV=true
+# cache pip-installed packages to avoid re-downloading
+export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
+
+export WORKON_HOME=~/virtualenvs
+source /usr/local/bin/virtualenvwrapper.sh
 
