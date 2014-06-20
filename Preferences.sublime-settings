@@ -1,34 +1,20 @@
 {
-	"color_scheme": "Packages/Tomorrow Color Schemes/Tomorrow-Night-Eighties.tmTheme",
-	"fold_buttons": false,
+	"color_scheme": "Packages/Theme - Spacegray/base16-ocean.dark.tmTheme",
 	"folder_exclude_patterns":
 	[
-		".svn",
+		".tmp",
 		".git",
-		".hg",
-		"CVS",
-		"_build",
-		"dist",
-		"build",
-		"site",
-		".scssc",
-		".sassc"
+		".sass-cache",
+		"node_modules"
 	],
-	"font_options":
-	[
-		"subpixel_antialias"
-	],
-	"font_size": 9,
-	"highlight_line": true,
+	"font": "Source Code Pro",
+	"font_size": 12,
 	"ignored_packages":
 	[
 	],
-	"rulers":
-	[
-		72,
-		79
-	],
-	"theme": "Soda Dark.sublime-theme",
+	"spacegray_tabs_font_small": true,
+	"tab_size": 2,
+	"theme": "Spacegray Light.sublime-theme",
 	"translate_tabs_to_spaces": true,
-	"trim_trailing_white_space_on_save": true
+	"vintage_start_in_command_mode": true
 }
