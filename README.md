@@ -16,8 +16,6 @@
 
   ln -s ~/dotfiles/zshrc ~/.zshrc
 
-  ln -s ~/dotfiles/tmux-powerlinerc ~/.tmux-powerlinerc
-
 # Vim Installation and Setup
 
 ## Create Symlinks:
