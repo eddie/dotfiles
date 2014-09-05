@@ -18,14 +18,6 @@
 
   ln -s ~/dotfiles/tmux-powerlinerc ~/.tmux-powerlinerc
 
-## Setup a patched font:
-
-  mkdir ~/.fonts && ln -s ~/dotfiles/ubuntu-mono-powerline/* ~/.fonts
-
-  cd ~/.fonts/ && git clone https://github.com/scotu/ubuntu-mono-powerline.git && cd ~
-
-  fc-cache -vf
-
 # Vim Installation and Setup
 
 ## Create Symlinks:
