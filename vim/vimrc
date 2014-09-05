@@ -1,97 +1,88 @@
 set nocompatible
+filetype off
+syntax on
 
 set rtp+=~/.vim/vundle/
-call vundle#rc()
-
-syntax on
-filetype off
+call vundle#begin()
 
 Bundle 'gmarik/vundle'
 
 " UI
 Bundle 'bling/vim-airline'
-Bundle 'bling/vim-bufferline'
 Bundle 'flazz/vim-colorschemes'
-Bundle 'ujihisa/unite-colorscheme'
-
-" Fuzzy search
-Bundle 'Shougo/vimproc.vim'
-Bundle 'Shougo/unite.vim'
-Bundle 'thinca/vim-unite-history'
-Bundle 'mileszs/ack.vim'
-Bundle 'kien/ctrlp.vim'
-
-" Code completion
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle "garbas/vim-snipmate"
-Bundle 'ervandew/supertab'
-Bundle 'honza/vim-snippets'
-Bundle 'vim-scripts/OmniCppComplete'
+Bundle 'airblade/vim-gitgutter'
 
 " File browsing
 Bundle 'scrooloose/nerdtree'
-Bundle 'majutsushi/tagbar'
+Bundle 'kien/ctrlp.vim'
+Bundle 'mileszs/ack.vim'
 
 " Syntax
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'jnwhiteh/vim-golang'
 Bundle 'groenewege/vim-less'
 Bundle 'othree/html5.vim'
-Bundle 'plasticboy/vim-markdown'
 Bundle 'puppetlabs/puppet-syntax-vim'
-Bundle 'vim-scripts/scons.vim'
-
-" Git
-Bundle 'tpope/vim-fugitive'
-Bundle 'airblade/vim-gitgutter'
-
-" Misc
-Bundle 'sjl/gundo.vim'
+Bundle 'elzr/vim-json'
 Bundle 'scrooloose/syntastic'
 
+" Editing 
 Bundle 'vim-scripts/Align'
 Bundle 'tpope/vim-surround'
 Bundle 'gregsexton/MatchTag'
 
+call vundle#end()
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => General
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-filetype plugin indent on " Enable filetype plugins
+filetype plugin indent on
 
 set history=700           " Sets how many lines of history VIM has to remember
 set autoread              " Set to auto read when a file is changed from the outside
 
 let mapleader = ","
 let g:mapleader = ","
-
 nmap ; :
 
-" Fast saving
+" Fast saving + switching
 nmap <leader>w :w!<cr>
-
-" Fast quitting 
 nmap <leader>q :q<cr>
 nmap <leader>x :qa!<cr>
+noremap <Leader><Leader> <C-^>  " Fast buffer switch
+set timeoutlen=300 ttimeoutlen=50  " Fast mode switching
 
+if has('gui')
+    set guifont=Inconsolata-dz\ for\ Powerline:h13
+    set go-=T                  " No toolbar
+    set columns=180            " Larger window by default
+    set lines=50
+    set mousehide              " Hide cursor whilst typing
+endif
 
-" Fast run makefile
-nnoremap <leader>m :silent make\|redraw!\|cc<CR>
+if has('gui_macvim')
+  set transparency=5
+  " Press Ctrl-Tab to switch between open tabs (like browser tabs) to 
+  " the right side. Ctrl-Shift-Tab goes the other way.
+  noremap <C-Tab> :tabnext<CR>
+  noremap <C-S-Tab> :tabprev<CR>
 
-" Fast Mode change
-set timeoutlen=300 ttimeoutlen=50 
+  " Switch to specific tab numbers with Command-number
+  noremap <D-1> :tabn 1<CR>
+  noremap <D-2> :tabn 2<CR>
+  noremap <D-3> :tabn 3<CR>
+  noremap <D-4> :tabn 4<CR>
+  noremap <D-5> :tabn 5<CR>
+  noremap <D-6> :tabn 6<CR>
+  noremap <D-7> :tabn 7<CR>
+  noremap <D-8> :tabn 8<CR>
+  noremap <D-9> :tabn 9<CR>
 
-" Fast buffer alternation
-noremap <Leader><Leader> <C-^>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => VIM user interface
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  " Command-0 goes to the last tab
+  noremap <D-0> :tablast<CR>
+endif
 
 set so=7                       " Set 7 lines to the cursor - when moving vertically using j/k
 set wildmenu                   " Turn on the WiLd menu, better command completion
 set wildignore=*.o,*~,*.pyc    " Ignore compiled files
+set wildmode=longest,list,full
 set ruler                      " Always show current position
 set cmdheight=1                " Height of the command bar
 set hid                        " A buffer becomes hidden when it is abandoned
@@ -107,24 +98,22 @@ set showmatch                  " Show matching brackets when text indicator is o
 set mat=2                      " How many tenths of a second to blink when matching brackets
 set fillchars+=vert:\          " Window split styling
 set cursorline
+set scrolloff=5
 
 autocmd WinLeave * setlocal nocursorline
 autocmd WinEnter * setlocal cursorline
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Colors and Fonts
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 syntax enable            " Enable syntax highlighting
 set background=dark      " Default dark background
-colorscheme wombat256mod " molokai xoria256
+colorscheme solarized 
 set t_Co=256             " Enable 256 colours
-set encoding=utf8        " Set utf8 as standard encoding and en_US as the standard language
 set ffs=unix,dos,mac     " Use Unix as the standard file type
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Files, backups and undo
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Want utf8 at all times
+set termencoding=utf-8
+set encoding=utf-8
+set fileencoding=utf-8
+
 set nobackup " Turn backup off, since most stuff is in SVN, git et.c anyway...
 set nowb
 set noswapfile
@@ -134,52 +123,40 @@ if exists('+undofile')
   set undodir=~/.vim/.cache/undo
 endif
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Text, tab and indent related
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set expandtab     " Use spaces instead of tabs
-set smarttab      " Be smart when using tabs ;)
-set shiftwidth=2  " Setup default ts
-set tabstop=2
+set expandtab                                      " Use spaces instead of tabs
+set smarttab                                       " Be smart when using tabs ;)
+set shiftwidth=2                                   " Setup default ts
+set tabstop=2                                      " Tabs are this many spaces
 set softtabstop=2
-set lbr           " Linebreak on 500 characters
+set bs=2
+
+set clipboard=unnamed                              " Use the system clipboard to do our stuff, proper integration
+set lbr                                            " Linebreak on 500 characters
 set tw=500
-set ai            " Auto indent
-set si            " Smart indent
-set wrap          " Wrap lines
-set mouse=nicr    " Remove ME
+set ai                                             " Auto indent
+set si                                             " Smart indent
+set wrap                                           " Wrap lines
+set mouse=nicr                                     " Remove ME
 set mousehide
-set number        " line numbers
+set number                                         " line numbers
 set list
 set listchars=tab:│\ ,trail:•,extends:❯,precedes:❮
 set linebreak
 let &showbreak='↪ '
-set iskeyword-=_  " Word breaks around underscores
+set iskeyword-=_                                   " Word breaks around underscores
 
-set scrolljump=5 "minimum number of lines to scroll
+set scrolljump=3 "minimum number of lines to scroll
 set ttyfast
 set viewoptions=folds,options,cursor,unix,slash     "unix/windows compatibility
 
 
-""""""""""""""""""""""""""""""
-" => Visual mode related
-""""""""""""""""""""""""""""""
-
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Moving around, tabs, windows and buffers
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Retain visual selection after identing
 vnoremap < <gv
 vnoremap > >gv
 
-" Smash escape
-inoremap jk <Esc>
-inoremap kj <Esc>
-
-" Yank to Clipboard 
-nnoremap <C-y> "+y
-vnoremap <C-y> "+y
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Moving around, tabs, windows and buffers
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Treat long lines as break lines (useful when moving around in them)
 map j gj
 map k gk
@@ -202,13 +179,8 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 " Unmap arrow keys
-noremap <Up> <c-W>k
-noremap <Down> <c-W>j
-noremap <Left> :bprev <CR>
-noremap <Right> :bnext<CR>
-
-" Adjust viewports to the same size
-map <Leader>= <C-w>=
+"noremap <Left> :bprev <CR>
+"noremap <Right> :bnext<CR>
 
 " Specify the behavior when switching between buffers
 try
@@ -217,7 +189,6 @@ try
 catch
 endtry
 
-" set viminfo^=% " Remember info about open buffers on close
 
 """"""""""""""""""""""""""""""
 " => Status line
@@ -250,27 +221,16 @@ noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 map <leader>pp :setlocal paste!<cr>
 
 " Paste toggles
-nnoremap <F5> :set invpaste paste?<Enter>
-imap <F5> <C-O><F5>
-set pastetoggle=<F5> " Hit f5 before pasting into terminal
+nnoremap <F7> :set invpaste paste?<Enter>
+imap <F7> <C-O><F7>
+set pastetoggle=<F7> " Hit f7 before pasting into terminal
 
-" Relative line numbering
-nnoremap <C-n> :NumbersToggle<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Tagbar 
+" => File Browsing 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>t :TagbarToggle<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Nerd Tree
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let NERDTreeIgnore=['\~$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
+let NERDTreeIgnore=['\~$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.pyc$']
 :nmap ,e :NERDTreeToggle<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => CtrlP
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 highlight Pmenu ctermbg=238 gui=bold
 
@@ -288,50 +248,6 @@ let g:ctrlp_mruf_max = 250        " number of recently opened files
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Unite
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-let g:unite_source_history_yank_enable = 1
-let g:unite_data_directory='~/.vim/.cache/unite'
-let g:unite_source_rec_max_cache_files=5000
-let g:unite_enable_start_insert = 1
-let g:unite_split_rule = "botright"
-let g:unite_force_overwrite_statusline = 0
-let g:unite_winheight = 10
-
-call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
-      \ 'ignore_pattern', join([
-      \ '\.git/',
-      \ 'git5/.*/review/',
-      \ 'google/obj/',
-      \ ], '\|'))
-
-" Use the fuzzy matcher for everything
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-
-" Use the rank sorter for everything
-call unite#filters#sorter_default#use(['sorter_rank'])
-
-nnoremap <space>/ :Unite grep:.<cr>
-nnoremap <space>y :Unite history/yank<cr>
-nnoremap <leader>f :Unite file_rec<cr>
-nnoremap <leader>c :Unite colorscheme -auto-preview<cr>
-
-autocmd FileType unite call s:unite_settings()
-
-function! s:unite_settings()
-  let b:SuperTabDisabled=1
-  "imap <buffer> <C-j> <NOP>
-  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
-  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
-  imap <silent><buffer><expr> <C-x> unite#do_action('split')
-  imap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
-  imap <silent><buffer><expr> <C-t> unite#do_action('tabopen')
-
-  nmap <buffer> <ESC> <Plug>(unite_exit)
-endfunction
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Syntastic
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:syntastic_java_javac_config_file_enabled = 1
@@ -340,49 +256,65 @@ let g:syntastic_always_populate_loc_list=1
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 
+let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
+
 map <leader>x :Errors<CR>
-map <leader>a :%!astyle --mode=c --style=ansi -s2 <CR><CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Airline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:bufferline_echo=0
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
+let g:airline_powerline_fonts = 1 " Powerline symbols
+let g:airline_theme='wombat'
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Golang 
+" => augroups 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 autocmd FileType go autocmd BufWritePre <buffer> Fmt
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Supertab + Omnicomplete 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:SuperTabDefaultCompletionType = "context"
-let g:clang_complete_copen = 1
-let g:clang_snippets = 1
-let g:clang_use_library = 1
-map <leader>a :!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-set omnifunc=syntaxcomplete#Complete " override built-in C omnicomplete with C++ OmniCppComplete plugin
-let OmniCpp_GlobalScopeSearch   = 1
-let OmniCpp_DisplayMode         = 1
-let OmniCpp_ShowScopeInAbbr     = 0 "do not show namespace in pop-up
-let OmniCpp_ShowPrototypeInAbbr = 1 "show prototype in pop-up
-let OmniCpp_ShowAccess          = 1 "show access in pop-up
-let OmniCpp_SelectFirstItem     = 1 "select first item in pop-up
-set completeopt=menuone,menu,longest
- let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+if has("autocmd")
+  augroup python " {{{3
+    autocmd BufRead,BufNewFile *.py 
+        \ set ts=4 sw=4 et
+    autocmd Filetype python let pyindent_open_paren = '&sw'
+    autocmd Filetype python let pyindent_continue = '&sw'
+    autocmd Filetype python let python_highlight_space_errors = 1 " Highlight trailing spaces and mixed tab and spaces
+    autocmd Filetype python let python_space_error_highlight = 1 " Same thing for newer version of python syntax file
+    autocmd Filetype python let python_highlight_numbers = 1
+    autocmd Filetype python let python_highlight_builtins = 1
+    autocmd Filetype python let python_highlight_exceptions = 1
+    autocmd Filetype python let g:pydoc_cmd = "/usr/bin/pydoc" " pydoc
+    autocmd Filetype python let g:pydiction_location = '~/.vim/after/ftplugin/complete-dict' " pydiction
+    autocmd Filetype python set makeprg=pychecker
+    autocmd Filetype python map <F5> :!python % <CR>
+    autocmd Filetype python map <F7> :make % <CR>
+    autocmd Filetype python match ErrorMsg '\%>80v.\+' " Match error any line with more than 80 chars
+  augroup END
+  augroup markdown " {{{3
+    autocmd BufRead,BufNewFile *.mdoc
+          \ set tabstop=2 shiftwidth=2 softtabstop=2
+  augroup END
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Gundo 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:gundo_width = 60
-let g:gundo_preview_height = 40
-let g:gundo_right = 1
-nnoremap <leader>g :GundoToggle<CR>
+  augroup html " {{{3
+    autocmd BufNewFile *.htm,*.html
+          \ 0put ='<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.1//EN\" \"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd\">' |
+          \ $put ='<html xml:lang=\"en\" xmlns=\"http://www.w3.org/1999/xhtml\">' |
+          \ $put ='  <head>' |
+          \ $put ='    <title></title>' |
+          \ $put ='    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />' |
+          \ $put ='    <link href=\"\" rel=\"stylesheet\" type=\"text/css\" />' |
+          \ $put ='    <style type=\"text/css\">' |
+          \ $put ='    </style>' |
+          \ $put ='  </head>' |
+          \ $put ='  <body>' |
+          \ $put ='  </body>' |
+          \ $put ='</html>' |
+          \ $put ='<!-- vim: set sw=2 sts=2 et tw=80 : -->' |
+          \ set sw=2 sts=2 et tw=80 | norm G
+  augroup END
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
@@ -395,10 +327,3 @@ func! DeleteTrailingWS()
   exe "normal `z"
 endfunc
 
-function! DeleteHiddenBuffers()
-    let tpbl=[]
-    call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
-    for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
-        silent execute 'bwipeout' buf
-    endfor
-endfunction

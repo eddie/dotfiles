@@ -1,14 +1,11 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
-
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="alanpeabody"
+ZSH_THEME="kardan"
 
 # Example aliases
 alias gs="git status"
+alias g="git"
+alias gap="git add -p"
 alias cb="xsel --clipboard"
 alias tmux="tmux -2"
 alias todo="vim ~/docs/on-going"
@@ -20,6 +17,7 @@ alias l="ls"
 alias pg='grep -H -r --include="*.php"'
 alias h='history | grep'
 alias rake='noglob rake'
+alias gvim='/Applications/MacVim.app/Contents/MacOS/Vim -g'
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -60,6 +58,7 @@ export PIP_REQUIRE_VIRTUALENV=true
 # cache pip-installed packages to avoid re-downloading
 export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
 
-export WORKON_HOME=~/virtualenvs
+export WORKON_HOME=~/.virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
 
+export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home"
