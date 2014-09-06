@@ -1,6 +1,5 @@
 set nocompatible
 filetype off
-syntax on
 
 set rtp+=~/.vim/vundle/
 call vundle#begin()
@@ -33,6 +32,7 @@ Bundle 'gregsexton/MatchTag'
 
 call vundle#end()
 
+syntax enable
 filetype plugin indent on
 
 set history=700           " Sets how many lines of history VIM has to remember
