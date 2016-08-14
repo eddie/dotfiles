@@ -1,66 +1,62 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/vundle/
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 
-Bundle 'gmarik/vundle'
+" Colorschemes
+Plug 'GertjanReynaert/cobalt2-vim-theme'
+Plug 'vim-airline/vim-airline-themes'
 
-" UI
-Bundle 'bling/vim-airline'
-"Bundle 'flazz/vim-colorschemes'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'morhetz/gruvbox'
+" Syntax and colorschemes
+Plug 'tpope/vim-git', { 'for': 'git' }
+Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'js' }
 
-" File browsing
-Bundle 'scrooloose/nerdtree'
-Bundle 'ctrlpvim/ctrlp.vim'
-"Bundle 'mileszs/ack.vim'
-Bundle 'rking/ag.vim'
+" Completion
+Plug 'mattn/emmet-vim', { 'for': 'html' }
 
-" Syntax
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'jnwhiteh/vim-golang'
-Bundle 'groenewege/vim-less'
-Bundle 'othree/html5.vim'
-Bundle 'puppetlabs/puppet-syntax-vim'
-Bundle 'elzr/vim-json'
-Bundle 'guns/vim-clojure-static'
-Bundle 'mxw/vim-jsx'
-Bundle 'jelera/vim-javascript-syntax'
-Bundle 'JulesWang/css.vim' 
-Bundle 'cakebaker/scss-syntax.vim'
+" Make tab handle all completions
+" Plug 'ervandew/supertab'
 
-" Editing 
-Bundle 'vim-scripts/Align'
-Bundle 'tpope/vim-surround'
-Bundle 'gregsexton/MatchTag'
-Bundle 'davidhalter/jedi-vim'
-Bundle 'Raimondi/delimitMate'
-"Bundle 'Shutnik/jshint2.vim'
-Bundle 'scrooloose/syntastic'
-Bundle 'othree/javascript-libraries-syntax.vim'
-Bundle 'ervandew/supertab'
-Bundle 'editorconfig/editorconfig-vim'
+" Track the engine.
+Plug 'SirVer/ultisnips'
 
+" Snippets are separated from the engine. Add this if you want them:
+Plug 'honza/vim-snippets'
 
+" Syntastic: Code linting errors
+Plug 'scrooloose/syntastic', { 'for': ['php', 'python', 'javascript', 'css'] }
 
-" Snippets, refine this:
+" Pairs of handy bracket mappings
+Plug 'tpope/vim-unimpaired'
 
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
+" Editor
+Plug 'bling/vim-airline'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'scrooloose/nerdtree'
+Plug 'jiangmiao/auto-pairs'
 
-Plugin 'honza/vim-snippets'
+" Searching
+Plug 'dyng/ctrlsf.vim'
 
+" 'Vastly improved Javascript indentation and syntax support in Vim'
+Plug 'pangloss/vim-javascript'
 
+" Rename files from within vim
+Plug 'tpope/vim-eunuch'
 
-call vundle#end()
+call plug#end()
+
+" Disabled commands to help with RSI
+nmap $ 0
 
 syntax enable
 set t_Co=256
-set background=light 
-colorscheme gruvbox
+set background=dark
+colorscheme cobalt2
 
 filetype plugin indent on
 
@@ -79,15 +75,15 @@ noremap <Leader><Leader> <C-^>  " Fast buffer switch
 set timeoutlen=300 ttimeoutlen=50  " Fast mode switching
 
 if has('gui')
-    set guifont=Inconsolata-dz\ for\ Powerline:h13
-    set go-=T                  " No toolbar
-    set columns=180            " Larger window by default
-    set lines=50
-    set mousehide              " Hide cursor whilst typing
+  set guifont=Inconsolata-dz\ for\ Powerline:h16
+  set go-=T                  " No toolbar
+  set columns=180            " Larger window by default
+  set lines=50
+  set mousehide              " Hide cursor whilst typing
 endif
 
 if has('gui_macvim')
-  set transparency=5
+  set transparency=0
   " Press Ctrl-Tab to switch between open tabs (like browser tabs) to 
   " the right side. Ctrl-Shift-Tab goes the other way.
   noremap <C-Tab> :tabnext<CR>
@@ -111,6 +107,9 @@ endif
 set so=7                       " Set 7 lines to the cursor - when moving vertically using j/k
 set wildmenu                   " Turn on the WiLd menu, better command completion
 set wildignore=*.o,*~,*.pyc    " Ignore compiled files
+set wildignore+=**/node_modules
+set wildignore+=**/bower_components
+
 set wildmode=longest,list,full
 set ruler                      " Always show current position
 set cmdheight=1                " Height of the command bar
@@ -133,7 +132,6 @@ autocmd WinLeave * setlocal nocursorline
 autocmd WinEnter * setlocal cursorline
 
 set ffs=unix,dos,mac     " Use Unix as the standard file type
-
 
 " Want utf8 at all times
 set termencoding=utf-8
@@ -228,19 +226,13 @@ set laststatus=2 " Always show the status line
 map 0 ^
 
 autocmd BufWrite *.py :call DeleteTrailingWS()
-autocmd BufWrite *.coffee :call DeleteTrailingWS()
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Pressing ,ss will toggle and untoggle spell checking
 map <leader>ss :setlocal spell!<cr>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Misc
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Remove the Windows ^M - when the encodings gets messed up
-noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 " TODO: Revise paste options
 " Toggle paste mode on and off
@@ -251,18 +243,21 @@ nnoremap <F7> :set invpaste paste?<Enter>
 imap <F7> <C-O><F7>
 set pastetoggle=<F7> " Hit f7 before pasting into terminal
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => File Browsing 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let NERDTreeIgnore=['\~$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.pyc$']
+
+let g:NERDTreeWinSize = 24
+let g:NERDTreeMinimalUI = 1
+
+let NERDTreeIgnore=['\~$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.pyc$', 'node_modules', 'bower_components']
 :nmap ,e :NERDTreeToggle<CR>
 
 highlight Pmenu ctermbg=238 gui=bold
 
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
+let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$|\node_modules|\bower_components'
 let g:ctrlp_working_path_mode = 'ra'  " search for nearest ancestor like .git, .hg, and the directory of the current file
 let g:ctrlp_match_window_bottom = 1   " show the match window at the top of the screen
 let g:ctrlp_max_height = 8      " maxiumum height of match window
@@ -272,6 +267,23 @@ let g:ctrlp_clear_cache_on_exit=0     " speed up by not removing clearing cache 
 let g:ctrlp_show_hidden = 1       " show me dotfiles
 let g:ctrlp_mruf_max = 250        " number of recently opened files
 
+" Searching
+let g:ctrlsf_winsize = '50%'
+
+nmap     <C-F>f <Plug>CtrlSFPrompt
+vmap     <C-F>f <Plug>CtrlSFVwordPath
+vmap     <C-F>F <Plug>CtrlSFVwordExec
+nmap     <C-F>n <Plug>CtrlSFCwordPath
+nmap     <C-F>p <Plug>CtrlSFPwordPath
+nnoremap <C-F>o :CtrlSFOpen<CR>
+nnoremap <C-F>t :CtrlSFToggle<CR>
+inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
+nmap     <C-F>l <Plug>CtrlSFQuickfixPrompt
+vmap     <C-F>l <Plug>CtrlSFQuickfixVwordPath
+vmap     <C-F>L <Plug>CtrlSFQuickfixVwordExec
+
+" Tabs
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Syntastic
@@ -280,21 +292,20 @@ let g:syntastic_check_on_open=1
 let g:syntastic_javascript_checkers = ['jshint']
 
 let g:syntastic_java_javac_config_file_enabled = 1
-let g:syntastic_always_populate_loc_list=1
-
-let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+let g:syntastic_always_populate_loc_list=0
 
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
 
-"let statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_enable_signs = 1
+
+let g:syntastic_error_symbol = '✗✗'
+let g:syntastic_style_error_symbol = '✠✠'
+let g:syntastic_warning_symbol = '∆∆'
+let g:syntastic_style_warning_symbol = '≈≈'
+
 map <leader>x :Errors<CR>
 
 
@@ -302,8 +313,12 @@ map <leader>x :Errors<CR>
 " => Airline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:bufferline_echo=0
-let g:airline_powerline_fonts = 1 " Powerline symbols
-let g:airline_theme='wombat'
+let g:airline_powerline_fonts = 0 " Powerline symbols
+let g:airline_theme='papercolor'
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#syntastic#enabled = 1
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => JS Library Syntax 
@@ -312,67 +327,22 @@ let g:airline_theme='wombat'
 let g:used_javascript_libs = 'angularjs,jasmine,underscore'
 
 
+" Snippets
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+autocmd FileType javascript UltiSnipsAddFiletypes javascript-jasmine
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => augroups 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-autocmd FileType go autocmd BufWritePre <buffer> Fmt
-
 autocmd FileType scss set omnifunc=csscomplete#CompleteCSS
-
-
-
-if has("autocmd")
-
-  augroup coffee " {{{3
-    autocmd BufRead,BufNewFile *.coffee 
-        \ set ts=2 sw=2 et
-  augroup END
-
-  augroup python " {{{3
-    autocmd BufRead,BufNewFile *.py 
-        \ set ts=4 sw=4 et
-    autocmd Filetype python let pyindent_open_paren = '&sw'
-    autocmd Filetype python let pyindent_continue = '&sw'
-    autocmd Filetype python let python_highlight_space_errors = 1 " Highlight trailing spaces and mixed tab and spaces
-    autocmd Filetype python let python_space_error_highlight = 1 " Same thing for newer version of python syntax file
-    autocmd Filetype python let python_highlight_numbers = 1
-    autocmd Filetype python let python_highlight_builtins = 1
-    autocmd Filetype python let python_highlight_exceptions = 1
-    autocmd Filetype python let g:pydoc_cmd = "/usr/bin/pydoc" " pydoc
-    autocmd Filetype python let g:pydiction_location = '~/.vim/after/ftplugin/complete-dict' " pydiction
-    autocmd Filetype python set makeprg=pychecker
-    autocmd Filetype python map <F5> :!python % <CR>
-    autocmd Filetype python map <F7> :make % <CR>
-    autocmd Filetype python match ErrorMsg '\%>80v.\+' " Match error any line with more than 80 chars
-  augroup END
-  augroup markdown " {{{3
-    autocmd BufRead,BufNewFile *.mdoc
-          \ set tabstop=2 shiftwidth=2 softtabstop=2
-  augroup END
-
-  augroup html " {{{3
-    autocmd BufNewFile *.htm,*.html
-          \ 0put ='<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.1//EN\" \"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd\">' |
-          \ $put ='<html xml:lang=\"en\" xmlns=\"http://www.w3.org/1999/xhtml\">' |
-          \ $put ='  <head>' |
-          \ $put ='    <title></title>' |
-          \ $put ='    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />' |
-          \ $put ='    <link href=\"\" rel=\"stylesheet\" type=\"text/css\" />' |
-          \ $put ='    <style type=\"text/css\">' |
-          \ $put ='    </style>' |
-          \ $put ='  </head>' |
-          \ $put ='  <body>' |
-          \ $put ='  </body>' |
-          \ $put ='</html>' |
-          \ $put ='<!-- vim: set sw=2 sts=2 et tw=80 : -->' |
-          \ set sw=2 sts=2 et tw=80 | norm G
-  augroup END
-endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Delete trailing white space on save, useful for Python and CoffeeScript ;)
 func! DeleteTrailingWS()
