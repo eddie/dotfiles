@@ -321,8 +321,8 @@ let g:used_javascript_libs = 'angularjs,jasmine,underscore'
 " Snippets and Completion
 
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 autocmd FileType javascript UltiSnipsAddFiletypes javascript-jasmine
 
