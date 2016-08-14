@@ -1,7 +1,7 @@
 # Clone 
 
-  git clone https://github.com/eddie/dotfiles ~/dotfiles
-  cd ~/dotfiles && git submodule init
+    git clone https://github.com/eddie/dotfiles ~/dotfiles
+    cd ~/dotfiles && git submodule init
 
 ## Install Dependencies
 
@@ -22,4 +22,5 @@
 ## Install VIM plugins:
 
     vim +PlugInstall
+
 
