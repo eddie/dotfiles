@@ -14,16 +14,8 @@ Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'js' }
 
 " Completion
-Plug 'mattn/emmet-vim', { 'for': 'html' }
-
-" Make tab handle all completions
-" Plug 'ervandew/supertab'
-
-" Track the engine.
 Plug 'SirVer/ultisnips'
-
-" Snippets are separated from the engine. Add this if you want them:
-Plug 'honza/vim-snippets'
+Plug 'honza/vim-snippets' " For ultrasnip
 
 " Syntastic: Code linting errors
 Plug 'scrooloose/syntastic', { 'for': ['php', 'python', 'javascript', 'css'] }
@@ -326,8 +318,7 @@ let g:airline#extensions#syntastic#enabled = 1
 
 let g:used_javascript_libs = 'angularjs,jasmine,underscore'
 
-
-" Snippets
+" Snippets and Completion
 
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
@@ -335,11 +326,8 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 autocmd FileType javascript UltiSnipsAddFiletypes javascript-jasmine
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => augroups 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-autocmd FileType scss set omnifunc=csscomplete#CompleteCSS
+" Markdown
+let g:vim_markdown_folding_disabled = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
