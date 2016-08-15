@@ -18,7 +18,7 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets' " For ultrasnip
 
 " Syntastic: Code linting errors
-Plug 'scrooloose/syntastic', { 'for': ['php', 'python', 'javascript', 'css'] }
+Plug 'scrooloose/syntastic', { 'for': ['php', 'python', 'javascript', 'css', 'scss'] }
 
 " Pairs of handy bracket mappings
 Plug 'tpope/vim-unimpaired'
