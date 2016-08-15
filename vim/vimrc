@@ -28,6 +28,7 @@ Plug 'bling/vim-airline'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'airblade/vim-gitgutter'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'scrooloose/nerdtree'
 Plug 'jiangmiao/auto-pairs'
 
@@ -61,8 +62,9 @@ nmap ; :
 
 " Fast saving + switching
 nmap <leader>w :w!<cr>
-nmap <leader>q :q<cr>
+nnoremap <leader>q :bp<cr>:bd #<cr>
 nmap <leader>x :qa!<cr>
+
 noremap <Leader><Leader> <C-^>  " Fast buffer switch
 set timeoutlen=300 ttimeoutlen=50  " Fast mode switching
 
@@ -195,8 +197,8 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 " Unmap arrow keys
-"noremap <Left> :bprev <CR>
-"noremap <Right> :bnext<CR>
+noremap <Left> :bprev <CR>
+noremap <Right> :bnext<CR>
 
 " Specify the behavior when switching between buffers
 try
@@ -286,17 +288,17 @@ let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_java_javac_config_file_enabled = 1
 let g:syntastic_always_populate_loc_list=0
 
-let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
+let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-", " is not recognized!"]
 
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_enable_signs = 1
 
-let g:syntastic_error_symbol = '✗✗'
-let g:syntastic_style_error_symbol = '✠✠'
-let g:syntastic_warning_symbol = '∆∆'
-let g:syntastic_style_warning_symbol = '≈≈'
+" let g:syntastic_error_symbol = '✗✗'
+" let g:syntastic_style_error_symbol = '✠✠'
+" let g:syntastic_warning_symbol = '∆∆'
+" let g:syntastic_style_warning_symbol = '≈≈'
 
 map <leader>x :Errors<CR>
 
