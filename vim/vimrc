@@ -263,6 +263,7 @@ let g:ctrlp_mruf_max = 250        " number of recently opened files
 
 " Searching
 let g:ctrlsf_winsize = '50%'
+let g:ctrlsf_default_root = 'project'
 
 nmap     <C-F>f <Plug>CtrlSFPrompt
 vmap     <C-F>f <Plug>CtrlSFVwordPath
