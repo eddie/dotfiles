@@ -1,8 +1,3 @@
-# Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="kardan"
-
-# Example aliases
 alias gs="git status"
 alias g="git"
 alias gap="git add -p"
@@ -15,16 +10,21 @@ alias g="git status"
 alias l="ls"
 alias pg='grep -H -r --include="*.php"'
 alias h='history | grep'
-alias rake='noglob rake'
-alias gvim='/Applications/MacVim.app/Contents/MacOS/Vim -g'
+alias vim="nvim"
+alias ag='ag --path-to-ignore ~/.agignore'
 
 DISABLE_AUTO_UPDATE="true"
-plugins=(git git-extras brew npm autojump)
+ZSH_THEME="avit"
 
+plugins=(git git-extras brew npm autojump osx)
+
+# User configuration
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 source $ZSH/oh-my-zsh.sh
 
-# Customize to your needs...
-export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+# nvm
+export NVM_DIR="/Users/eddie/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # Python
 export PIP_REQUIRE_VIRTUALENV=true
