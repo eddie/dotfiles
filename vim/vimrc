@@ -6,6 +6,8 @@ call plug#begin('~/.vim/plugged')
 " Colorschemes
 Plug 'GertjanReynaert/cobalt2-vim-theme'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'altercation/vim-colors-solarized'
+Plug 'mhartington/oceanic-next'
 
 " Syntax and colorschemes
 Plug 'tpope/vim-git', { 'for': 'git' }
@@ -14,7 +16,7 @@ Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'js' }
 
 " Completion
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets' " For ultrasnip
 
 " Syntastic: Code linting errors
@@ -49,7 +51,7 @@ nmap $ 0
 syntax enable
 set t_Co=256
 set background=dark
-colorscheme cobalt2
+colorscheme solarized
 
 filetype plugin indent on
 
@@ -156,6 +158,7 @@ set si                                             " Smart indent
 set wrap                                           " Wrap lines
 set mouse=nicr                                     " Remove ME
 set mousehide
+set relativenumber
 set number                                         " line numbers
 set list
 set listchars=tab:│\ ,trail:•,extends:❯,precedes:❮
@@ -218,8 +221,6 @@ set laststatus=2 " Always show the status line
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remap VIM 0 to first non-blank character
 map 0 ^
-
-autocmd BufWrite *.py :call DeleteTrailingWS()
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -320,24 +321,5 @@ let g:airline#extensions#syntastic#enabled = 1
 
 let g:used_javascript_libs = 'angularjs,jasmine,underscore'
 
-" Snippets and Completion
-
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-
-autocmd FileType javascript UltiSnipsAddFiletypes javascript-jasmine
-
 " Markdown
 let g:vim_markdown_folding_disabled = 1
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Helper functions
-
-" Delete trailing white space on save, useful for Python and CoffeeScript ;)
-func! DeleteTrailingWS()
-  exe "normal mz"
-  %s/\s\+$//ge
-  exe "normal `z"
-endfunc
-
