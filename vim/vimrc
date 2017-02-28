@@ -20,7 +20,7 @@ Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'js' }
 Plug 'honza/vim-snippets' " For ultrasnip
 
 " Syntastic: Code linting errors
-Plug 'scrooloose/syntastic', { 'for': ['php', 'python', 'javascript', 'css'] }
+Plug 'scrooloose/syntastic', { 'for': ['php', 'python', 'javascript', 'css', 'scss'] }
 
 " Pairs of handy bracket mappings
 Plug 'tpope/vim-unimpaired'
@@ -37,7 +37,7 @@ Plug 'jiangmiao/auto-pairs'
 " Searching
 Plug 'dyng/ctrlsf.vim'
 
-" 'Vastly improved Javascript indentation and syntax support in Vim'
+" Vastly improved Javascript indentation and syntax support in Vim
 Plug 'pangloss/vim-javascript'
 
 " Rename files from within vim
@@ -60,7 +60,6 @@ set autoread              " Set to auto read when a file is changed from the out
 
 let mapleader = ","
 let g:mapleader = ","
-nmap ; :
 
 " Fast saving + switching
 nmap <leader>w :w!<cr>
@@ -109,6 +108,7 @@ set wildignore+=**/bower_components
 set wildmode=longest,list,full
 set ruler                      " Always show current position
 set cmdheight=1                " Height of the command bar
+set laststatus=2               " Always show the status line
 set hid                        " A buffer becomes hidden when it is abandoned
 set backspace=eol,start,indent " Configure backspace so it acts as it should act
 set whichwrap+=<,>,h,l
@@ -186,6 +186,9 @@ map k gk
 noremap H ^
 noremap L $
 
+" Remap VIM 0 to first non-blank character
+map 0 ^
+
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
 map <space> /
 map <c-space> ?
@@ -210,7 +213,6 @@ try
 catch
 endtry
 
-
 """"""""""""""""""""""""""""""
 " => Status line
 """"""""""""""""""""""""""""""
@@ -221,7 +223,6 @@ set laststatus=2 " Always show the status line
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remap VIM 0 to first non-blank character
 map 0 ^
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
@@ -264,6 +265,7 @@ let g:ctrlp_mruf_max = 250        " number of recently opened files
 
 " Searching
 let g:ctrlsf_winsize = '50%'
+let g:ctrlsf_default_root = 'project'
 
 nmap     <C-F>f <Plug>CtrlSFPrompt
 vmap     <C-F>f <Plug>CtrlSFVwordPath
@@ -276,9 +278,6 @@ inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 nmap     <C-F>l <Plug>CtrlSFQuickfixPrompt
 vmap     <C-F>l <Plug>CtrlSFQuickfixVwordPath
 vmap     <C-F>L <Plug>CtrlSFQuickfixVwordExec
-
-" Tabs
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Syntastic
@@ -296,17 +295,13 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_enable_signs = 1
 
-" let g:syntastic_error_symbol = '✗✗'
-" let g:syntastic_style_error_symbol = '✠✠'
-" let g:syntastic_warning_symbol = '∆∆'
-" let g:syntastic_style_warning_symbol = '≈≈'
-
 map <leader>x :Errors<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Airline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 let g:bufferline_echo=0
 let g:airline_powerline_fonts = 0 " Powerline symbols
 let g:airline_theme='papercolor'
@@ -316,7 +311,7 @@ let g:airline#extensions#syntastic#enabled = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => JS Library Syntax 
+" => Autocompletion
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let g:used_javascript_libs = 'angularjs,jasmine,underscore'
