@@ -25,14 +25,28 @@ if (has("termguicolors"))
 endif
 
 " Core
+set cmdheight=1
 let mapleader = ","
 let g:mapleader = ","
 nmap <leader>w :w!<cr>
 " nnoremap <leader>q :bp<cr>:bd #<cr>
 nmap <leader>q <C-W>q
 nmap <leader>x :qd!<cr>
-set cmdheight=1
 
+" Hard mode
+map <Enter> <nop>
+inoremap <Up> <NOP>
+inoremap <Down> <NOP>
+inoremap <Left> <NOP>
+inoremap <Right> <NOP>
+noremap h <NOP>
+noremap l <NOP>
+nnoremap k gk
+nnoremap j gj
+
+" Config reload
+nnoremap <leader>ec :split $MYVIMRC<CR>
+nnoremap <leader>sc :source $MYVIMRC<CR>
 
 " Theme
 syntax enable
@@ -51,6 +65,7 @@ set expandtab
 set tabstop=2
 set shiftwidth=2 " Indentation amount for < and > commands.
 set clipboard=unnamed " System clipboard
+set iskeyword-=_
 
 " Wrapping, revise
 set wrap
@@ -134,6 +149,3 @@ let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_enable_signs = 1
-
-
-

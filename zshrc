@@ -1,3 +1,5 @@
+export ZSH=~/.oh-my-zsh
+
 alias gs="git status"
 alias g="git"
 alias gap="git add -p"
@@ -12,6 +14,8 @@ alias pg='grep -H -r --include="*.php"'
 alias h='history | grep'
 alias vim="nvim"
 alias ag='ag --path-to-ignore ~/.agignore'
+alias n="npm"
+alias nr="npm run"
 
 DISABLE_AUTO_UPDATE="true"
 ZSH_THEME="avit"
