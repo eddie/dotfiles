@@ -18,6 +18,10 @@ Plug 'mileszs/ack.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'mattn/emmet-vim'
 Plug 'vim-syntastic/syntastic'
+Plug 'morhetz/gruvbox'
+Plug 'othree/yajs.vim'
+Plug 'Quramy/vim-js-pretty-template'
+Plug 'ervandew/supertab'
 call plug#end()
 
 if (has("termguicolors"))
@@ -29,12 +33,13 @@ set cmdheight=1
 let mapleader = ","
 let g:mapleader = ","
 nmap <leader>w :w!<cr>
+set hidden
+
 " nnoremap <leader>q :bp<cr>:bd #<cr>
 nmap <leader>q <C-W>q
 nmap <leader>x :qd!<cr>
 
 " Hard mode
-map <Enter> <nop>
 inoremap <Up> <NOP>
 inoremap <Down> <NOP>
 inoremap <Left> <NOP>
@@ -47,6 +52,7 @@ nnoremap j gj
 " Config reload
 nnoremap <leader>ec :split $MYVIMRC<CR>
 nnoremap <leader>sc :source $MYVIMRC<CR>
+nnoremap <leader>pi :PlugInstall<CR>
 
 " Theme
 syntax enable
@@ -82,6 +88,9 @@ set magic
 
 " Buffer navigation
 noremap <Leader><Leader> <C-^>  " Fast buffer switch
+map <leader>b :ls<CR>:b
+nmap <Tab> :bnext<CR>
+
 set so=7
 
 " Retain visual selection after identing
@@ -105,7 +114,6 @@ let NERDTreeIgnore=['\~$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.pyc$'
 
 " CtrlP
 nnoremap <Leader>o :CtrlP<CR>
-nnoremap <Leader>b :CtrlPBuffer<CR>
 
 " Use ag for ctrl-p super fast, uses ~/.agignore
 if executable('ag')
