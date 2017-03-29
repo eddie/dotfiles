@@ -18,10 +18,13 @@ Plug 'mileszs/ack.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'mattn/emmet-vim'
 Plug 'vim-syntastic/syntastic'
-Plug 'morhetz/gruvbox'
+"Plug 'gcorne/vim-sass-lint'
 Plug 'othree/yajs.vim'
 Plug 'Quramy/vim-js-pretty-template'
 Plug 'ervandew/supertab'
+Plug 'morhetz/gruvbox'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'junegunn/seoul256.vim'
 call plug#end()
 
 if (has("termguicolors"))
@@ -56,7 +59,11 @@ nnoremap <leader>pi :PlugInstall<CR>
 
 " Theme
 syntax enable
-colorscheme OceanicNext
+" colorscheme OceanicNext
+colorscheme seoul256-light
+set background=light
+let g:airline_theme='gruvbox'
+
 
 " Misc
 set noswapfile
@@ -145,15 +152,16 @@ nnoremap <Leader>c :cclose<cr>
 cnoreabbrev Ack Ack!
 nnoremap <Leader>a :Ack!<Space>
 
-" Airline
-let g:airline_theme='oceanicnext'
-
 " Syntastic
 let g:syntastic_check_on_open=1
 let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_scss_checkers = ['sass_lint']
 let g:syntastic_always_populate_loc_list=0
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-", " is not recognized!"]
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_enable_signs = 1
+let g:syntastic_style_error_symbol = '✗'
+let g:syntastic_style_warning_symbol = '✗'
+let g:syntastic_warning_symbol = '✗'

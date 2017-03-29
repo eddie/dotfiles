@@ -2,3 +2,4 @@
 vim/plugged
 vim/.cache
 nvim/.netrwhist
+nvim/plugged/*
