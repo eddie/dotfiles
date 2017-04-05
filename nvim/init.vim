@@ -18,13 +18,14 @@ Plug 'mileszs/ack.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'mattn/emmet-vim'
 Plug 'vim-syntastic/syntastic'
-"Plug 'gcorne/vim-sass-lint'
 Plug 'othree/yajs.vim'
 Plug 'Quramy/vim-js-pretty-template'
 Plug 'ervandew/supertab'
 Plug 'morhetz/gruvbox'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'junegunn/seoul256.vim'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'Valloric/MatchTagAlways'
 call plug#end()
 
 if (has("termguicolors"))
@@ -78,13 +79,23 @@ set expandtab
 set tabstop=2
 set shiftwidth=2 " Indentation amount for < and > commands.
 set clipboard=unnamed " System clipboard
-set iskeyword-=_
+set iskeyword+=_
+set iskeyword+=-
+
+" Colour the 81st column so that we don't type over our limit
+set colorcolumn=+1
+
+" Completions
+" Select longest by default, always show menu
+set completeopt=longest,menuone
+let g:SuperTabLongestEnhanced=1
+let g:SuperTabDefaultCompletionType = "<c-n>"
+
 
 " Wrapping, revise
-set wrap
-set formatoptions+=t
-set whichwrap+=<,>,h,l
+set wrap linebreak nolist
 set textwidth=80
+set whichwrap=h,l,b,<,>,~,[,]
 
 " Searching
 set ignorecase
@@ -96,7 +107,6 @@ set magic
 " Buffer navigation
 noremap <Leader><Leader> <C-^>  " Fast buffer switch
 map <leader>b :ls<CR>:b
-nmap <Tab> :bnext<CR>
 
 set so=7
 
@@ -165,3 +175,19 @@ let g:syntastic_enable_signs = 1
 let g:syntastic_style_error_symbol = '✗'
 let g:syntastic_style_warning_symbol = '✗'
 let g:syntastic_warning_symbol = '✗'
+
+
+" Python
+
+let g:python2_host_prog = '/usr/local/bin/python'
+let g:python3_host_prog = '/usr/local/bin/python3'
+
+" MatchTagAlways
+
+let g:mta_filetypes = {
+    \ 'html' : 1,
+    \ 'html.handlebars' : 1,
+    \ 'xhtml' : 1,
+    \ 'xml' : 1,
+    \ 'jinja' : 1,
+    \}
