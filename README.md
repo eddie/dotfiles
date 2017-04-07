@@ -1,23 +1,14 @@
 # Clone 
 
     git clone https://github.com/eddie/dotfiles ~/dotfiles
-    cd ~/dotfiles && git submodule init
-
-## Install Dependencies
-
-    # vim-plug
-    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-    # Ohmyzsh
-    curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
 
 ## Create symlinks:
 
-    ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
+    ln -s ~/dotfiles/nvim vim ~/.config/nvim   # Neovim
+    ln -s ~/dotfiles/agignore ~/.agignore      # Silversurfer ignore
+    ln -s ~/dotfiles/gitconfig ~/.gitconfig 
     ln -s ~/dotfiles/zshrc ~/.zshrc
-    ln -s ~/dotfiles/vim ~/.vim
-    ln -s ~/dotfiles/vim/vimrc ~/.vimrc
+    ln -s ~/dotfiles/nvim ~/.
 
 ## Install VIM plugins:
 
