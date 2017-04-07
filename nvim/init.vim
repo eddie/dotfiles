@@ -81,6 +81,7 @@ set shiftwidth=2 " Indentation amount for < and > commands.
 set clipboard=unnamed " System clipboard
 set iskeyword+=_
 set iskeyword+=-
+set spell        " Spell check on by default
 
 " Colour the 81st column so that we don't type over our limit
 set colorcolumn=+1
@@ -90,7 +91,6 @@ set colorcolumn=+1
 set completeopt=longest,menuone
 let g:SuperTabLongestEnhanced=1
 let g:SuperTabDefaultCompletionType = "<c-n>"
-
 
 " Wrapping, revise
 set wrap linebreak nolist
