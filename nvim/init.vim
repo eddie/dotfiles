@@ -13,7 +13,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
-Plug 'jiangmiao/auto-pairs'
+Plug 'Raimondi/delimitMate'
 Plug 'mileszs/ack.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'mattn/emmet-vim'
@@ -164,7 +164,7 @@ nnoremap <Leader>a :Ack!<Space>
 
 " Syntastic
 let g:syntastic_check_on_open=1
-let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_scss_checkers = ['sass_lint']
 let g:syntastic_always_populate_loc_list=0
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-", " is not recognized!"]
@@ -191,3 +191,8 @@ let g:mta_filetypes = {
     \ 'xml' : 1,
     \ 'jinja' : 1,
     \}
+
+" Delimmate
+let delimitMate_expand_cr = 1
+let delimitMate_expand_space = 1
+
