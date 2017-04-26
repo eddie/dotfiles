@@ -25,7 +25,7 @@ Plug 'morhetz/gruvbox'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'junegunn/seoul256.vim'
 Plug 'mustache/vim-mustache-handlebars'
-Plug 'Valloric/MatchTagAlways'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 call plug#end()
 
 if (has("termguicolors"))
