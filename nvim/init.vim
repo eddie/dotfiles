@@ -26,6 +26,8 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'junegunn/seoul256.vim'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'Valloric/MatchTagAlways'
+Plug 'othree/html5.vim'
 call plug#end()
 
 if (has("termguicolors"))
@@ -61,7 +63,8 @@ nnoremap <leader>pi :PlugInstall<CR>
 " Theme
 syntax enable
 " colorscheme OceanicNext
-colorscheme seoul256-light
+" colorscheme seoul256-light
+colorscheme gruvbox
 set background=light
 let g:airline_theme='gruvbox'
 
@@ -93,7 +96,6 @@ let g:SuperTabLongestEnhanced=1
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " Wrapping, revise
-set wrap linebreak nolist
 set textwidth=80
 set whichwrap=h,l,b,<,>,~,[,]
 
@@ -153,6 +155,11 @@ let g:ctrlp_clear_cache_on_exit=0     " speed up by not removing clearing cache 
 let g:ctrlp_show_hidden = 1       " show me dotfiles
 let g:ctrlp_mruf_max = 250        " number of recently opened files
 
+" Use ag for ctrl-p super fast, uses ~/.agignore
+if executable('ag')
+  let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+endif
+
 " Searching (Files)
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
@@ -196,3 +203,5 @@ let g:mta_filetypes = {
 let delimitMate_expand_cr = 1
 let delimitMate_expand_space = 1
 
+" Emmet
+let g:user_emmet_mode='a'
