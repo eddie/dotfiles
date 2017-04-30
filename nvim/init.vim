@@ -28,6 +28,7 @@ Plug 'mustache/vim-mustache-handlebars'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'Valloric/MatchTagAlways'
 Plug 'othree/html5.vim'
+Plug 'nikvdp/ejs-syntax'
 call plug#end()
 
 if (has("termguicolors"))
