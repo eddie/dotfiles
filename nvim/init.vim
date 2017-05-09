@@ -37,6 +37,7 @@ endif
 
 " Core
 set cmdheight=1
+set mouse=a
 let mapleader = ","
 let g:mapleader = ","
 nmap <leader>w :w!<cr>
@@ -63,11 +64,12 @@ nnoremap <leader>pi :PlugInstall<CR>
 
 " Theme
 syntax enable
-" colorscheme OceanicNext
-" colorscheme seoul256-light
 colorscheme gruvbox
 set background=light
 let g:airline_theme='gruvbox'
+let g:airline_section_error='' " Remove syntastic 
+let g:airline_section_warning=''
+let g:airline_section_b=''     " Remove hunks and branch 
 
 
 " Misc
@@ -126,8 +128,10 @@ map <C-l> <C-W>l
 " Clear search
 map <silent> <leader><cr> :noh<cr>
 
-let g:NERDTreeWinSize = 24
+let g:NERDTreeWinSize = 30
 let g:NERDTreeMinimalUI = 1
+let g:NERDTreeChDirMode = 2
+let g:NERDTreeAutoDeleteBuffer = 1
 
 let NERDTreeIgnore=['\~$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.pyc$', 'node_modules', 'bower_components']
 :nmap ,e :NERDTreeToggle<CR>
