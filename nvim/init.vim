@@ -64,9 +64,10 @@ nnoremap <leader>pi :PlugInstall<CR>
 
 " Theme
 syntax enable
-colorscheme gruvbox
-set background=light
-let g:airline_theme='gruvbox'
+set background=dark
+colorscheme OceanicNext
+let g:airline_theme='oceanicnext'
+"let g:airline_theme='gruvbox'
 let g:airline_section_error='' " Remove syntastic 
 let g:airline_section_warning=''
 let g:airline_section_b=''     " Remove hunks and branch 
@@ -99,7 +100,9 @@ let g:SuperTabLongestEnhanced=1
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " Wrapping, revise
-set textwidth=80
+set nowrap
+set textwidth=0
+set wrapmargin=0
 set whichwrap=h,l,b,<,>,~,[,]
 
 " Searching
@@ -159,6 +162,9 @@ let g:ctrlp_use_caching = 1       " enable caching
 let g:ctrlp_clear_cache_on_exit=0     " speed up by not removing clearing cache evertime
 let g:ctrlp_show_hidden = 1       " show me dotfiles
 let g:ctrlp_mruf_max = 250        " number of recently opened files
+let g:ctrlp_by_filename = 1
+let g:ctrlp_reuse_window = 1
+" let g:ctrlp_brief_prompt = 1     " Exit quickly on <bs> 
 
 " Use ag for ctrl-p super fast, uses ~/.agignore
 if executable('ag')
