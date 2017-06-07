@@ -18,8 +18,6 @@ Plug 'mileszs/ack.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'mattn/emmet-vim'
 Plug 'vim-syntastic/syntastic'
-Plug 'othree/yajs.vim'
-Plug 'Quramy/vim-js-pretty-template'
 Plug 'ervandew/supertab'
 Plug 'morhetz/gruvbox'
 Plug 'NLKNguyen/papercolor-theme'
@@ -29,6 +27,8 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'Valloric/MatchTagAlways'
 Plug 'othree/html5.vim'
 Plug 'nikvdp/ejs-syntax'
+Plug 'mxw/vim-jsx'
+Plug 'pangloss/vim-javascript'
 call plug#end()
 
 if (has("termguicolors"))
@@ -162,9 +162,7 @@ let g:ctrlp_use_caching = 1       " enable caching
 let g:ctrlp_clear_cache_on_exit=0     " speed up by not removing clearing cache evertime
 let g:ctrlp_show_hidden = 1       " show me dotfiles
 let g:ctrlp_mruf_max = 250        " number of recently opened files
-let g:ctrlp_by_filename = 1
 let g:ctrlp_reuse_window = 1
-" let g:ctrlp_brief_prompt = 1     " Exit quickly on <bs> 
 
 " Use ag for ctrl-p super fast, uses ~/.agignore
 if executable('ag')

@@ -16,6 +16,7 @@ alias vim="nvim"
 alias ag='ag --path-to-ignore ~/.agignore'
 alias n="npm"
 alias nr="npm run"
+alias yr="yarn run"
 
 DISABLE_AUTO_UPDATE="true"
 ZSH_THEME="avit"
@@ -39,3 +40,5 @@ if [ -f ~/.zsh-local  ]; then
   source ~/.zsh-local
 fi
 
+
+export PATH="$HOME/.yarn/bin:$PATH"
