@@ -52,8 +52,8 @@ inoremap <Up> <NOP>
 inoremap <Down> <NOP>
 inoremap <Left> <NOP>
 inoremap <Right> <NOP>
-noremap h <NOP>
-noremap l <NOP>
+"noremap h <NOP>
+"noremap l <NOP>
 nnoremap k gk
 nnoremap j gj
 
@@ -64,10 +64,9 @@ nnoremap <leader>pi :PlugInstall<CR>
 
 " Theme
 syntax enable
-set background=dark
-colorscheme OceanicNext
-let g:airline_theme='oceanicnext'
-"let g:airline_theme='gruvbox'
+set background=light
+colorscheme seoul256-light 
+let g:airline_theme='oceanicnextlight'
 let g:airline_section_error='' " Remove syntastic 
 let g:airline_section_warning=''
 let g:airline_section_b=''     " Remove hunks and branch 
