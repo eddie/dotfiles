@@ -17,11 +17,12 @@ alias ag='ag --path-to-ignore ~/.agignore'
 alias n="npm"
 alias nr="npm run"
 alias yr="yarn run"
+alias r="ranger"
 
 DISABLE_AUTO_UPDATE="true"
 ZSH_THEME="avit"
 
-plugins=(git git-extras brew npm autojump osx)
+plugins=(git git-extras autojump)
 
 # User configuration
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"

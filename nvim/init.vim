@@ -17,7 +17,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'mileszs/ack.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'mattn/emmet-vim'
-Plug 'vim-syntastic/syntastic'
+Plug 'w0rp/ale'
 Plug 'ervandew/supertab'
 Plug 'morhetz/gruvbox'
 Plug 'NLKNguyen/papercolor-theme'
@@ -29,6 +29,8 @@ Plug 'othree/html5.vim'
 Plug 'nikvdp/ejs-syntax'
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
+
+Plug 'nightsense/forgotten'
 call plug#end()
 
 if (has("termguicolors"))
@@ -46,6 +48,7 @@ set hidden
 " nnoremap <leader>q :bp<cr>:bd #<cr>
 nmap <leader>q <C-W>q
 nmap <leader>x :qd!<cr>
+inoremap jj <Esc>
 
 " Hard mode
 inoremap <Up> <NOP>
@@ -65,7 +68,8 @@ nnoremap <leader>pi :PlugInstall<CR>
 " Theme
 syntax enable
 set background=light
-colorscheme seoul256-light 
+" colorscheme seoul256-light 
+colorscheme PaperColor
 let g:airline_theme='oceanicnextlight'
 let g:airline_section_error='' " Remove syntastic 
 let g:airline_section_warning=''
@@ -87,7 +91,6 @@ set shiftwidth=2 " Indentation amount for < and > commands.
 set clipboard=unnamed " System clipboard
 set iskeyword+=_
 set iskeyword+=-
-set spell        " Spell check on by default
 
 " Colour the 81st column so that we don't type over our limit
 set colorcolumn=+1
@@ -177,20 +180,14 @@ nnoremap <Leader>c :cclose<cr>
 cnoreabbrev Ack Ack!
 nnoremap <Leader>a :Ack!<Space>
 
-" Syntastic
-let g:syntastic_check_on_open=1
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_scss_checkers = ['sass_lint']
-let g:syntastic_always_populate_loc_list=0
-let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-", " is not recognized!"]
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_enable_signs = 1
-let g:syntastic_style_error_symbol = '✗'
-let g:syntastic_style_warning_symbol = '✗'
-let g:syntastic_warning_symbol = '✗'
-
+" ALE
+"
+let g:ale_linters = {'javascript': ['eslint'], 'go': ['gometalinter', 'gofmt']}
+let g:airline#extensions#ale#enabled = 0
+let g:ale_loclist = 0
+let g:ale_lint_on_text_changed = 'always'
+let g:ale_fixers = {'go': ['gofmt'], 'javascript': ['eslint']}
+let g:ale_fix_on_save = 1
 
 " Python
 
@@ -213,3 +210,16 @@ let delimitMate_expand_space = 1
 
 " Emmet
 let g:user_emmet_mode='a'
+
+" vim-javascript
+set conceallevel=1
+let g:javascript_conceal_function             = "ƒ"
+let g:javascript_conceal_null                 = "ø"
+let g:javascript_conceal_this                 = "@"
+let g:javascript_conceal_return               = "⇚"
+let g:javascript_conceal_arrow_function       = "⇒"
+
+
+" Markdown spellcheck default
+autocmd BufRead,BufNewFile *.md setlocal spell
+
