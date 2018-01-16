@@ -20,7 +20,7 @@ alias yr="yarn run"
 alias r="ranger"
 
 DISABLE_AUTO_UPDATE="true"
-ZSH_THEME="avit"
+ZSH_THEME="robbyrussell"
 
 plugins=(git git-extras autojump)
 
@@ -28,18 +28,16 @@ plugins=(git git-extras autojump)
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 source $ZSH/oh-my-zsh.sh
 
-# nvm
-export NVM_DIR="/Users/eddie/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-# Python
-export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
-export WORKON_HOME=~/.virtualenvs
-source /usr/local/bin/virtualenvwrapper.sh
+# NVM
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
+
+# PHP-VERSION
+source $(brew --prefix php-version)/php-version.sh && php-version 7.1
 
 if [ -f ~/.zsh-local  ]; then
   source ~/.zsh-local
 fi
-
 
 export PATH="$HOME/.yarn/bin:$PATH"
