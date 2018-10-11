@@ -1,4 +1,5 @@
 export ZSH=~/.oh-my-zsh
+bindkey -v
 
 alias gs="git status"
 alias g="git"
@@ -21,6 +22,7 @@ alias r="ranger"
 
 DISABLE_AUTO_UPDATE="true"
 ZSH_THEME="robbyrussell"
+export EDTIOR=vim
 
 plugins=(git git-extras autojump)
 
@@ -28,16 +30,16 @@ plugins=(git git-extras autojump)
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 source $ZSH/oh-my-zsh.sh
 
-
 # NVM
 export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
+source $(brew --prefix nvm)/nvm.sh --no-use
 
-# PHP-VERSION
-source $(brew --prefix php-version)/php-version.sh && php-version 7.1
+alias node='unalias node ; unalias npm ; nvm use default ; node $@'
+alias npm='unalias node ; unalias npm ; nvm use default ; npm $@'
 
 if [ -f ~/.zsh-local  ]; then
   source ~/.zsh-local
 fi
 
 export PATH="$HOME/.yarn/bin:$PATH"
+export GPG_TTY=$(tty)
