@@ -61,6 +61,7 @@ cask "docker"
 cask "insomnia"
 cask "transmission"
 cask "hazel"
+cask "syncthing-app"
 
 mas "1Password 7", id: 1333542190
 mas "BetterSnapTool", id: 417375580
