@@ -14,4 +14,11 @@
 
     vim +PlugInstall
 
+# Fish setup
+
+
+    curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
+
+    ln -s ~/dotfiles/fish/config.fish ~/.config/fish/config.fish
+    ln -s ~/dotfiles/fish/fishfile ~/.config/fish/fishfile
 
