@@ -1,5 +1,6 @@
 export ZSH=~/.oh-my-zsh
 bindkey -v
+HISTFILESIZE=50000
 
 alias gs="git status"
 alias g="git"
@@ -19,9 +20,11 @@ alias n="npm"
 alias nr="npm run"
 alias yr="yarn run"
 alias r="ranger"
+alias pa="php artisan"
+alias phpunit="./vendor/bin/phpunit"
 
 DISABLE_AUTO_UPDATE="true"
-ZSH_THEME="robbyrussell"
+ZSH_THEME="fishy"
 export EDTIOR=vim
 
 plugins=(git git-extras autojump)
@@ -37,9 +40,13 @@ source $(brew --prefix nvm)/nvm.sh --no-use
 alias node='unalias node ; unalias npm ; nvm use default ; node $@'
 alias npm='unalias node ; unalias npm ; nvm use default ; npm $@'
 
-if [ -f ~/.zsh-local  ]; then
-  source ~/.zsh-local
+if [ -f ~/.zshrc-local  ]; then
+  source ~/.zshrc-local
 fi
 
 export PATH="$HOME/.yarn/bin:$PATH"
+export PATH="$HOME/.composer/vendor/bin:$PATH"
 export GPG_TTY=$(tty)
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+alias java8='export JAVA_HOME=$(/usr/libexec/java_home -v1.8)'
+export PATH="/usr/local/sbin:$PATH"

@@ -212,12 +212,12 @@ let delimitMate_expand_space = 1
 let g:user_emmet_mode='a'
 
 " vim-javascript
-set conceallevel=1
-let g:javascript_conceal_function             = "ƒ"
-let g:javascript_conceal_null                 = "ø"
-let g:javascript_conceal_this                 = "@"
-let g:javascript_conceal_return               = "⇚"
-let g:javascript_conceal_arrow_function       = "⇒"
+" set conceallevel=1
+" let g:javascript_conceal_function             = "ƒ"
+" let g:javascript_conceal_null                 = "ø"
+" let g:javascript_conceal_this                 = "@"
+" let g:javascript_conceal_return               = "⇚"
+" let g:javascript_conceal_arrow_function       = "⇒"
 
 
 " Markdown spellcheck default

@@ -19,7 +19,7 @@
   # https://git-scm.com/docs/git-config#git-config-statusshowUntrackedFiles
   
 [push]
-	default = simple
+	default = current
   # "push the current branch back to the branch whose changes are usually integrated into the current branch"
   # "refuse to push if the upstream branch’s name is different from the local one"
   # https://git-scm.com/docs/git-config#git-config-pushdefault
@@ -43,6 +43,7 @@
 	pager = less -+$LESS -FRX
 
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
 	required = true
+	process = git-lfs filter-process
