@@ -27,6 +27,13 @@
   followTags = true
   # Because I get sick of telling git to do it manually
   # https://git-scm.com/docs/git-config#git-config-pushfollowTags
+  #
+  
+[pull]
+  rebase = true
+
+[rebase]
+  autoStash = true
   
 [merge]
   ff = only
@@ -39,7 +46,7 @@
   # https://git-scm.com/docs/git-config#git-config-mergeconflictStyle
   
 [core]
-	editor = /usr/local/bin/nvim
+	editor = /usr/bin/nvim
 	pager = less -+$LESS -FRX
 
 [filter "lfs"]
