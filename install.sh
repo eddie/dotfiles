@@ -8,7 +8,9 @@ curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fi
 ln -s ~/dotfiles/fish/config.fish ~/.config/fish/config.fish
 ln -s ~/dotfiles/fish/fishfile ~/.config/fish/fishfile
 
-chsh -s /usr/bin/fish
+
+# macOS- ensure added to /etc/shells
+chsh -s /usr/local/bin/fish
 
 fish -c fisher
 
