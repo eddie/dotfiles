@@ -2,12 +2,15 @@
 " auto-install vim-plug
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs\
-  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim 
+  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall
 endif
 
 " Initialize plugin system
 call plug#begin('~/.config/nvim/plugged')
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 Plug 'mhartington/oceanic-next'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'editorconfig/editorconfig-vim'
@@ -68,13 +71,13 @@ nnoremap <leader>pi :PlugInstall<CR>
 
 " Theme
 syntax enable
-set background=light
-" colorscheme seoul256-light 
+set background=dark
+colorscheme seoul256
 colorscheme PaperColor
 let g:airline_theme='oceanicnextlight'
-let g:airline_section_error='' " Remove syntastic 
+let g:airline_section_error='' " Remove syntastic
 let g:airline_section_warning=''
-let g:airline_section_b=''     " Remove hunks and branch 
+let g:airline_section_b=''     " Remove hunks and branch
 
 
 " Misc
@@ -155,10 +158,10 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$|\node_modules|\bower_components'
 
 " search for nearest ancestor like .git, .hg, and the directory of the current file
-let g:ctrlp_working_path_mode = 'ra'  
+let g:ctrlp_working_path_mode = 'ra'
 
 " show the match window at the top of the screen
-let g:ctrlp_match_window_bottom = 1  
+let g:ctrlp_match_window_bottom = 1
 let g:ctrlp_max_height = 8      " maxiumum height of match window
 let g:ctrlp_switch_buffer = 'et'    " jump to a file if it's open already
 let g:ctrlp_use_caching = 1       " enable caching
@@ -187,7 +190,9 @@ let g:ale_linters = {'javascript': ['eslint'], 'go': ['gometalinter', 'gofmt']}
 let g:airline#extensions#ale#enabled = 0
 let g:ale_loclist = 0
 let g:ale_lint_on_text_changed = 'always'
-let g:ale_fixers = {'go': ['gofmt'], 'javascript': ['eslint']}
+let g:ale_fixers = {}
+let g:ale_fixers.javascript = ['eslint', 'prettier']
+let g:ale_fixers['*'] = ['remove_trailing_lines','trim_whitespace']
 let g:ale_fix_on_save = 1
 
 " Python
@@ -223,4 +228,3 @@ let g:user_emmet_mode='a'
 
 " Markdown spellcheck default
 autocmd BufRead,BufNewFile *.md setlocal spell
-
