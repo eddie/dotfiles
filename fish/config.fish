@@ -5,6 +5,8 @@ abbr gcm 'git checkout master'
 abbr dcl 'docker-compose logs --tail=1000 -f'
 abbr dc 'docker-compose'
 alias h="history | grep"
+alias vim='nvim'
+
 
 function fuck -d "Correct your previous console command"
   set -l fucked_up_command $history[1]

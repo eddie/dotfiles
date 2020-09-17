@@ -60,6 +60,7 @@ inoremap <Right> <NOP>
 nnoremap k gk
 nnoremap j gj
 
+
 " Config reload
 nnoremap <leader>ec :split $MYVIMRC<CR>
 nnoremap <leader>sc :source $MYVIMRC<CR>
