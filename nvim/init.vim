@@ -20,7 +20,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'mileszs/ack.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'mattn/emmet-vim'
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 Plug 'ervandew/supertab'
 Plug 'morhetz/gruvbox'
 Plug 'NLKNguyen/papercolor-theme'
@@ -30,10 +30,14 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'Valloric/MatchTagAlways'
 Plug 'othree/html5.vim'
 Plug 'nikvdp/ejs-syntax'
-Plug 'mxw/vim-jsx'
+
 Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 
 Plug 'nightsense/forgotten'
+
+
 call plug#end()
 
 if (has("termguicolors"))
@@ -73,7 +77,8 @@ nnoremap <leader>pi :PlugInstall<CR>
 syntax enable
 set background=dark
 colorscheme seoul256
-colorscheme PaperColor
+
+" colorscheme PaperColor
 let g:airline_theme='oceanicnextlight'
 let g:airline_section_error='' " Remove syntastic
 let g:airline_section_warning=''
@@ -88,6 +93,7 @@ set nobackup
 " Editing
 set number
 set relativenumber
+set numberwidth=5
 set showmatch
 set expandtab
 set tabstop=2
@@ -184,16 +190,30 @@ nnoremap <Leader>c :cclose<cr>
 cnoreabbrev Ack Ack!
 nnoremap <Leader>a :Ack!<Space>
 
-" ALE
-"
-let g:ale_linters = {'javascript': ['eslint'], 'go': ['gometalinter', 'gofmt']}
-let g:airline#extensions#ale#enabled = 0
-let g:ale_loclist = 0
-let g:ale_lint_on_text_changed = 'always'
-let g:ale_fixers = {}
-let g:ale_fixers.javascript = ['eslint', 'prettier']
-let g:ale_fixers['*'] = ['remove_trailing_lines','trim_whitespace']
-let g:ale_fix_on_save = 1
+" Fix highlighting for large files
+autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
+
+" COC
+let g:coc_global_extensions = [
+  \ 'coc-tsserver',
+  \ 'coc-prettier',
+  \ 'coc-json',
+  \ ]
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
+  let g:coc_global_extensions += ['coc-prettier']
+endif
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
+  let g:coc_global_extensions += ['coc-eslint']
+endif
+
+nnoremap <silent> K :call CocAction('doHover')<CR>
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gr <Plug>(coc-references)
 
 " Python
 
