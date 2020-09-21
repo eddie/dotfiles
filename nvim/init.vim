@@ -20,23 +20,22 @@ Plug 'Raimondi/delimitMate'
 Plug 'mileszs/ack.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'mattn/emmet-vim'
-" Plug 'w0rp/ale'
 Plug 'ervandew/supertab'
 Plug 'morhetz/gruvbox'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'junegunn/seoul256.vim'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'Valloric/MatchTagAlways'
+"Plug 'Valloric/MatchTagAlways'
 Plug 'othree/html5.vim'
 Plug 'nikvdp/ejs-syntax'
+Plug 'fatih/vim-go'
 
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 
 Plug 'nightsense/forgotten'
-
 
 call plug#end()
 
@@ -83,7 +82,6 @@ let g:airline_theme='oceanicnextlight'
 let g:airline_section_error='' " Remove syntastic
 let g:airline_section_warning=''
 let g:airline_section_b=''     " Remove hunks and branch
-
 
 " Misc
 set noswapfile
@@ -209,6 +207,8 @@ if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
   let g:coc_global_extensions += ['coc-eslint']
 endif
 
+
+" Hover documentation
 nnoremap <silent> K :call CocAction('doHover')<CR>
 
 nmap <silent> gd <Plug>(coc-definition)
