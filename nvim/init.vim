@@ -30,6 +30,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'othree/html5.vim'
 Plug 'nikvdp/ejs-syntax'
 Plug 'fatih/vim-go'
+Plug 'tpope/vim-surround'
 
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
@@ -71,6 +72,7 @@ nnoremap j gj
 nnoremap <leader>ec :split $MYVIMRC<CR>
 nnoremap <leader>sc :source $MYVIMRC<CR>
 nnoremap <leader>pi :PlugInstall<CR>
+
 
 " Theme
 syntax enable
@@ -121,6 +123,9 @@ set smartcase
 set hlsearch
 set gdefault
 set magic
+
+" Pum
+set pumheight=10
 
 " Buffer navigation
 noremap <Leader><Leader> <C-^>  " Fast buffer switch
@@ -195,6 +200,7 @@ autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 " COC
 let g:coc_global_extensions = [
   \ 'coc-tsserver',
+  \ 'coc-git',
   \ 'coc-prettier',
   \ 'coc-json',
   \ ]
@@ -207,13 +213,16 @@ if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
   let g:coc_global_extensions += ['coc-eslint']
 endif
 
-
 " Hover documentation
 nnoremap <silent> K :call CocAction('doHover')<CR>
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gr <Plug>(coc-references)
+
+
+" Coc-git
+nmap <Leader>lg :CocList gstatus<CR>
 
 " Python
 
