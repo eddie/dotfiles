@@ -4,6 +4,7 @@
 [user]
   email = eblundell@gmail.com
   name = Eddie Blundell
+  signingkey = 6913009C7E8505C8
 
 [alias]
   prune = fetch --prune
@@ -55,3 +56,6 @@
 	smudge = git-lfs smudge -- %f
 	required = true
 	process = git-lfs filter-process
+
+[commit]
+  gpgsign = true

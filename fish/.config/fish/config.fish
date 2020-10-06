@@ -8,6 +8,7 @@ abbr dup 'docker-compose up -d'
 abbr dps 'docker-compose ps'
 abbr dce 'docker-compose exec'
 abbr dcr 'docker-compose restart'
+abbr t 'tree -a -L 4'
 
 alias h="history | grep"
 alias vim='nvim'

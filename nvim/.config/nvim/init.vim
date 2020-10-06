@@ -31,6 +31,7 @@ Plug 'othree/html5.vim'
 Plug 'nikvdp/ejs-syntax'
 Plug 'fatih/vim-go'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-sleuth'
 
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
@@ -56,6 +57,8 @@ set hidden
 nmap <leader>q <C-W>q
 nmap <leader>x :qd!<cr>
 inoremap jj <Esc>
+nnoremap <leader>bd :bp\|bd #<CR>
+
 
 " Hard mode
 inoremap <Up> <NOP>
@@ -155,7 +158,7 @@ let NERDTreeIgnore=['\~$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.pyc$'
 :nmap ,e :NERDTreeToggle<CR>
 
 " CtrlP
-nnoremap <Leader>o :CtrlP<CR>
+nnoremap <Leader>o :CtrlPMixed<CR>
 
 " Use ag for ctrl-p super fast, uses ~/.agignore
 if executable('ag')
@@ -163,7 +166,7 @@ if executable('ag')
 endif
 
 let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_cmd = 'CtrlPMixed'
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$|\node_modules|\bower_components'
 
 " search for nearest ancestor like .git, .hg, and the directory of the current file

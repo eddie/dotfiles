@@ -1,24 +1,23 @@
-# Clone 
+# Clone
 
     git clone https://github.com/eddie/dotfiles ~/dotfiles
 
-## Create symlinks:
+# Install deps
 
-    ln -s ~/dotfiles/nvim vim ~/.config/nvim   # Neovim
-    ln -s ~/dotfiles/agignore ~/.agignore      # Silversurfer ignore
-    ln -s ~/dotfiles/gitconfig ~/.gitconfig 
-    ln -s ~/dotfiles/zshrc ~/.zshrc
-    ln -s ~/dotfiles/nvim ~/.
+Install stow, fisher, ag etc.
+
+# Link config
+
+    stow base
+    stow fish
+    stow nvim
+
+# Change default shell
+
+    chsh -s /usr/local/bin/fish
+    fish -c fisher
 
 ## Install VIM plugins:
 
+    vim +PlugClean
     vim +PlugInstall
-
-# Fish setup
-
-
-    curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
-
-    ln -s ~/dotfiles/fish/config.fish ~/.config/fish/config.fish
-    ln -s ~/dotfiles/fish/fishfile ~/.config/fish/fishfile
-
