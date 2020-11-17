@@ -27,7 +27,7 @@ brew "jq"
 
 
 # Cask homebrew 
-cask "alfred"
+cask "alfred3"
 cask "telegram"
 cask "google-chrome"
 cask "firefox"
@@ -55,6 +55,8 @@ cask "paparazzi"
 cask "java" unless system "/usr/libexec/java_home --failfast"
 cask "font-ibm-plex"
 cask "grandperspective"
+cask "authy"
+cask "cleanmymac"
 
 mas "1Password 7", id: 1333542190
 mas "BetterSnapTool", id: 417375580

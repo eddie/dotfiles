@@ -48,7 +48,7 @@
   # https://git-scm.com/docs/git-config#git-config-mergeconflictStyle
   
 [core]
-	editor = /usr/bin/nvim
+	editor = /usr/local/bin/nvim
 	pager = less -+$LESS -FRX
 
 [filter "lfs"]
