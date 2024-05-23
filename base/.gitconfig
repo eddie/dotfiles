@@ -48,7 +48,7 @@
   # https://git-scm.com/docs/git-config#git-config-mergeconflictStyle
   
 [core]
-	editor = /usr/local/bin/nvim
+	editor = /usr/bin/nvim
 	pager = less -+$LESS -FRX
 
 [filter "lfs"]
@@ -58,7 +58,7 @@
 	process = git-lfs filter-process
 
 [commit]
-  gpgsign = true
+  gpgsign = false
 [color]
 	ui = true
 [color "diff-highlight"]
@@ -79,3 +79,6 @@
 	stripLeadingSymbols = false
 	useUnicodeRuler = false
 	rulerWidth = 47
+
+[credential]
+	helper = /mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe
