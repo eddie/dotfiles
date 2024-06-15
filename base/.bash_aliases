@@ -14,5 +14,6 @@ alias dlf='docker-compose logs --tail=1000 -f'
 alias t='tree -a -L 4'
 alias glp="git log --pretty=format:'%C(auto)%h %<(20)%an %cd %s' --date=relative"
 alias gti="git"
+alias l="ls -al"
 
 [ -f ~/.bash_alias_work ] && source ~/.bash_alias_work

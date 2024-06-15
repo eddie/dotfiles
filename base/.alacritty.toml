@@ -1,0 +1,16 @@
+[font]
+size = 15
+
+normal.family = "IBM Plex Mono"
+normal.style = "Regular"
+bold.family = "IBM Plex Mono"
+bold.style = "Bold"
+
+[window]
+padding.x = 10
+padding.y = 10
+decorations = "Full"
+decorations_theme_variant="Dark"
+
+
+
