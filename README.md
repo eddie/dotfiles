@@ -4,20 +4,11 @@
 
 # Install deps
 
-Install stow, fisher, ag etc.
+Install stow, ag etc.
 
 # Link config
 
-    stow base
-    stow fish
-    stow nvim
-
-# Change default shell
-
-    # MacOS
-    echo "/usr/local/bin/fish" | sudo tee -a /etc/shells
-    chsh -s /usr/local/bin/fish
-    fish -c fisher
+    stow .
 
 ## Install VIM plugins:
 

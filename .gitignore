@@ -1,5 +1,4 @@
 .DS_Store
-vim/plugged
-vim/.cache
-nvim/.netrwhist
-nvim/.config/nvim/plugged/*
+.netrwhist
+.config/nvim/plugged/*
+
