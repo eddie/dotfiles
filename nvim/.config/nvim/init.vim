@@ -11,6 +11,7 @@ call plug#begin()
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+Plug 'github/copilot.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'editorconfig/editorconfig-vim'
@@ -37,7 +38,6 @@ Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 
 Plug 'morhetz/gruvbox'
-Plug 'nightsense/forgotten'
 Plug 'mhartington/oceanic-next'
 
 call plug#end()
@@ -79,9 +79,9 @@ nnoremap <leader>pi :PlugInstall<CR>
 " Theme
 syntax enable
 set background=dark
-colorscheme PaperColor
+colorscheme OceanicNext
 
-let g:airline_theme='papercolor'
+let g:airline_theme='oceanicnext'
 let g:airline_section_error='' " Remove syntastic
 let g:airline_section_warning=''
 let g:airline_section_b=''     " Remove hunks and branch
