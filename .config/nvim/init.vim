@@ -1,4 +1,3 @@
-
 " auto-install vim-plug
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
@@ -10,6 +9,7 @@ endif
 call plug#begin()
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'nicwest/vim-http'
 
 Plug 'github/copilot.vim'
 Plug 'christoomey/vim-tmux-navigator'
@@ -24,7 +24,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'mattn/emmet-vim'
 Plug 'ervandew/supertab'
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'junegunn/seoul256.vim'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'othree/html5.vim'
@@ -39,6 +38,7 @@ Plug 'peitalin/vim-jsx-typescript'
 
 Plug 'morhetz/gruvbox'
 Plug 'mhartington/oceanic-next'
+Plug 'amadeus/vim-mjml'
 
 call plug#end()
 
@@ -149,7 +149,7 @@ let g:NERDTreeMinimalUI = 1
 let g:NERDTreeChDirMode = 2
 let g:NERDTreeAutoDeleteBuffer = 1
 
-let NERDTreeIgnore=['\~$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.pyc$', 'node_modules', 'bower_components']
+let NERDTreeIgnore=['\~$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.pyc$', 'node_modules', 'bower_components', '__pycache__']
 :nmap ,e :NERDTreeToggle<CR>
 
 " CtrlP
@@ -200,6 +200,7 @@ let g:coc_global_extensions = [
   \ 'coc-git',
   \ 'coc-prettier',
   \ 'coc-json',
+  \ 'coc-pyright'
   \ ]
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
@@ -223,11 +224,36 @@ nmap <silent> gr <Plug>(coc-references)
 
 " Python
 
+
+" Use tab for trigger completion with characters ahead and navigate
+" NOTE: There's always complete item selected by default, you may want to enable
+" no select by `"suggest.noselect": true` in your configuration file
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+
+" Python
 let g:python2_host_prog = '/usr/local/bin/python'
 let g:python3_host_prog = '/usr/local/bin/python3'
 
 " Delimmate
-let delimitMate_expand_cr = 1
+let delimitMate_expand_cr = 0
 let delimitMate_expand_space = 1
 
 " Emmet
@@ -242,3 +268,11 @@ nmap <leader>gs :Gstatus<CR>
 nmap <leader>gd :Gdiff<CR>
 nmap <leader>gcm :Gcommit<CR>
 nmap <leader>gco :!git checkout
+
+" Copilot
+"
+let g:copilot_no_tab_map = 1
+
+imap <leader><tab> <Plug>(copilot-accept-line)
+
+

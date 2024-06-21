@@ -1,17 +1,21 @@
 [font]
-size = 15
-
-normal.family = "IBM Plex Mono"
+size = 12
+normal.family = "Jetbrains Mono"
 normal.style = "Regular"
-bold.family = "IBM Plex Mono"
+bold.family = "Jetbrains Mono"
 bold.style = "Bold"
+
+[env]
+term = "xterm-256color"
+
+[colors]
+draw_bold_text_with_bright_colors = true
 
 [window]
 padding.x = 10
 padding.y = 10
 decorations = "Full"
 decorations_theme_variant="Dark"
-
 
 
 # Colors (Oceanic Next)

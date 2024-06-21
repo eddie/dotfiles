@@ -6,6 +6,8 @@
 
 Install stow, ag etc.
 
+    sudo dnf install stow ag jq neovim
+
 # Link config
 
     stow .

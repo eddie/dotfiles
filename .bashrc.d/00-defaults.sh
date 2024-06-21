@@ -6,3 +6,4 @@ shopt -s histappend
 HISTSIZE=10000
 HISTFILESIZE=2000
 
+

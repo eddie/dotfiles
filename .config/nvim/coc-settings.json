@@ -1,17 +1,19 @@
 {
-  "coc.preferences.formatOnSaveFiletypes": [
-    "css",
-    "markdown",
-    "jsx",
-    "html",
-    "json",
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-  ],
   "eslint.autoFixOnSave": true,
-  "tsserver.formatOnType": true,
   "coc.preferences.formatOnType": true,
-  "prettier.disableSuccessMessage": true
+  "python.analysis.indexing": true,
+  "pyright.inlayHints.variableTypes": false,
+  "pyright.inlayHints.parameterTypes": false,
+  "pyright.inlayHints.functionReturnTypes": false,
+  "python.analysis.autoImportCompletions": true,
+  "python.analysis.diagnosticMode": "workspace",
+  "coc.preferences.formatOnSave": true,
+  "python.analysis.packageIndexDepths": [
+    {
+      "name": "",
+      "depth": 4
+    }
+  ],
+  "pyright.completion.importSupport": true,
+  "python.venvPath": ".venv"
 }
