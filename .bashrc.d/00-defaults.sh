@@ -1,4 +1,8 @@
 
+if [ -f ~/.bash_aliases ]; then
+. ~/.bash_aliases
+fi
+
 # append to the history file, don't overwrite it
 shopt -s histappend
 
