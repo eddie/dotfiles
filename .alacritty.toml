@@ -1,9 +1,13 @@
 [font]
-size = 12
+size = 15
 normal.family = "Jetbrains Mono"
 normal.style = "Regular"
 bold.family = "Jetbrains Mono"
 bold.style = "Bold"
+
+
+[shell]
+program="tmux"
 
 [env]
 term = "xterm-256color"
