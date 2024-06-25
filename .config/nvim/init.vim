@@ -9,8 +9,6 @@ endif
 call plug#begin()
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'nicwest/vim-http'
-
 Plug 'github/copilot.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -35,10 +33,10 @@ Plug 'tpope/vim-fugitive'
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
-
-Plug 'morhetz/gruvbox'
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'mhartington/oceanic-next'
 Plug 'amadeus/vim-mjml'
+
 
 call plug#end()
 
@@ -52,6 +50,8 @@ set mouse=a
 let mapleader = ","
 let g:mapleader = ","
 nmap <leader>w :w!<cr>
+
+set timeoutlen=400
 set hidden
 
 nmap <leader>q <C-W>q
@@ -79,9 +79,9 @@ nnoremap <leader>pi :PlugInstall<CR>
 " Theme
 syntax enable
 set background=dark
-colorscheme OceanicNext
+colorscheme catppuccin
 
-let g:airline_theme='oceanicnext'
+let g:airline_theme='catppuccin'
 let g:airline_section_error='' " Remove syntastic
 let g:airline_section_warning=''
 let g:airline_section_b=''     " Remove hunks and branch
@@ -150,7 +150,8 @@ let g:NERDTreeChDirMode = 2
 let g:NERDTreeAutoDeleteBuffer = 1
 
 let NERDTreeIgnore=['\~$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.pyc$', 'node_modules', 'bower_components', '__pycache__']
-:nmap ,e :NERDTreeToggle<CR>
+nmap ,e :NERDTreeToggle<CR>
+nmap <F6> :NERDTreeToggle<CR>
 
 " CtrlP
 nnoremap <Leader>o :CtrlPMixed<CR>
@@ -203,6 +204,7 @@ let g:coc_global_extensions = [
   \ 'coc-pyright'
   \ ]
 
+
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
   let g:coc_global_extensions += ['coc-prettier']
 endif
@@ -221,9 +223,9 @@ nmap <Leader>lg :CocList gstatus<CR>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gr <Plug>(coc-references)
+nmap <silent> do <Plug>(coc-codeaction)
 
 " Python
-
 
 " Use tab for trigger completion with characters ahead and navigate
 " NOTE: There's always complete item selected by default, you may want to enable

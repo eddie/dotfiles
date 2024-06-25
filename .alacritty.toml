@@ -1,16 +1,16 @@
 [font]
-size = 15
+size = 13
 normal.family = "Jetbrains Mono"
 normal.style = "Regular"
 bold.family = "Jetbrains Mono"
 bold.style = "Bold"
-
-
-[shell]
-program="tmux"
+offset.y = -2
 
 [env]
-term = "xterm-256color"
+TERM = "xterm-256color"
+
+#[shell]
+#program="tmux"
 
 [colors]
 draw_bold_text_with_bright_colors = true
@@ -21,32 +21,44 @@ padding.y = 10
 decorations = "Full"
 decorations_theme_variant="Dark"
 
+# Catpuccin theme
 
-# Colors (Oceanic Next)
-
-# Default colors
 [colors.primary]
-background = '#1b2b34'
-foreground = '#d8dee9'
+background = '#1E1E2E'
+foreground = '#D6D6D6'
 
-# Normal colors
+[colors.cursor]
+text = '#1E1E2E'
+cursor = '#D9D9D9'
+
 [colors.normal]
-black   = '#29414f'
-red     = '#ec5f67'
-green   = '#99c794'
-yellow  = '#fac863'
-blue    = '#6699cc'
-magenta = '#c594c5'
-cyan    = '#5fb3b3'
-white   = '#65737e'
+black = '#181A1F'
+red = '#E86671'
+green = '#98C379'
+yellow = '#E5C07B'
+blue = '#61AFEF'
+magenta = '#C678DD'
+cyan = '#54AFBC'
+white = '#ABB2BF'
 
-# Bright colors
 [colors.bright]
-black   = '#405860'
-red     = '#ec5f67'
-green   = '#99c794'
-yellow  = '#fac863'
-blue    = '#6699cc'
-magenta = '#c594c5'
-cyan    = '#5fb3b3'
-white   = '#adb5c0'
+black = '#5C6370'
+red = '#E86671'
+green = '#98C379'
+yellow = '#E5C07B'
+blue = '#61AFEF'
+magenta = '#C678DD'
+cyan = '#54AFBC'
+white = '#F7F7F7'
+
+[colors.dim]
+black = '#5C6370'
+red = '#74423F'
+green = '#98C379'
+yellow = '#E5C07B'
+blue = '#61AFEF'
+magenta = '#6E4962'
+cyan = '#5C8482'
+white = '#828282'
+
+
