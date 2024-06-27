@@ -80,5 +80,7 @@
 	useUnicodeRuler = false
 	rulerWidth = 47
 
-[credential]
+[credential "https://github.com"]
+	helper = !gh auth git-credential
+[credential "ssh://github.com"]
 	helper = !gh auth git-credential

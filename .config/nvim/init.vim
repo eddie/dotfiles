@@ -251,8 +251,8 @@ endfunction
 
 
 " Python
-let g:python2_host_prog = '/usr/local/bin/python'
-let g:python3_host_prog = '/usr/local/bin/python3'
+let g:python2_host_prog = '/usr/bin/python'
+let g:python3_host_prog = '/usr/bin/python3'
 
 " Delimmate
 let delimitMate_expand_cr = 0
@@ -276,5 +276,17 @@ nmap <leader>gco :!git checkout
 let g:copilot_no_tab_map = 1
 
 imap <leader><tab> <Plug>(copilot-accept-line)
+
+
+" Clang-format
+map <C-K> :pyf /usr/share/clang/clang-format.py<cr> 
+imap <C-K> <c-o>:pyf /usr/share/clang/clang-format.py<cr>
+
+
+function! Formatonsave()
+  let l:formatdiff = 1
+  pyf /usr/share/clang/clang-format.py
+endfunction
+autocmd BufWritePre *.h,*.cc,*.cpp,*.c call Formatonsave()
 
 
