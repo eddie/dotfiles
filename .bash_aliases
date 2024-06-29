@@ -21,7 +21,7 @@ alias ag='ag --path-to-ignore ~/.agignore'
 alias lc="llm -m claude"
 alias la="llm -m gpt-4o"
 alias ro="source ~/.bash_aliases"
-
-
+alias ..="cd .."
+alias ...="cd ../.."
 
 [ -f ~/.bash_alias_work ] && source ~/.bash_alias_work

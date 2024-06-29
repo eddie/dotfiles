@@ -13,14 +13,13 @@ Plug 'github/copilot.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree' 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'Raimondi/delimitMate'
 Plug 'mileszs/ack.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'mattn/emmet-vim'
-"Plug 'ervandew/supertab'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -36,6 +35,7 @@ Plug 'peitalin/vim-jsx-typescript'
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'mhartington/oceanic-next'
 Plug 'amadeus/vim-mjml'
+Plug 'vimwiki/vimwiki'
 
 
 call plug#end()
@@ -186,7 +186,7 @@ let g:ctrlp_reuse_window = 1
 nmap <leader>p :CtrlPClearAllCaches<CR>
 
 " Navigation
-map <leader>t :tabnew<CR>
+"map <leader>t :tabnew<CR>
 nnoremap <Leader>c :cclose<cr>
 cnoreabbrev Ack Ack!
 nnoremap <Leader>a :Ack!<Space>
@@ -274,6 +274,10 @@ nmap <leader>gco :!git checkout
 " Copilot
 "
 let g:copilot_no_tab_map = 1
+let g:copilot_filetypes = {
+      \ 'markdown': v:false,
+      \ 'vimwiki': v:false,
+      \ }
 
 imap <leader><tab> <Plug>(copilot-accept-line)
 
@@ -288,5 +292,18 @@ function! Formatonsave()
   pyf /usr/share/clang/clang-format.py
 endfunction
 autocmd BufWritePre *.h,*.cc,*.cpp,*.c call Formatonsave()
+
+
+" Writing and vimwiki
+"
+let g:vimwiki_list = [
+      \ {'path': '~/Documents/Personal/vimwiki', 
+      \'syntax':'markdown', 'ext':'md'}
+      \ ]
+
+autocmd BufRead *.wiki,*.md set wrap
+noremap <leader>d :VimwikiToggleListItem<CR>
+map <leader>t :VimwikiMakeDiaryNote<CR>
+
 
 
