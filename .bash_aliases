@@ -23,5 +23,8 @@ alias la="llm -m gpt-4o"
 alias ro="source ~/.bash_aliases"
 alias ..="cd .."
 alias ...="cd ../.."
+alias dot="cd ~/dotfiles"
+alias open="xdg-open"
+
 
 [ -f ~/.bash_alias_work ] && source ~/.bash_alias_work

@@ -11,7 +11,6 @@ call plug#begin()
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'github/copilot.vim'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'scrooloose/nerdtree' 
 Plug 'vim-airline/vim-airline'
@@ -36,6 +35,12 @@ Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'mhartington/oceanic-next'
 Plug 'amadeus/vim-mjml'
 Plug 'vimwiki/vimwiki'
+
+
+" Neovim specific
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 
 call plug#end()
@@ -153,43 +158,18 @@ let NERDTreeIgnore=['\~$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.pyc$'
 nmap ,e :NERDTreeToggle<CR>
 nmap <F6> :NERDTreeToggle<CR>
 
-" CtrlP
-nnoremap <Leader>o :CtrlPMixed<CR>
-
 " Use ag for ctrl-p super fast, uses ~/.agignore
 if executable('ag')
-  let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
   let g:ackprg = 'ag --nogroup --column'
-  "let g:ackprg = 'ag --vimgrep'
+  let g:ackprg = 'ag --vimgrep'
 
   " Use Ag over Grep
   set grepprg=ag\ --nogroup\ --nocolor
 endif
 
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlPMixed'
-let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$|\node_modules|\bower_components'
-
-" search for nearest ancestor like .git, .hg, and the directory of the current file
-let g:ctrlp_working_path_mode = 'ra'
-
-" show the match window at the top of the screen
-let g:ctrlp_match_window_bottom = 1
-let g:ctrlp_max_height = 8      " maxiumum height of match window
-let g:ctrlp_switch_buffer = 'et'    " jump to a file if it's open already
-let g:ctrlp_use_caching = 1       " enable caching
-let g:ctrlp_clear_cache_on_exit=0     " speed up by not removing clearing cache evertime
-let g:ctrlp_show_hidden = 1       " show me dotfiles
-let g:ctrlp_mruf_max = 250        " number of recently opened files
-let g:ctrlp_reuse_window = 1
-
-nmap <leader>p :CtrlPClearAllCaches<CR>
-
 " Navigation
 "map <leader>t :tabnew<CR>
 nnoremap <Leader>c :cclose<cr>
-cnoreabbrev Ack Ack!
-nnoremap <Leader>a :Ack!<Space>
 
 " Fix highlighting for large files
 autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
@@ -224,6 +204,8 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> do <Plug>(coc-codeaction)
+nmap <silent><leader>r :CocRestart<CR>
+
 
 " Python
 
@@ -305,5 +287,8 @@ autocmd BufRead *.wiki,*.md set wrap
 noremap <leader>d :VimwikiToggleListItem<CR>
 map <leader>t :VimwikiMakeDiaryNote<CR>
 
-
-
+" Find files using Telescope command-line sugar.
+nnoremap <C-p> <cmd>Telescope find_files<cr>
+nnoremap <leader>a <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>

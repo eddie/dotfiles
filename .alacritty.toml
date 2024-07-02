@@ -4,6 +4,8 @@ normal.family = "Jetbrains Mono"
 normal.style = "Regular"
 bold.family = "Jetbrains Mono"
 bold.style = "Bold"
+italic.family = "Jetbrains Mono"
+italic.style = "Italic"
 offset.y = -2
 
 [env]
@@ -20,6 +22,7 @@ padding.x = 10
 padding.y = 10
 decorations = "Full"
 decorations_theme_variant="Dark"
+startup_mode="Maximized"
 
 # Catpuccin theme
 
