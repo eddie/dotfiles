@@ -130,6 +130,7 @@ set whichwrap=h,l,b,<,>,~,[,]
 set ignorecase
 set smartcase
 set hlsearch
+set incsearch
 set gdefault
 set magic
 
@@ -146,6 +147,11 @@ set so=7
 vnoremap < <gv
 vnoremap > >gv
 
+" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
+map <space> /
+map <c-space> ?
+
+" 
 " Clear search
 map <silent> <leader><cr> :noh<cr>
 
