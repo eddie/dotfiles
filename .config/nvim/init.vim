@@ -73,18 +73,18 @@ inoremap <Right> <NOP>
 "noremap l <NOP>
 nnoremap k gk
 nnoremap j gj
-
+"noremap j <NOP>
+"noremap k <NOP>
 
 " Config reload
 nnoremap <leader>ec :split $MYVIMRC<CR>
 nnoremap <leader>sc :source $MYVIMRC<CR>
 nnoremap <leader>pi :PlugInstall<CR>
 
-
 " Theme
 syntax enable
 set background=dark
-colorscheme catppuccin
+colorscheme PaperColor 
 
 let g:airline_theme='catppuccin'
 let g:airline_section_error='' " Remove syntastic
@@ -119,6 +119,12 @@ set colorcolumn=+1
 set completeopt=longest,menuone
 let g:SuperTabLongestEnhanced=1
 let g:SuperTabDefaultCompletionType = "<c-n>"
+
+" Reconfigure horizontal mouse scroll, thanks @Administrative_chaos
+nnoremap <ScrollWheelRight> <Nop>
+nnoremap <ScrollWheelLeft> <Nop>
+nnoremap <S-ScrollWheelUp> <ScrollWheelRight>
+nnoremap <S-ScrollWheelDown> <ScrollWheelLeft>
 
 " Wrapping, revise
 set nowrap
@@ -253,8 +259,8 @@ let g:user_emmet_mode='a'
 autocmd BufRead,BufNewFile *.md setlocal spell
 
 " Git
-nmap <leader>gb :Gblame<CR>
-nmap <leader>gs :Gstatus<CR>
+nmap <leader>gb :Git blame<CR>
+"nmap <leader>gs :Gstatus<CR>
 nmap <leader>gd :Gdiff<CR>
 nmap <leader>gcm :Gcommit<CR>
 nmap <leader>gco :!git checkout
@@ -298,3 +304,7 @@ nnoremap <C-p> <cmd>Telescope find_files<cr>
 nnoremap <leader>a <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>gs <cmd>Telescope git_status<cr>
+
+" Tabs
+set tabpagemax=2
