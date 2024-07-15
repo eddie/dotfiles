@@ -56,7 +56,7 @@ let mapleader = ","
 let g:mapleader = ","
 nmap <leader>w :w!<cr>
 
-set timeoutlen=400
+set timeoutlen=500
 set hidden
 
 nmap <leader>q <C-W>q
@@ -107,7 +107,7 @@ set showmatch
 set expandtab
 set tabstop=2
 set shiftwidth=2 " Indentation amount for < and > commands.
-set clipboard=unnamed " System clipboard
+set clipboard=unnamedplus " System clipboard
 set iskeyword+=_
 set iskeyword+=-
 
