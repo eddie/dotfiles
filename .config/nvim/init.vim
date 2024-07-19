@@ -34,7 +34,6 @@ Plug 'peitalin/vim-jsx-typescript'
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'mhartington/oceanic-next'
 Plug 'amadeus/vim-mjml'
-Plug 'vimwiki/vimwiki'
 
 
 " Neovim specific
@@ -285,19 +284,8 @@ function! Formatonsave()
   let l:formatdiff = 1
   pyf /usr/share/clang/clang-format.py
 endfunction
-autocmd BufWritePre *.h,*.cc,*.cpp,*.c call Formatonsave()
+"autocmd BufWritePre *.h,*.cc,*.cpp,*.c call Formatonsave()
 
-
-" Writing and vimwiki
-"
-let g:vimwiki_list = [
-      \ {'path': '~/Documents/Personal/vimwiki', 
-      \'syntax':'markdown', 'ext':'md'}
-      \ ]
-
-autocmd BufRead *.wiki,*.md set wrap
-noremap <leader>d :VimwikiToggleListItem<CR>
-map <leader>t :VimwikiMakeDiaryNote<CR>
 
 " Find files using Telescope command-line sugar.
 nnoremap <C-p> <cmd>Telescope find_files<cr>
@@ -308,3 +296,8 @@ nnoremap <leader>gs <cmd>Telescope git_status<cr>
 
 " Tabs
 set tabpagemax=2
+
+" Folds
+set foldmethod=indent
+set foldlevel=1
+set foldclose=all
