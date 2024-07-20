@@ -27,7 +27,7 @@ startup_mode="Maximized"
 # Catpuccin theme
 
 [colors.primary]
-background = '#1E1E2E'
+background = '#241f31'
 foreground = '#D6D6D6'
 
 [colors.cursor]

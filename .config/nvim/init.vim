@@ -298,6 +298,6 @@ nnoremap <leader>gs <cmd>Telescope git_status<cr>
 set tabpagemax=2
 
 " Folds
-set foldmethod=indent
+set foldmethod=syntax
 set foldlevel=1
 set foldclose=all
