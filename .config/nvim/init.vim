@@ -85,6 +85,7 @@ syntax enable
 set background=dark
 colorscheme PaperColor 
 
+
 let g:airline_theme='catppuccin'
 let g:airline_section_error='' " Remove syntastic
 let g:airline_section_warning=''
