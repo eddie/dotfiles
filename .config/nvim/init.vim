@@ -34,6 +34,11 @@ Plug 'peitalin/vim-jsx-typescript'
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'mhartington/oceanic-next'
 Plug 'amadeus/vim-mjml'
+Plug 'lepture/vim-jinja'
+
+
+Plug 'vala-lang/vala.vim'
+Plug 'martinlroth/vim-acpi-asl'
 
 
 " Neovim specific
@@ -54,6 +59,10 @@ set mouse=a
 let mapleader = ","
 let g:mapleader = ","
 nmap <leader>w :w!<cr>
+set nolist 
+
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,space:.,tab:^I
+
 
 set timeoutlen=500
 set hidden
@@ -84,6 +93,7 @@ nnoremap <leader>pi :PlugInstall<CR>
 syntax enable
 set background=dark
 colorscheme PaperColor 
+hi Normal guibg=None ctermbg=None
 
 
 let g:airline_theme='catppuccin'
@@ -145,7 +155,7 @@ set pumheight=10
 
 " Buffer navigation
 noremap <Leader><Leader> <C-^>  " Fast buffer switch
-map <leader>b :ls<CR>:b
+" map <leader>b :ls<CR>:b
 
 set so=7
 
@@ -269,8 +279,8 @@ nmap <leader>gco :!git checkout
 "
 let g:copilot_no_tab_map = 1
 let g:copilot_filetypes = {
-      \ 'markdown': v:false,
       \ 'vimwiki': v:false,
+      \ 'markdown': v:false,
       \ }
 
 imap <leader><tab> <Plug>(copilot-accept-line)
@@ -291,10 +301,13 @@ endfunction
 " Find files using Telescope command-line sugar.
 nnoremap <C-p> <cmd>Telescope find_files<cr>
 nnoremap <leader>a <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>b <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>gs <cmd>Telescope git_status<cr>
 
 " Tabs
 set tabpagemax=2
+
+
+au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm set ft=jinja
 

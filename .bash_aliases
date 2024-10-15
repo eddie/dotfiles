@@ -15,7 +15,6 @@ alias t='tree -a -L 4'
 alias glp="git log --pretty=format:'%C(auto)%h %<(20)%an %cd %s' --date=relative"
 alias gti="git"
 alias l="ls -al"
-alias docker="podman"
 alias v="vim"
 alias ag='ag --path-to-ignore ~/.agignore'
 alias lc="llm -m claude"
@@ -25,6 +24,10 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias dot="cd ~/dotfiles"
 alias open="xdg-open"
+
+django(){
+ python manage.py "$@"
+}
 
 
 [ -f ~/.bash_alias_work ] && source ~/.bash_alias_work
