@@ -3,6 +3,7 @@ alias ggp="git push"
 alias ggl="git pull"
 alias gs="git status"
 alias gcm='git checkout main'
+alias c='git commit -m'
 alias g="git status"
 alias h="history | grep"
 alias dc="docker-compose"
@@ -24,6 +25,10 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias dot="cd ~/dotfiles"
 alias open="xdg-open"
+alias a="./artisan"
+alias sa="sail artisan"
+alias samfs="sail artisan migrate:fresh --seed"
+alias samf="sail artisan migrate:fresh"
 
 django(){
  python manage.py "$@"
