@@ -26,9 +26,9 @@
   # https://git-scm.com/docs/git-config#git-config-pushdefault
   #
   followTags = true
+  autoSetupRemote = true
   # Because I get sick of telling git to do it manually
   # https://git-scm.com/docs/git-config#git-config-pushfollowTags
-  #
   
 [pull]
   rebase = true
