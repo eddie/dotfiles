@@ -9,7 +9,7 @@ endif
 call plug#begin()
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"Plug 'github/copilot.vim'
+Plug 'github/copilot.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'scrooloose/nerdtree' 
@@ -35,6 +35,7 @@ Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'mhartington/oceanic-next'
 Plug 'amadeus/vim-mjml'
 Plug 'lepture/vim-jinja'
+"Plug 'psf/black', { 'branch': 'stable' }
 
 
 Plug 'vala-lang/vala.vim'

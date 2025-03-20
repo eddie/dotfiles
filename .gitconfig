@@ -49,7 +49,7 @@
   
 [core]
 	editor = /usr/local/bin/nvim
-	pager = less -+$LESS -FRX
+#	pager = less -+$LESS -FRX
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f

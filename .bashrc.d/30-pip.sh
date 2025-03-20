@@ -12,3 +12,5 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 source $HOME/.local/bin/virtualenvwrapper.sh
 # or let bash find it
 # source $(which virtualenvwrapper.sh)
+ 
+poetry config virtualenvs.in-project true
