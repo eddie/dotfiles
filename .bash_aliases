@@ -1,11 +1,17 @@
 alias ggp="git push"
 alias ggl="git pull"
-alias gs="git status"
+alias g="git pull --all"
+alias glp="git log -p --stat"
+alias gl="git log -n 10 --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias gs="git status -sb"
+alias gss="git diff --staged"
 alias gd="git diff"
 alias gcm='git checkout main'
 alias c='git commit -m'
+alias gc='c'
 alias g="git status"
 alias h="history | grep"
+alias tl="tmuxp load -a -2"
 alias dc="docker-compose"
 alias dc="docker-compose"
 alias vim="nvim"
@@ -13,7 +19,6 @@ alias h='history | grep'
 alias dlf='docker compose logs --tail=1000 -f'
 alias dl='docker compose logs --tail=1000 -f'
 alias t='tree -a -L 4'
-alias glp="git log --pretty=format:'%C(auto)%h %<(20)%an %cd %s' --date=relative"
 alias gti="git"
 alias l="ls -al"
 alias v="vim"

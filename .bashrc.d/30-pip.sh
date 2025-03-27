@@ -13,4 +13,8 @@ source $HOME/.local/bin/virtualenvwrapper.sh
 # or let bash find it
 # source $(which virtualenvwrapper.sh)
  
-poetry config virtualenvs.in-project true
+
+if command -v poetry &> /dev/null; then
+  poetry config virtualenvs.in-project true
+fi
+
