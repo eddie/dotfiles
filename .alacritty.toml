@@ -24,61 +24,37 @@ startup_mode="Maximized"
 padding.x =10
 padding.y = 10
 
-# Colours (Monokai Charcoal)
 
-# Default Colours
+# Gnome (Gnome Terminal Default)
+
+# Primary colors
 [colors.primary]
-background = '#000000'
-foreground = '#FFFFFF'
+background = '#0d0d1b'
+foreground = '#ccccce'
 
-# Normal Colours
+# Colors used for 'custom_cursor_colors'
+[colors.cursor]
+text = '#bbbbbb'
+cursor = '#ff0017'
+
+# Colors 0 through 7
 [colors.normal]
-black   = '#1a1a1a'
-red     = '#f4005f'
-green   = '#98e024'
-yellow  = '#fa8419'
-blue    = '#9d65ff'
-magenta = '#f4005f'
-cyan    = '#58d1eb'
-white   = '#c4c5b5'
+black = '#282828'
+red = '#ca1444'
+green = '#789aba'
+yellow = '#b3879f'
+blue = '#95569b'
+magenta = '#cb6fa1'
+cyan = '#fb6e93'
+white = '#cf98c1'
 
-# Bright Colours
+# Colors 8 through 15
 [colors.bright]
-black   = '#625e4c'
-red     = '#f4005f'
-green   = '#98e024'
-yellow  = '#e0d561'
-blue    = '#9d65ff'
-magenta = '#f4005f'
-cyan    = '#58d1eb'
-white   = '#f6f6ef'
-
-
-## Gnome (Gnome Terminal Default)
-#
-## Default colors
-#[colors.primary]
-#background = '#1e1e1e'
-#foreground = '#ffffff'
-#
-## Normal colors
-#[colors.normal]
-#black      = '#171421'
-#red        = '#c01c28'
-#green      = '#26a269'
-#yellow     = '#a2734c'
-#blue       = '#12488b'
-#magenta    = '#a347ba'
-#cyan       = '#2aa1b3'
-#white      = '#d0cfcc'
-#
-## Bright colors
-#[colors.bright]
-#black      = '#5e5c64'
-#red        = '#f66151'
-#green      = '#33d17a'
-#yellow     = '#e9ad0c'
-#blue       = '#2a7bde'
-#magenta    = '#c061cb'
-#cyan       = '#33c7de'
-#white      = '#ffffff'
+black = '#98218e'
+red = '#cb515d'
+green = '#5a87b1'
+yellow = '#9c61ab'
+blue = '#9a77b1'
+magenta = '#f2a297'
+cyan = '#f4436f'
+white = '#ebdbb2'

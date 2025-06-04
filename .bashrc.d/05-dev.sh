@@ -1,8 +1,10 @@
 
+# https://docs.anthropic.com/en/docs/claude-code/troubleshooting
+# export PATH=~/.npm-global/bin:$PATH
 
 function p {
     if [ -f "poetry.lock" ]; then
-        pytest
+        pytest -n auto
     elif [ -f "composer.json" ]; then 
         php artisan test --parallel
     else 

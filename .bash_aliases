@@ -1,6 +1,7 @@
 alias ggp="git push"
 alias ggl="git pull"
 alias g="git pull --all"
+alias gp="git add -p" 
 alias glp="git log -p --stat"
 alias gl="git log -n 10 --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gs="git status -sb"
@@ -31,7 +32,6 @@ alias ...="cd ../.."
 alias dot="cd ~/dotfiles"
 alias open="xdg-open"
 alias a="./artisan"
-alias docker="podman"
 alias su="sail up -d"
 alias sd="sail down"
 alias suud="sail up -d && sail down"
@@ -44,6 +44,8 @@ alias a="vim ~/.bash_aliases && source ~/.bash_aliases"
 alias pp="poetry run python manage.py"
 alias r="git diff --cached --name-only --diff-filter=ACMR | grep '\.py$' | xargs -r ruff check --fix"
 alias pyc='find . -name "*.pyc" -delete && find . -name "__pycache__" -type d -exec rm -rf {} +  2>/dev/null || true'
+alias supa="npx supabase"
+alias c="code --enable-features=UseOzonePlatform --ozone-platform=wayland"
 
 
 django(){

@@ -9,7 +9,7 @@ endif
 call plug#begin()
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'github/copilot.vim'
+Plug 'github/copilot.vim', {'branch': 'release'}
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'scrooloose/nerdtree' 
@@ -17,7 +17,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'Raimondi/delimitMate'
 Plug 'mileszs/ack.vim'
-Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter', {'branch': 'main'}
 Plug 'mattn/emmet-vim'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'mustache/vim-mustache-handlebars'
@@ -34,9 +34,8 @@ Plug 'peitalin/vim-jsx-typescript'
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'mhartington/oceanic-next'
 Plug 'amadeus/vim-mjml'
-Plug 'lepture/vim-jinja'
-"Plug 'psf/black', { 'branch': 'stable' }
 
+"Plug 'lepture/vim-jinja'
 
 Plug 'vala-lang/vala.vim'
 Plug 'martinlroth/vim-acpi-asl'
@@ -204,8 +203,11 @@ let g:coc_global_extensions = [
   \ 'coc-git',
   \ 'coc-prettier',
   \ 'coc-json',
-  \ 'coc-pyright'
+  \ 'coc-pyright',
+  \ 'coc-html',
+  \ 'coc-htmldjango'
   \ ]
+
 
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
@@ -310,5 +312,6 @@ nnoremap <leader>gs <cmd>Telescope git_status<cr>
 set tabpagemax=2
 
 
-au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm set ft=jinja
+"au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm set ft=jinja
 
+lua require('config')

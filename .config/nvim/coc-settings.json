@@ -1,23 +1,26 @@
 {
-  "eslint.enable": true,
   "prettier.enable": true,
+  "typescript.showUnused": true,
   "eslint.autoFixOnSave": false,
   "coc.preferences.formatOnType": true,
   "python.analysis.indexing": true,
   "python.analysis.autoImportCompletions": true,
   "python.analysis.diagnosticMode": "workspace",
   "coc.preferences.formatOnSave": true,
-  "python.analysis.packageIndexDepths": [
-    {
-      "name": "",
-      "depth": 4
-    }
-  ],
+  "pyright.enable": true,
   "pyright.inlayHints.variableTypes": false,
   "pyright.inlayHints.parameterTypes": false,
   "pyright.inlayHints.functionReturnTypes": false,
   "pyright.completion.importSupport": true,
-  "pyright.organizeimports.provider": "isort",
-  "python.venvPath": ".venv",
-  "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/18.1.3/clangd_18.1.3/bin/clangd"
+  "pyright.organizeimports.provider": "ruff",
+  "python.formatting.provider": "ruff",
+  "prettier.onlyUseLocalVersion": true,
+  "eslint.rules.customizations": [
+    {
+      "rule": "no-explicit-any",
+      "severity": "off"
+    }
+  ],
+  "htmldjango.enable": true,
+  "htmldjango.djlint.preserveBlankLines": true
 }

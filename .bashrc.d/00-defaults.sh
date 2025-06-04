@@ -1,4 +1,3 @@
-
 if [ -f ~/.bash_aliases ]; then
 . ~/.bash_aliases
 fi
@@ -7,7 +6,7 @@ fi
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=10000
-HISTFILESIZE=2000
+export HISTSIZE=10000
+export HISTFILESIZE=2000
 
-
+export ELECTRON_OZONE_PLATFORM_HINT=auto
