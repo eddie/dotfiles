@@ -3,7 +3,9 @@
 # export PATH=~/.npm-global/bin:$PATH
 
 function p {
-    if [ -f "poetry.lock" ]; then
+    if [ -f "uv.lock" ]; then
+        uv run pytest 
+    elif [ -f "poetry.lock" ]; then
         pytest -n auto
     elif [ -f "composer.json" ]; then 
         php artisan test --parallel
@@ -13,7 +15,9 @@ function p {
 }
 
 function pf {
-    if [ -f "poetry.lock" ]; then
+    if [ -f "uv.lock" ]; then
+        uv run pytest -k "$1"
+    elif [ -f "poetry.lock" ]; then
         pytest -k "$1"
     elif [ -f "composer.json" ]; then 
         php artisan test --filter="$1"

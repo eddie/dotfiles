@@ -32,10 +32,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
-Plug 'mhartington/oceanic-next'
 Plug 'amadeus/vim-mjml'
-
-"Plug 'lepture/vim-jinja'
 
 Plug 'vala-lang/vala.vim'
 Plug 'martinlroth/vim-acpi-asl'
@@ -88,12 +85,6 @@ nnoremap j gj
 nnoremap <leader>ec :split $MYVIMRC<CR>
 nnoremap <leader>sc :source $MYVIMRC<CR>
 nnoremap <leader>pi :PlugInstall<CR>
-
-" Theme
-syntax enable
-set background=dark
-colorscheme PaperColor 
-hi Normal guibg=None ctermbg=None
 
 
 let g:airline_theme='catppuccin'
@@ -201,7 +192,6 @@ autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 let g:coc_global_extensions = [
   \ 'coc-tsserver',
   \ 'coc-git',
-  \ 'coc-prettier',
   \ 'coc-json',
   \ 'coc-pyright',
   \ 'coc-html',
@@ -230,6 +220,7 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> do <Plug>(coc-codeaction)
 nmap <silent><leader>r :CocRestart<CR>
+
 
 
 " Python
@@ -267,6 +258,11 @@ let delimitMate_expand_space = 1
 
 " Emmet
 let g:user_emmet_mode='a'
+
+
+" Prettier
+command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
+
 
 " Markdown spellcheck default
 autocmd BufRead,BufNewFile *.md setlocal spell
@@ -311,7 +307,11 @@ nnoremap <leader>gs <cmd>Telescope git_status<cr>
 " Tabs
 set tabpagemax=2
 
-
-"au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm set ft=jinja
+" Theme
+syntax enable
+set background=dark
+hi Normal guibg=None ctermbg=None
+colorscheme catppuccin
 
 lua require('config')
+

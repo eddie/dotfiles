@@ -14,13 +14,14 @@
   "pyright.completion.importSupport": true,
   "pyright.organizeimports.provider": "ruff",
   "python.formatting.provider": "ruff",
-  "prettier.onlyUseLocalVersion": true,
+  "htmldjango.enable": true,
+  "htmldjango.djlint.preserveBlankLines": true,
   "eslint.rules.customizations": [
     {
       "rule": "no-explicit-any",
       "severity": "off"
     }
   ],
-  "htmldjango.enable": true,
-  "htmldjango.djlint.preserveBlankLines": true
+  "coc.preferences.formatOnSave": true,
+  "prettier.enableDebugLogs": true
 }
