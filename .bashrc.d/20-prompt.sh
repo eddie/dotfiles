@@ -8,6 +8,7 @@
 #    * the return value of the previous command
 #    * the fact you just came from Windows and are used to having newlines in
 #      your prompts.
+#    * tmux window title integration for better window naming
 #
 # USAGE:
 #
@@ -60,13 +61,10 @@ function set_hostname_display() {
   fi
 }
 
-
-
 # Determine the branch/state information for this git repository.
 function set_git_branch() {
   # Get the name of the branch.
   branch=$(parse_git_branch)
-
   # Set the final branch string.
   BRANCH="${PURPLE}${branch}${COLOR_NONE} "
 }
@@ -90,21 +88,56 @@ function set_virtualenv () {
   fi
 }
 
+# Update terminal title for tmux integration
+function update_terminal_title() {
+  if [[ "$TERM" == screen* ]] || [[ "$TERM" == tmux* ]]; then
+    # Get current directory basename
+    local current_dir="${PWD##*/}"
+    
+    # Get git branch if available (clean format without parentheses)
+    local git_branch=""
+    if git rev-parse --git-dir >/dev/null 2>&1; then
+      git_branch=$(git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
+      if [[ -n "$git_branch" ]]; then
+        git_branch=":$git_branch"
+      fi
+    fi
+    
+    # Get virtualenv if available
+    local venv=""
+    if [[ -n "$VIRTUAL_ENV" ]]; then
+      venv="[$(basename "$VIRTUAL_ENV")] "
+    fi
+    
+    # Set terminal title: [venv] directory:branch
+    printf "\033]2;%s%s%s\033\\" "$venv" "$current_dir" "$git_branch"
+  fi
+}
+
+# Enhanced cd function that updates terminal title
+cd() {
+  builtin cd "$@"
+  update_terminal_title
+}
+
 # Set the full bash prompt.
 function set_bash_prompt () {
   # Set the PROMPT_SYMBOL variable. We do this first so we don't lose the
   # return value of the last command.
   set_prompt_symbol $?
-
+  
   # Set the PYTHON_VIRTUALENV variable.
   set_virtualenv
-
+  
   # Set the BRANCH variable.
   set_git_branch
   
   # Set the hostname display based on SSH status
   set_hostname_display
-
+  
+  # Update terminal title for tmux
+  update_terminal_title
+  
   # Set the bash prompt variable.
   PS1="
 ${PYTHON_VIRTUALENV}${HOSTNAME_PREFIX}${GREEN}\u@${HOSTNAME_COLOR}\h${COLOR_NONE}:${YELLOW}\w${COLOR_NONE}${BRANCH}
