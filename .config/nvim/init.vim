@@ -32,17 +32,12 @@ Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
-Plug 'amadeus/vim-mjml'
-
 Plug 'vala-lang/vala.vim'
-Plug 'martinlroth/vim-acpi-asl'
-
 
 " Neovim specific
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
 
 call plug#end()
 
@@ -53,14 +48,13 @@ endif
 " Core
 set cmdheight=1
 set mouse=a
+
 let mapleader = ","
 let g:mapleader = ","
 nmap <leader>w :w!<cr>
+
 set nolist 
-
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,space:.,tab:^I
-
-
 set timeoutlen=500
 set hidden
 
@@ -68,32 +62,6 @@ nmap <leader>q <C-W>q
 nmap <leader>x :qd!<cr>
 inoremap jj <Esc>
 nnoremap <leader>bd :bp\|bd #<CR>
-
-" Hard mode
-inoremap <Up> <NOP>
-inoremap <Down> <NOP>
-inoremap <Left> <NOP>
-inoremap <Right> <NOP>
-"noremap h <NOP>
-"noremap l <NOP>
-nnoremap k gk
-nnoremap j gj
-"noremap j <NOP>
-"noremap k <NOP>
-
-" Config reload
-nnoremap <leader>ec :split $MYVIMRC<CR>
-nnoremap <leader>sc :source $MYVIMRC<CR>
-nnoremap <leader>pi :PlugInstall<CR>
-
-
-let g:airline_theme='catppuccin'
-let g:airline_section_error='' " Remove syntastic
-let g:airline_section_warning=''
-let g:airline_section_b=''     " Remove hunks and branch
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_buffers = 0
-let g:airline#extensions#tabline#show_close_button = 0
 
 " Misc
 set noswapfile
@@ -108,24 +76,9 @@ set showmatch
 set expandtab
 set tabstop=2
 set shiftwidth=2 " Indentation amount for < and > commands.
-set clipboard=unnamedplus " System clipboard
 set iskeyword+=_
 set iskeyword+=-
-
-" Colour the 81st column so that we don't type over our limit
-set colorcolumn=+1
-
-" Completions
-" Select longest by default, always show menu
-set completeopt=longest,menuone
-let g:SuperTabLongestEnhanced=1
-let g:SuperTabDefaultCompletionType = "<c-n>"
-
-" Reconfigure horizontal mouse scroll, thanks @Administrative_chaos
-nnoremap <ScrollWheelRight> <Nop>
-nnoremap <ScrollWheelLeft> <Nop>
-nnoremap <S-ScrollWheelUp> <ScrollWheelRight>
-nnoremap <S-ScrollWheelDown> <ScrollWheelLeft>
+set clipboard+=unnamedplus
 
 " Wrapping, revise
 set nowrap
@@ -141,16 +94,84 @@ set incsearch
 set gdefault
 set magic
 
-" Pum
-set pumheight=10
+" Colour the 81st column so that we don't type over our limit
+set colorcolumn=+1
+
+" Completions
+" Select longest by default, always show menu
+set completeopt=longest,menuone
+let g:SuperTabLongestEnhanced=1
+let g:SuperTabDefaultCompletionType = "<c-n>" 
+
+" Hard mode
+inoremap <Up> <NOP>
+inoremap <Down> <NOP>
+inoremap <Left> <NOP>
+inoremap <Right> <NOP>
+"noremap h <NOP>
+"noremap l <NOP>
+nnoremap k gk
+nnoremap j gj
+"noremap j <NOP>
+"noremap k <NOP>
+"
+" Move by paragraph quicker
+nnoremap <C-j> }
+nnoremap <C-k> {
+
+" Tab nav quick
+nnoremap <leader>1 :tabn 1<CR>
+nnoremap <leader>2 :tabn 2<CR>
+nnoremap <leader>3 :tabn <CR>
+nnoremap <A-1> 1gt
+nnoremap <A-2> 2gt
+nnoremap <A-3> 3gt
+nnoremap <A-4> 4gt
+nnoremap <A-5> 5gt
+nnoremap <A-6> 6gt
+nnoremap <A-7> 7gt
+nnoremap <A-8> 8gt
+nnoremap <A-9> 9gt
+
+" Quicks splits
+nnoremap <leader>sv :vsplit<CR>
+nnoremap <leader>sx :split<CR>
+
+" Config reload
+nnoremap <leader>ec :split $MYVIMRC<CR>
+nnoremap <leader>sc :source $MYVIMRC<CR>
+nnoremap <leader>pi :PlugInstall<CR>
+
+" Navigation
+map <leader>t :tabnew<CR>
+nnoremap <Leader>c :cclose<cr>
+
+" Marks
+
+let g:airline_theme='catppuccin'
+let g:airline_section_error='' " Remove syntastic
+let g:airline_section_warning=''
+let g:airline_section_b=''     " Remove hunks and branch
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 0
+let g:airline#extensions#tabline#show_close_button = 0
+
+" Reconfigure horizontal mouse scroll, thanks @Administrative_chaos
+nnoremap <ScrollWheelRight> <Nop>
+nnoremap <ScrollWheelLeft> <Nop>
+nnoremap <S-ScrollWheelUp> <ScrollWheelRight>
+nnoremap <S-ScrollWheelDown> <ScrollWheelLeft>
+
+" Popup menu 
+set pumheight=15
+set pumblend=2
+set pumwidth=20
 
 " Buffer navigation
 noremap <Leader><Leader> <C-^>  " Fast buffer switch
-" map <leader>b :ls<CR>:b
-
-set so=7
 
 " Retain visual selection after identing
+set so=7
 vnoremap < <gv
 vnoremap > >gv
 
@@ -158,7 +179,6 @@ vnoremap > >gv
 map <space> /
 map <c-space> ?
 
-" 
 " Clear search
 map <silent> <leader><cr> :noh<cr>
 
@@ -183,10 +203,6 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 endif
 
-" Navigation
-"map <leader>t :tabnew<CR>
-nnoremap <Leader>c :cclose<cr>
-
 " Fix highlighting for large files
 autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
@@ -200,7 +216,6 @@ let g:coc_global_extensions = [
   \ 'coc-html',
   \ 'coc-htmldjango'
   \ ]
-
 
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
@@ -222,17 +237,31 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> do <Plug>(coc-codeaction)
+
+" Symbol renaming
+nmap <leader>rn <Plug>(coc-rename)
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+
 nmap <silent><leader>r :CocRestart<CR>
 
+" Copilot
+"
+let g:copilot_no_tab_map = 1
+let g:copilot_filetypes = {
+      \ 'vimwiki': v:false,
+      \ 'markdown': v:false,
+      \ }
+
+imap <leader><space> <Plug>(copilot-accept-line)
 
 
-" Python
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
 " Use tab for trigger completion with characters ahead and navigate
-" NOTE: There's always complete item selected by default, you may want to enable
-" no select by `"suggest.noselect": true` in your configuration file
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config
 inoremap <silent><expr> <TAB>
       \ coc#pum#visible() ? coc#pum#next(1) :
       \ CheckBackspace() ? "\<Tab>" :
@@ -244,11 +273,8 @@ inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-
-function! CheckBackspace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
 
 " Python
@@ -262,7 +288,6 @@ let delimitMate_expand_space = 1
 " Emmet
 let g:user_emmet_mode='a'
 
-
 " Prettier
 command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
 
@@ -272,33 +297,13 @@ autocmd BufRead,BufNewFile *.md setlocal spell
 
 " Git
 nmap <leader>gb :Git blame<CR>
-"nmap <leader>gs :Gstatus<CR>
 nmap <leader>gd :Gdiff<CR>
 nmap <leader>gcm :Gcommit<CR>
 nmap <leader>gco :!git checkout
 
-" Copilot
-"
-let g:copilot_no_tab_map = 1
-let g:copilot_filetypes = {
-      \ 'vimwiki': v:false,
-      \ 'markdown': v:false,
-      \ }
-
-imap <leader><tab> <Plug>(copilot-accept-line)
-
-
 " Clang-format
 map <C-K> :pyf /usr/share/clang/clang-format.py<cr> 
 imap <C-K> <c-o>:pyf /usr/share/clang/clang-format.py<cr>
-
-
-function! Formatonsave()
-  let l:formatdiff = 1
-  pyf /usr/share/clang/clang-format.py
-endfunction
-"autocmd BufWritePre *.h,*.cc,*.cpp,*.c call Formatonsave()
-
 
 " Find files using Telescope command-line sugar.
 nnoremap <C-p> <cmd>Telescope find_files<cr>
