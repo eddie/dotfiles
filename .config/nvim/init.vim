@@ -171,6 +171,9 @@ let NERDTreeIgnore=['\~$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.pyc$'
 nmap ,e :NERDTreeToggle<CR>
 nmap <F6> :NERDTreeToggle<CR>
 
+" Map Leader f to reveal file in NERDTree
+nmap ,f :NERDTreeFind<CR>
+
 " Use ag for ctrl-p super fast, uses ~/.agignore
 if executable('ag')
   let g:ackprg = 'ag --nogroup --column'

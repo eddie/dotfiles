@@ -47,6 +47,11 @@ alias pyc='find . -name "*.pyc" -delete && find . -name "__pycache__" -type d -e
 alias supa="npx supabase"
 alias c="code --enable-features=UseOzonePlatform --ozone-platform=wayland"
 alias key="openssl rand -base64 30 | tr -dc 'A-Za-z0-9!@#$%^&*()-_=+' | head -c$1"
+alias m="uv run manage.py"
+alias _cat="/usr/bin/cat"
+alias cat="/usr/bin/bat"
+alias find="fd"
+alias f="fd"
 
 
 django(){

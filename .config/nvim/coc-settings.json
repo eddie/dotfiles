@@ -1,12 +1,15 @@
 {
   "prettier.enable": true,
   "typescript.showUnused": true,
-  "eslint.autoFixOnSave": false,
-  "coc.preferences.formatOnType": true,
+  "editor.codeActionsOnSave": {
+    "eslint.fixAll": true
+  },
+  "eslint.enable": false,
+  "eslint.workingDirectories": ["./client", "./frontend"],
+  "eslint.format.enable": true,
   "python.analysis.indexing": true,
   "python.analysis.autoImportCompletions": true,
   "python.analysis.diagnosticMode": "workspace",
-  "coc.preferences.formatOnSave": true,
   "pyright.enable": true,
   "pyright.inlayHints.variableTypes": false,
   "pyright.inlayHints.parameterTypes": false,
