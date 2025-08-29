@@ -52,7 +52,7 @@ alias _cat="/usr/bin/cat"
 alias cat="/usr/bin/bat"
 alias find="fd"
 alias f="fd"
-
+alias tf="terraform"
 
 django(){
  python manage.py "$@"

@@ -34,6 +34,8 @@ Plug 'peitalin/vim-jsx-typescript'
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'vala-lang/vala.vim'
 
+"Plug 'kbarrette/mediummode'
+
 " Neovim specific
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
@@ -55,13 +57,15 @@ nmap <leader>w :w!<cr>
 
 set nolist 
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,space:.,tab:^I
-set timeoutlen=500
+set timeoutlen=500   " Time to wait for a mapped sequence
+set ttimeoutlen=45   " Time to wait for terminal code
 set hidden
 
 nmap <leader>q <C-W>q
 nmap <leader>x :qd!<cr>
 inoremap jj <Esc>
 nnoremap <leader>bd :bp\|bd #<CR>
+
 
 " Misc
 set noswapfile
@@ -75,13 +79,13 @@ set numberwidth=5
 set showmatch
 set expandtab
 set tabstop=2
-set shiftwidth=2 " Indentation amount for < and > commands.
+set shiftwidth=2        " Indentation amount for < and > commands.
 set iskeyword+=_
 set iskeyword+=-
 set clipboard+=unnamedplus
 
 " Wrapping, revise
-set nowrap
+set wrap 
 set textwidth=0
 set wrapmargin=0
 set whichwrap=h,l,b,<,>,~,[,]
@@ -93,6 +97,13 @@ set hlsearch
 set incsearch
 set gdefault
 set magic
+set lbr 
+
+map <space> /
+map <c-space> ?
+map <silent> <leader><cr> :noh<cr>   " Clear search highlighting
+noremap <Space>                      " Map space to search forward
+
 
 " Colour the 81st column so that we don't type over our limit
 set colorcolumn=+1
@@ -103,21 +114,24 @@ set completeopt=longest,menuone
 let g:SuperTabLongestEnhanced=1
 let g:SuperTabDefaultCompletionType = "<c-n>" 
 
-" Hard mode
+" Hard mode - disable arrows in all modes
 inoremap <Up> <NOP>
 inoremap <Down> <NOP>
 inoremap <Left> <NOP>
 inoremap <Right> <NOP>
-"noremap h <NOP>
-"noremap l <NOP>
+vnoremap <Up> <NOP>
+vnoremap <Down> <NOP>
+vnoremap <Left> <NOP>
+vnoremap <Right> <NOP>
+nnoremap <Up> <NOP>
+nnoremap <Down> <NOP>
+nnoremap <Left> <NOP>
+nnoremap <Right> <NOP>
+
+noremap h <NOP>
+noremap l <NOP>
 nnoremap k gk
 nnoremap j gj
-"noremap j <NOP>
-"noremap k <NOP>
-"
-" Move by paragraph quicker
-nnoremap <C-j> }
-nnoremap <C-k> {
 
 " Tab nav quick
 nnoremap <leader>1 :tabn 1<CR>
@@ -133,9 +147,11 @@ nnoremap <A-7> 7gt
 nnoremap <A-8> 8gt
 nnoremap <A-9> 9gt
 
-" Quicks splits
-nnoremap <leader>sv :vsplit<CR>
-nnoremap <leader>sx :split<CR>
+" Smart way to move between windows
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
 
 " Config reload
 nnoremap <leader>ec :split $MYVIMRC<CR>
@@ -146,7 +162,8 @@ nnoremap <leader>pi :PlugInstall<CR>
 map <leader>t :tabnew<CR>
 nnoremap <Leader>c :cclose<cr>
 
-" Marks
+" Buffer navigation
+noremap <Leader><Leader> <C-^>  
 
 let g:airline_theme='catppuccin'
 let g:airline_section_error='' " Remove syntastic
@@ -167,20 +184,11 @@ set pumheight=15
 set pumblend=2
 set pumwidth=20
 
-" Buffer navigation
-noremap <Leader><Leader> <C-^>  " Fast buffer switch
-
 " Retain visual selection after identing
 set so=7
 vnoremap < <gv
 vnoremap > >gv
 
-" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
-map <c-space> ?
-
-" Clear search
-map <silent> <leader><cr> :noh<cr>
 
 let g:NERDTreeWinSize = 30
 let g:NERDTreeMinimalUI = 1
@@ -237,6 +245,7 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> do <Plug>(coc-codeaction)
+nmap <silent> gi <Plug>(coc-implementation)
 
 " Symbol renaming
 nmap <leader>rn <Plug>(coc-rename)
@@ -253,7 +262,7 @@ let g:copilot_filetypes = {
       \ 'markdown': v:false,
       \ }
 
-imap <leader><space> <Plug>(copilot-accept-line)
+imap <leader><tab> <Plug>(copilot-accept-line)
 
 
 function! CheckBackspace() abort
@@ -297,13 +306,10 @@ autocmd BufRead,BufNewFile *.md setlocal spell
 
 " Git
 nmap <leader>gb :Git blame<CR>
-nmap <leader>gd :Gdiff<CR>
+nmap <leader>gd :Gvdiffsplit<CR>
 nmap <leader>gcm :Gcommit<CR>
 nmap <leader>gco :!git checkout
 
-" Clang-format
-map <C-K> :pyf /usr/share/clang/clang-format.py<cr> 
-imap <C-K> <c-o>:pyf /usr/share/clang/clang-format.py<cr>
 
 " Find files using Telescope command-line sugar.
 nnoremap <C-p> <cmd>Telescope find_files<cr>
