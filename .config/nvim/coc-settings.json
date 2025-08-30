@@ -16,7 +16,10 @@
   "pyright.inlayHints.functionReturnTypes": false,
   "pyright.completion.importSupport": true,
   "pyright.organizeimports.provider": "ruff",
+  "pyright.venvPath": ".",
+  "pyright.venv": ".venv",
   "python.formatting.provider": "ruff",
+
   "htmldjango.enable": true,
   "htmldjango.djlint.preserveBlankLines": true,
   "eslint.rules.customizations": [

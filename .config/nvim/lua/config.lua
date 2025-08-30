@@ -1,5 +1,9 @@
 
-vim.o.clipboard = "unnamedplus"
+-- Sync clipboard between OS and Neovim.
+vim.schedule(function()
+  vim.o.clipboard = 'unnamedplus'
+end)
+
 
 local function paste()
   return {
@@ -19,3 +23,4 @@ vim.g.clipboard = {
     ["*"] = paste,
   },
 }
+
