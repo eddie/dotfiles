@@ -26,6 +26,7 @@ Plug 'scrooloose/nerdtree'                                 " File explorer
 Plug 'Xuyuanp/nerdtree-git-plugin'                         " Git status in NerdTree
 Plug 'vim-airline/vim-airline'                             " Status line
 Plug 'vim-airline/vim-airline-themes'                      " Status line themes
+Plug 'takac/vim-hardtime'                                  " Hard mode (no arrow keys)
 
 " Editing enhancements
 Plug 'tpope/vim-surround'                                  " Surround text objects
@@ -51,7 +52,6 @@ Plug 'vala-lang/vala.vim'                                  " Vala
 
 " Web development
 Plug 'mattn/emmet-vim'                                     " HTML/CSS shortcuts
-
 
 call plug#end()
 
@@ -103,6 +103,11 @@ set iskeyword+=-
 set clipboard+=unnamedplus
 set colorcolumn=+1
 
+" Folds
+set foldmethod=marker
+set foldcolumn=0
+autocmd FileType vim setlocal foldmethod=marker
+
 " Splits
 set splitright
 set splitbelow
@@ -133,15 +138,18 @@ nnoremap <leader>sc :source $MYVIMRC<CR>
 nnoremap <leader>pi :PlugInstall<CR>
 
 " Search mappings
-map <space> /                        " Space starts forward search
-map <c-space> ?                      " Ctrl-Space starts backward search
-map <silent> <leader><cr> :noh<cr>   " Clear search highlighting
-nnoremap <esc> :noh<cr><esc>         " Clear search on esc
-
+" Space starts forward search
+map <space> /                        
+" Ctrl-Space starts backward search
+map <c-space> ?                      
+" Clear search highlighting
+map <silent> <leader><cr> :noh<cr>   
 
 " Search navigation
-nnoremap <cr> n                      " Enter jumps to next search result
-nnoremap <s-cr> N                    " Shift-Enter jumps to previous search result
+" Enter jumps to next search result
+nnoremap <cr> n                      
+" Shift-Enter jumps to previous search result
+nnoremap <s-cr> N                    
 
 " Popup menu 
 set pumheight=15
@@ -152,25 +160,6 @@ set pumwidth=20
 set so=7
 vnoremap < <gv
 vnoremap > >gv
-
-" Hard mode - disable arrows in all modes
-inoremap <Up> <NOP>
-inoremap <Down> <NOP>
-inoremap <Left> <NOP>
-inoremap <Right> <NOP>
-vnoremap <Up> <NOP>
-vnoremap <Down> <NOP>
-vnoremap <Left> <NOP>
-vnoremap <Right> <NOP>
-nnoremap <Up> <NOP>
-nnoremap <Down> <NOP>
-nnoremap <Left> <NOP>
-nnoremap <Right> <NOP>
-
-noremap h <NOP>
-noremap l <NOP>
-nnoremap k gk
-nnoremap j gj
 
 " Tab nav quick
 nnoremap <leader>1 :tabn 1<CR>
@@ -222,6 +211,9 @@ let g:airline_section_b=''     " Remove hunks and branch
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#show_close_button = 0
+let g:airline#extensions#tabline#show_tab_count = 1
+let g:airline#extensions#coc#enabled = 1
+let g:airline#extensions#coc#show_coc_status = 1
 
 " NERDTree
 " ---------------------------------
@@ -294,24 +286,62 @@ inoremap <silent><expr> <CR>
       \ coc#pum#visible() ? coc#pum#confirm() :
       \ "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
 
+
+" Remap <C-f> and <C-b> to scroll float windows/popups
+if has('nvim-0.4.0') || has('patch-8.2.0750')
+  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+endif
+
+
 " Navigation and code actions (using <Plug> mappings)
 
 nmap <silent><leader>r :CocRestart<CR>
-nmap <silent> K :call CocActionAsync('doHover')<CR>
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> <Leader>rn <Plug>(coc-rename)
-nmap <silent> <Leader>f <Plug>(coc-format)
+nmap <silent><nowait> gd <Plug>(coc-definition)
+nmap <silent><nowait> gy <Plug>(coc-type-definition)
+nmap <silent><nowait> gi <Plug>(coc-implementation)
+nmap <silent><nowait> gr <Plug>(coc-references)
+nmap <silent><Leader>rn <Plug>(coc-rename)
+nmap <silent><Leader>f <Plug>(coc-format)
 
-nmap <silent> do <Plug>(coc-codeaction)
+nmap <silent><nowait> do <Plug>(coc-codeaction)
 nmap <leader> rn <Plug>(coc-rename)
 nmap <leader> qf <Plug>(coc-fix-current)
 
+nnoremap <silent> K :call ShowDocumentation()<CR>
+
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
+
+" Mappings for CoCList
+" Show all diagnostics
+nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions
+nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+" Show commands
+nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document
+nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols
+nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item
+nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item
+nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list
+nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
 " Git integration
 nnoremap <silent> <Leader>lg :CocList gstatus<CR>
-
 
 function! CheckBackspace() abort
   let col = col('.') - 1
@@ -332,6 +362,21 @@ inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
 
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+
+" Map function and class text objects
+" e.g vif to select inner function
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
+
+
+
 
 " Copilot
 " ---------------------------------
@@ -382,5 +427,15 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>gs <cmd>Telescope git_status<cr>
 
 
+" Hardtime
+" -----------------------------------
+
+let g:hardtime_default_on = 1
+let g:hardtime_showmsg = 1
+let g:hardtime_ignore_buffer_patterns = [  "NERD.*" ]
+let g:hardtime_allow_different_key = 1
+let g:hardtime_ignore_quickfix = 1
+
 lua require('config')
+
 
