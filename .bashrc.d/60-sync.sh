@@ -15,6 +15,18 @@ sync () {
 }
 
 
+sync_screenshots() {
+    local source_dir="${1:-$HOME/Pictures/Screenshots}"
+    local dest_dir="${2:-/mnt/home/screenshots}"
+
+    rsync -av --max-size="10m" \
+        --include="*.png" --include="*.jpg" --include="*.jpeg" \
+        --exclude="*" \
+        "$source_dir/" "$dest_dir/"
+
+    echo "Copied screenshots from $source_dir to $dest_dir (max size: 10m)"
+}
+
 sync_big() {
     local source_dir="${1:-$HOME/Downloads}"
     local dest_dir="${2:-/mnt/home/Downloads}"
@@ -67,4 +79,70 @@ sync_big() {
     
     echo -e "\nCopied files from $source_dir to $dest_dir (max size: $max_size)"
     echo "Excluded directories: $excluded_dirs"
+}
+dconf_sync() {
+    local dconf_path=""
+    local remote_host=""
+    
+    # Parse arguments more intelligently
+    if [[ $# -eq 1 ]]; then
+        if [[ "$1" =~ ^/ ]]; then
+            # First arg is a path, use default host
+            dconf_path="$1"
+            remote_host="howl"  # Set your default here
+        else
+            # First arg is likely a host, use default path
+            remote_host="$1"
+            dconf_path="/org/gnome/"
+        fi
+    elif [[ $# -eq 2 ]]; then
+        if [[ "$1" =~ ^/ ]]; then
+            # path host
+            dconf_path="$1"
+            remote_host="$2"
+        else
+            # host path
+            remote_host="$1"
+            dconf_path="$2"
+        fi
+    else
+        dconf_path="${1:-/org/gnome/}"
+        remote_host="${2:-howl}"
+    fi
+    
+    # Basic validation
+    if [[ ! "$dconf_path" =~ ^/ ]]; then
+        echo "Error: dconf path must start with '/'" >&2
+        echo "Usage: dconf_sync [host] [path] or dconf_sync [path] [host]" >&2
+        return 1
+    fi
+    
+    if [[ -z "$remote_host" ]]; then
+        echo "Error: remote host not specified" >&2
+        return 1
+    fi
+    
+    echo "Syncing dconf path: $dconf_path from $remote_host"
+    
+    # Test SSH connection first
+    if ! ssh -o ConnectTimeout=5 -o BatchMode=yes "$remote_host" exit 2>/dev/null; then
+        echo "Error: Cannot connect to $remote_host" >&2
+        return 1
+    fi
+    
+    # Check if dconf path exists on remote
+    if ! ssh "$remote_host" "dconf list $dconf_path" &>/dev/null; then
+        echo "Warning: dconf path $dconf_path may not exist on $remote_host"
+        read -p "Continue anyway? (y/N): " -n 1 -r
+        echo
+        [[ ! $REPLY =~ ^[Yy]$ ]] && return 1
+    fi
+    
+    # Perform the sync
+    if ssh "$remote_host" "dconf dump $dconf_path" | dconf load "$dconf_path"; then
+        echo "✓ Successfully synced dconf settings"
+    else
+        echo "✗ Failed to sync dconf settings" >&2
+        return 1
+    fi
 }
