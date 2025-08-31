@@ -70,7 +70,7 @@ nmap <leader>w :w!<cr>
 
 set nolist 
 set listchars=eol:$,tab:»\ ,trail:·,extends:>,precedes:<,space:.,nbsp:␣
-set timeoutlen=400   " Time to wait for a mapped sequence
+set timeoutlen=500   " Time to wait for a mapped sequence
 set ttimeoutlen=45   " Time to wait for terminal code
 set hidden
 
@@ -222,6 +222,7 @@ let g:NERDTreeWinSize = 30
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeChDirMode = 2
 let g:NERDTreeAutoDeleteBuffer = 1
+let g:NERDTreeShowHidden=1
 
 let NERDTreeIgnore=['\~$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.pyc$', 'node_modules', 'bower_components', '__pycache__']
 nmap ,e :NERDTreeToggle<CR>
@@ -229,6 +230,16 @@ nmap <F6> :NERDTreeToggle<CR>
 
 " Map Leader f to reveal file in NERDTree
 nmap ,f :NERDTreeFind<CR>
+
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | call feedkeys(":quit\<CR>:\<BS>") | endif
+
+" Start NERDTree when Vim is started without file arguments.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+
+" Open the existing NERDTree on each new tab.
+autocmd BufWinEnter * if &buftype != 'quickfix' && getcmdwintype() == '' | silent NERDTreeMirror | endif
 
 
 " ACK
