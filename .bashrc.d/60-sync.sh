@@ -20,6 +20,7 @@ sync_screenshots() {
     local dest_dir="${2:-/mnt/home/screenshots}"
 
     rsync -av --max-size="10m" \
+        --backup --backup-dir="$dest_dir/backups/$(date +%Y%m%d_%H%M%S)"\
         --include="*.png" --include="*.jpg" --include="*.jpeg" \
         --exclude="*" \
         "$source_dir/" "$dest_dir/"

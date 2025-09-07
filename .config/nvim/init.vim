@@ -75,7 +75,7 @@ set ttimeoutlen=45   " Time to wait for terminal code
 set hidden
 
 nmap <leader>q <C-W>q
-nmap <leader>x :q!<cr>
+nmap <leader>x :qa!<cr>
 inoremap jj <Esc>
 nnoremap <leader>bd :bp\|bd #<CR>
 
@@ -104,8 +104,9 @@ set clipboard+=unnamedplus
 set colorcolumn=+1
 
 " Folds
-set foldmethod=marker
+set foldmethod=syntax
 set foldcolumn=0
+set foldlevel=2
 autocmd FileType vim setlocal foldmethod=marker
 
 " Splits
@@ -205,15 +206,21 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 " ---------------------------------
 
 let g:airline_theme='catppuccin'
-let g:airline_section_error='' " Remove syntastic
-let g:airline_section_warning=''
-let g:airline_section_b=''     " Remove hunks and branch
+"let g:airline_section_error='' " Remove syntastic
+"let g:airline_section_warning=''
+"let g:airline_section_b=''     " Remove hunks and branch
+let g:airline_inactive_collapse=1
+let g:airline_symbols_ascii = 1
+let g:airline_exclude_preview = 0
+
+let g:airline#extensions#tabline#formatter = 'unique_tail'  " Full paths in tabline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#tabline#show_tab_count = 1
 let g:airline#extensions#coc#enabled = 1
 let g:airline#extensions#coc#show_coc_status = 1
+let g:airline#extensions#branch#enabled = 0
 
 " NERDTree
 " ---------------------------------
@@ -233,10 +240,6 @@ nmap ,f :NERDTreeFind<CR>
 
 " Exit Vim if NERDTree is the only window remaining in the only tab.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | call feedkeys(":quit\<CR>:\<BS>") | endif
-
-" Start NERDTree when Vim is started without file arguments.
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
 
 " Open the existing NERDTree on each new tab.
 autocmd BufWinEnter * if &buftype != 'quickfix' && getcmdwintype() == '' | silent NERDTreeMirror | endif
@@ -316,12 +319,9 @@ nmap <silent><nowait> gd <Plug>(coc-definition)
 nmap <silent><nowait> gy <Plug>(coc-type-definition)
 nmap <silent><nowait> gi <Plug>(coc-implementation)
 nmap <silent><nowait> gr <Plug>(coc-references)
-nmap <silent><Leader>rn <Plug>(coc-rename)
-nmap <silent><Leader>f <Plug>(coc-format)
 
 nmap <silent><nowait> do <Plug>(coc-codeaction)
-nmap <leader> rn <Plug>(coc-rename)
-nmap <leader> qf <Plug>(coc-fix-current)
+"nnmap <silent><nowait><leader> rn <Plug>(coc-rename)
 
 nnoremap <silent> K :call ShowDocumentation()<CR>
 
@@ -437,6 +437,7 @@ nnoremap <leader>b <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>gs <cmd>Telescope git_status<cr>
 
+nnoremap <silent><space><space>  <cmd>Telescope buffers<CR>
 
 " Hardtime
 " -----------------------------------
@@ -446,6 +447,7 @@ let g:hardtime_showmsg = 1
 let g:hardtime_ignore_buffer_patterns = [  "NERD.*" ]
 let g:hardtime_allow_different_key = 1
 let g:hardtime_ignore_quickfix = 1
+let g:list_of_visual_keys = [ "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
 
 lua require('config')
 
