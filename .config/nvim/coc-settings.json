@@ -3,8 +3,8 @@
   "editor.codeActionsOnSave": {
     "eslint.fixAll": true
   },
-  "eslint.enable": false,
-  "eslint.workingDirectories": ["./client", "./frontend"],
+  "eslint.enable": true,
+  "eslint.workingDirectories": ["./client", "./frontend", "./"],
   "eslint.format.enable": true,
   "python.analysis.indexing": true,
   "python.analysis.autoImportCompletions": true,
@@ -17,7 +17,6 @@
   "pyright.organizeimports.provider": "ruff",
   "python.formatting.provider": "ruff",
   "python.linting.ruffEnabled": true,
-  "pyright.organizeimports.provider": "ruff",
   "pyright.venvPath": ".",
   "pyright.venv": ".venv",
 
@@ -30,6 +29,10 @@
     }
   ],
   "coc.preferences.formatOnSave": true,
+
   "prettier.enable": true,
   "prettier.requireConfig": true,
+  "prettier.printWidth": 80,
+  "prettier.singleQuote": true
+
 }
