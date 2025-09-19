@@ -1,5 +1,4 @@
 {
-  "prettier.enable": true,
   "typescript.showUnused": true,
   "editor.codeActionsOnSave": {
     "eslint.fixAll": true
@@ -16,9 +15,11 @@
   "pyright.inlayHints.functionReturnTypes": false,
   "pyright.completion.importSupport": true,
   "pyright.organizeimports.provider": "ruff",
+  "python.formatting.provider": "ruff",
+  "python.linting.ruffEnabled": true,
+  "pyright.organizeimports.provider": "ruff",
   "pyright.venvPath": ".",
   "pyright.venv": ".venv",
-  "python.formatting.provider": "ruff",
 
   "htmldjango.enable": true,
   "htmldjango.djlint.preserveBlankLines": true,
@@ -29,5 +30,6 @@
     }
   ],
   "coc.preferences.formatOnSave": true,
-  "prettier.enableDebugLogs": true
+  "prettier.enable": true,
+  "prettier.requireConfig": true,
 }

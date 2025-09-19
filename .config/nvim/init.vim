@@ -88,7 +88,7 @@ set nobackup
 syntax enable
 set background=dark
 hi Normal guibg=None ctermbg=None
-colorscheme catppuccin
+colorscheme darkblue
 
 " Editing
 set number
@@ -106,7 +106,7 @@ set colorcolumn=+1
 " Folds
 set foldmethod=syntax
 set foldcolumn=0
-set foldlevel=2
+set foldlevel=4
 autocmd FileType vim setlocal foldmethod=marker
 
 " Splits
@@ -403,6 +403,8 @@ imap <leader><tab> <Plug>(copilot-accept-line)
 let g:python2_host_prog = '/usr/bin/python'
 let g:python3_host_prog = '/usr/bin/python3'
 
+autocmd BufWritePre *.py silent! :call CocAction('runCommand', 'python.sortImports')
+
 " Misc editing plugins
 " ---------------------------------
 " Delimmate
@@ -442,7 +444,7 @@ nnoremap <silent><space><space>  <cmd>Telescope buffers<CR>
 " Hardtime
 " -----------------------------------
 
-let g:hardtime_default_on = 1
+let g:hardtime_default_on = 0
 let g:hardtime_showmsg = 1
 let g:hardtime_ignore_buffer_patterns = [  "NERD.*" ]
 let g:hardtime_allow_different_key = 1

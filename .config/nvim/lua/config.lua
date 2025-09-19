@@ -4,7 +4,6 @@ vim.schedule(function()
   vim.o.clipboard = 'unnamedplus'
 end)
 
-
 local function paste()
   return {
     vim.fn.split(vim.fn.getreg(""), "\n"),

@@ -1,10 +1,10 @@
 [font]
 size = 12
-normal.family = "IBM Plex Mono"
+normal.family = "Adwaita Mono"
 normal.style = "Regular"
-bold.family = "IBM Plex Mono"
+bold.family = "Adwaita Mono"
 bold.style = "Bold"
-italic.family = "IBM Plex Mono"
+italic.family = "Adwaita Mono"
 italic.style = "Italic"
 offset.y = -1
 
@@ -24,70 +24,82 @@ startup_mode="Maximized"
 padding.x = 2
 padding.y = 0
 
+[selection]
+save_to_clipboard = true
+
+[terminal]
+osc52 = "OnlyCopy"
+
+
+
+# Darkblue Alacritty Theme
+# Based on the Vim darkblue color scheme
 
 [colors.primary]
-background = "#1e1e2e"
-foreground = "#cdd6f4"
-dim_foreground = "#7f849c"
-bright_foreground = "#cdd6f4"
+background = "#000040"  # ogDeepBlue - main background
+foreground = "#c0c0c0"  # ogLightGrey - main text
+dim_foreground = "#808080"  # ogGrey - dimmed text
+bright_foreground = "#ffffff"  # white - bright text
 
 [colors.cursor]
-text = "#1e1e2e"
-cursor = "#f5e0dc"
+text = "#000000"  # black
+cursor = "#ffff60"  # ogYellow - cursor color
 
 [colors.vi_mode_cursor]
-text = "#1e1e2e"
-cursor = "#b4befe"
+text = "#000040"  # ogDeepBlue
+cursor = "#90fff0"  # ogCyan - vi mode cursor
 
 [colors.search.matches]
-foreground = "#1e1e2e"
-background = "#a6adc8"
+foreground = "#ffffff"  # white
+background = "#0030ff"  # ogBlue - search matches
 
 [colors.search.focused_match]
-foreground = "#1e1e2e"
-background = "#a6e3a1"
+foreground = "#000000"  # black
+background = "#90fff0"  # ogCyan - focused search match
 
 [colors.footer_bar]
-foreground = "#1e1e2e"
-background = "#a6adc8"
+foreground = "#000040"  # ogDeepBlue
+background = "#c0c0c0"  # ogLightGrey
 
 [colors.hints.start]
-foreground = "#1e1e2e"
-background = "#f9e2af"
+foreground = "#000000"  # black
+background = "#ffff60"  # ogYellow
 
 [colors.hints.end]
-foreground = "#1e1e2e"
-background = "#a6adc8"
+foreground = "#ffffff"  # white
+background = "#0030ff"  # ogBlue
 
 [colors.selection]
-text = "#1e1e2e"
-background = "#f5e0dc"
+text = "#ffffff"  # white
+background = "#8080ff"  # ogViolet - visual selection
 
 [colors.normal]
-black = "#45475a"
-red = "#f38ba8"
-green = "#a6e3a1"
-yellow = "#f9e2af"
-blue = "#89b4fa"
-magenta = "#f5c2e7"
-cyan = "#94e2d5"
-white = "#bac2de"
+black = "#000000"    # black
+red = "#8b0000"      # ogDarkerRed
+green = "#90f020"    # ogGreen
+yellow = "#ffa500"   # ogOrange
+blue = "#0030ff"     # ogBlue
+magenta = "#8b008b"  # ogDarkMag
+cyan = "#008b8b"     # ogDarkCyan
+white = "#c0c0c0"    # ogLightGrey
 
 [colors.bright]
-black = "#585b70"
-red = "#f38ba8"
-green = "#a6e3a1"
-yellow = "#f9e2af"
-blue = "#89b4fa"
-magenta = "#f5c2e7"
-cyan = "#94e2d5"
-white = "#a6adc8"
+black = "#808080"    # ogGrey
+red = "#ffa0a0"      # ogLightRed
+green = "#90f020"    # ogGreen (bright)
+yellow = "#ffff60"   # ogYellow
+blue = "#80a0ff"     # ogLightViolet
+magenta = "#ff00ff"  # ogMagenta
+cyan = "#90fff0"     # ogCyan
+white = "#ffffff"    # white
 
+# Additional indexed colors for extended compatibility
 [[colors.indexed_colors]]
 index = 16
-color = "#fab387"
+color = "#ffa500"  # ogOrange
 
 [[colors.indexed_colors]]
 index = 17
-color = "#f5e0dc"
+color = "#ff80ff"  # ogLightMag
+
 
