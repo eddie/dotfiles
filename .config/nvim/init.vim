@@ -190,7 +190,6 @@ nnoremap <S-ScrollWheelDown> <ScrollWheelLeft>
 
 " Navigation
 map <leader>t :tabnew<CR>
-nnoremap <Leader>c :cclose<cr>
 
 " Buffer navigation
 noremap <Leader><Leader> <C-^>  
@@ -318,7 +317,7 @@ nmap <silent><nowait> gi <Plug>(coc-implementation)
 nmap <silent><nowait> gr <Plug>(coc-references)
 
 nmap <silent><nowait> do <Plug>(coc-codeaction)
-"nnmap <silent><nowait><leader> rn <Plug>(coc-rename)
+nmap <silent><nowait> rn <Plug>(coc-rename)
 
 nnoremap <silent> K :call ShowDocumentation()<CR>
 
@@ -435,6 +434,8 @@ nnoremap <leader>a <cmd>Telescope live_grep<cr>
 nnoremap <leader>b <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>gs <cmd>Telescope git_status<cr>
+nnoremap <leader>c <cmd>Telescope registers<cr>
+
 
 nnoremap <silent><space><space>  <cmd>Telescope buffers<CR>
 
