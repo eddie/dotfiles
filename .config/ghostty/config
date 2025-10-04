@@ -1,0 +1,17 @@
+# https://iterm2colorschemes.com/
+
+mouse-scroll-multiplier = 1
+
+
+# Pairs with nvim Darkblue
+theme = "Batman"
+
+# Close to vim Dark Blue.
+theme = "IRIX Terminal"
+
+
+# Softer 
+theme = "Blue Matrix"
+# Nicer general readable theme
+#theme = Galaxy
+theme = "Forest Blue"

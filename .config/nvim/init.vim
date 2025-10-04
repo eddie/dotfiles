@@ -107,6 +107,7 @@ set colorcolumn=+1
 set foldmethod=syntax
 set foldcolumn=0
 set foldlevel=4
+set nofoldenable
 autocmd FileType vim setlocal foldmethod=marker
 
 " Splits
