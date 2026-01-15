@@ -44,7 +44,7 @@ alias a="vim ~/.bash_aliases && source ~/.bash_aliases"
 alias pp="poetry run python manage.py"
 alias r="git diff --cached --name-only --diff-filter=ACMR | grep '\.py$' | xargs -r ruff check --fix"
 alias pyc='find . -name "*.pyc" -delete && find . -name "__pycache__" -type d -exec rm -rf {} +  2>/dev/null || true'
-alias supa="npx supabase"
+alias supa="supabase"
 alias c="code --enable-features=UseOzonePlatform --ozone-platform=wayland"
 alias key="openssl rand -base64 30 | tr -dc 'A-Za-z0-9!@#$%^&*()-_=+' | head -c$1"
 alias m="uv run manage.py"

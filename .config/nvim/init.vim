@@ -28,6 +28,8 @@ Plug 'vim-airline/vim-airline'                             " Status line
 Plug 'vim-airline/vim-airline-themes'                      " Status line themes
 Plug 'takac/vim-hardtime'                                  " Hard mode (no arrow keys)
 
+Plug 'Skullamortis/forest.nvim'
+
 " Editing enhancements
 Plug 'tpope/vim-surround'                                  " Surround text objects
 Plug 'tpope/vim-sleuth'                                    " Auto-detect indentation
@@ -52,6 +54,9 @@ Plug 'vala-lang/vala.vim'                                  " Vala
 
 " Web development
 Plug 'mattn/emmet-vim'                                     " HTML/CSS shortcuts
+
+" Data
+Plug 'chrisbra/csv.vim'
 
 call plug#end()
 
@@ -88,7 +93,7 @@ set nobackup
 syntax enable
 set background=dark
 hi Normal guibg=None ctermbg=None
-colorscheme darkblue
+colorscheme forest
 
 " Editing
 set number

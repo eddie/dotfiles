@@ -19,4 +19,7 @@ export HISTSIZE=10000
 export HISTFILESIZE=2000
 export HISTCONTROL=ignoredups:erasedups
 
+export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
+
+
 export ELECTRON_OZONE_PLATFORM_HINT=auto
