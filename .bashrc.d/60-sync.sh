@@ -163,3 +163,61 @@ dconf_sync() {
         return 1
     fi
 }
+
+sync_repos() {
+    local source_dir="${1:-$HOME/src}"
+    local dest_dir="${2:-/mnt/home/repo-archive/automated-sync}"
+    local dry_run=true
+    
+    [[ "$1" == "-f" || "$1" == "--force" ]] && { dry_run=false; shift; source_dir="${1:-$HOME/src}"; }
+    
+    local rsync_opts="-av --update"
+    $dry_run && rsync_opts="$rsync_opts --dry-run"
+    
+    echo "=== Syncing repos ==="
+    echo "Source: $source_dir"
+    echo "Dest:   $dest_dir"
+    $dry_run && echo "MODE:   DRY RUN (use -f to actually sync)"
+    echo ""
+    
+    /usr/bin/rsync $rsync_opts \
+        --exclude=".venv/" \
+        --exclude="venv/" \
+        --exclude="env/" \
+        --exclude="node_modules/" \
+        --exclude="__pycache__/" \
+        --exclude="*.pyc" \
+        --exclude=".tox/" \
+        --exclude=".nox/" \
+        --exclude=".pytest_cache/" \
+        --exclude=".mypy_cache/" \
+        --exclude=".ruff_cache/" \
+        --exclude="target/" \
+        --exclude="dist/" \
+        --exclude="build/" \
+        --exclude="*.egg-info/" \
+        --exclude=".next/" \
+        --exclude=".nuxt/" \
+        --exclude=".output/" \
+        --exclude=".cache/" \
+        --exclude="coverage/" \
+        --exclude=".coverage" \
+        --exclude="vendor/" \
+        --exclude=".phpunit.cache/" \
+        --exclude="storage/framework/" \
+        --exclude="bootstrap/cache/" \
+        --exclude="bin/" \
+        --exclude="pkg/" \
+        "$source_dir/" "$dest_dir/"
+    
+    local status=$?
+    
+    echo ""
+    if $dry_run; then
+        echo "^^^ DRY RUN - nothing was copied. Run 'sync_repos -f' to execute."
+    else
+        [[ $status -eq 0 ]] && echo "✓ Sync complete" || echo "✗ Sync failed"
+    fi
+    
+    return $status
+}
