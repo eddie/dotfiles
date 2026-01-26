@@ -50,7 +50,6 @@ alias key="openssl rand -base64 30 | tr -dc 'A-Za-z0-9!@#$%^&*()-_=+' | head -c$
 alias m="uv run manage.py"
 alias ccat="/usr/bin/cat"
 alias cat="/usr/bin/bat"
-alias find="fd"
 alias f="fd"
 alias tf="terraform"
 

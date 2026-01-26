@@ -1,19 +1,35 @@
-
-sync () {
-    local source_dir="${1:-~/Downloads}"
+sync_simple() {
+    local source_dir="${1:-$HOME/Downloads}"
     local dest_dir="${2:-/mnt/home/Downloads}"
-    local max_size="${3:-50m}"
+    local max_size="${3:-100m}"
     
-    rsync -av --one-way --max-size="$max_size" \
-        --include="*.pdf" --include="*.txt" \
-        --include="*.jpg" --include="*.jpeg" --include="*.png" \
-        --include="*.gif" --include="*.bmp" --include="*.tiff" --include="*.webp" \
-        --exclude="*" \
+    /usr/bin/rsync -av --max-size="$max_size" \
+        --exclude="*.iso" \
+        --exclude="*.ISO" \
+        --exclude="*.img" \
+        --exclude="*.dmg" \
+        --exclude="*.vmdk" \
+        --exclude="*.vdi" \
+        --exclude="*.qcow2" \
+        --exclude="*.ova" \
+        --exclude="*.tar.gz" \
+        --exclude="*.tar.xz" \
+        --exclude="*.tar.bz2" \
+        --exclude="*.zip" \
+        --exclude="*.7z" \
+        --exclude="*.rar" \
+        --exclude="*.deb" \
+        --exclude="*.rpm" \
+        --exclude="*.AppImage" \
+        --exclude="*.flatpak" \
+        --exclude="*.snap" \
+        --exclude="node_modules/" \
+        --exclude=".git/" \
+        --exclude="*.log" \
         "$source_dir/" "$dest_dir/"
     
-    echo "Copied files from $source_dir to $dest_dir (max size: $max_size)"
+    echo "Synced files from $source_dir to $dest_dir (max size: $max_size)"
 }
-
 
 sync_screenshots() {
     local source_dir="${1:-$HOME/Pictures/Screenshots}"
@@ -28,7 +44,7 @@ sync_screenshots() {
     echo "Copied screenshots from $source_dir to $dest_dir (max size: 10m)"
 }
 
-sync_big() {
+sync_downloads() {
     local source_dir="${1:-$HOME/Downloads}"
     local dest_dir="${2:-/mnt/home/Downloads}"
     local max_size="${3:-50M}"

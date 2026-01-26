@@ -26,7 +26,7 @@ Plug 'scrooloose/nerdtree'                                 " File explorer
 Plug 'Xuyuanp/nerdtree-git-plugin'                         " Git status in NerdTree
 Plug 'vim-airline/vim-airline'                             " Status line
 Plug 'vim-airline/vim-airline-themes'                      " Status line themes
-Plug 'takac/vim-hardtime'                                  " Hard mode (no arrow keys)
+"Plug 'takac/vim-hardtime'                                  " Hard mode (no arrow keys)
 
 Plug 'Skullamortis/forest.nvim'
 
@@ -93,7 +93,7 @@ set nobackup
 syntax enable
 set background=dark
 hi Normal guibg=None ctermbg=None
-colorscheme forest
+colorscheme default 
 
 " Editing
 set number
