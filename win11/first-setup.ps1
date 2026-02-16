@@ -161,7 +161,6 @@ $packages = @(
     @{Id = "DevToys-app.DevToys"; Label = "DevToys" }
     @{Id = "Microsoft.WSL"; Label = "WSL" }
     @{Id = "AgileBits.1Password"; Label = "1Password" }
-    @{Id = "Microsoft.DevHome"; Label = "Dev Home" }
     @{Id = "Microsoft.PowerShell"; Label = "PowerShell 7" }
     @{Id = "MHNexus.HxD"; Label = "HxD Hex Editor" }
     @{Id = "GitHub.cli"; Label = "GitHub CLI" }
