@@ -24,3 +24,6 @@ function gd { git diff @args }
 function gcm { git checkout main @args }
 function gc { git commit -m @args }
 function gti { git @args }  # typo alias
+
+# --- Sync functions ---
+. "$PSScriptRoot\sync.ps1"

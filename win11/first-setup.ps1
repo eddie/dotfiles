@@ -167,6 +167,7 @@ $packages = @(
     @{Id = "Git.Git"; Label = "Git" }
     @{Id = "Anthropic.Claude"; Label = "Claude Desktop" }
     @{Id = "Anthropic.ClaudeCode"; Label = "Claude Code CLI" }
+    @{Id = "1password-cli.1password-cli"; Label = "1Password CLI" }
 
 )
 

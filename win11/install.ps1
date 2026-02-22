@@ -6,12 +6,13 @@ if (-not (Test-Path $profileDir)) {
     New-Item -ItemType Directory -Path $profileDir -Force
 }
 
-# Remove existing profile if present
-if (Test-Path $PROFILE) {
-    Remove-Item $PROFILE -Force
-}
+# Create wrapper profile that sources the dotfiles version
+$dotfilesProfile = "$PSScriptRoot\Microsoft.PowerShell_profile.ps1"
+$wrapperContent = @"
+# Auto-generated wrapper - sources the real profile from dotfiles
+. "$dotfilesProfile"
+"@
 
-# Create symlink
-New-Item -ItemType SymbolicLink -Path $PROFILE -Target "$PSScriptRoot\win11\Microsoft.PowerShell_profile.ps1"
+Set-Content -Path $PROFILE -Value $wrapperContent -Force
 
-Write-Host "Profile linked: $PROFILE -> dotfiles" -ForegroundColor Green
+Write-Host "Profile installed: $PROFILE -> $dotfilesProfile" -ForegroundColor Green
