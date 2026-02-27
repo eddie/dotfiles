@@ -26,4 +26,11 @@ function gc { git commit -m @args }
 function gti { git @args }  # typo alias
 
 # --- Sync functions ---
-. "$PSScriptRoot\sync.ps1"
+# Resolve symlink target to get actual dotfiles path
+$profileTarget = if ((Get-Item $PSCommandPath).LinkType -eq 'SymbolicLink') {
+    (Get-Item $PSCommandPath).Target
+} else {
+    $PSCommandPath
+}
+$dotfilesDir = Split-Path $profileTarget -Parent
+. "$dotfilesDir\sync.ps1"
