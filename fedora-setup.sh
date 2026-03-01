@@ -156,6 +156,13 @@ EOM
   fi
   sudo dnf install -y tableplus
 
+  # Ghostty terminal (COPR)
+  if ! repo_exists "pgdev-ghostty"; then
+    info "Enabling Ghostty COPR"
+    sudo dnf copr enable -y pgdev/ghostty
+  fi
+  sudo dnf install -y ghostty
+
   # Nerd Fonts (COPR)
   if ! repo_exists "che-nerd-fonts"; then
     info "Enabling Nerd Fonts COPR"
@@ -168,8 +175,10 @@ EOM
     info "Enabling Espanso COPR"
     sudo dnf copr enable -y eclipseo/espanso
   fi
-  sudo dnf install -y espanso espanso-wayland
+  sudo dnf install -y espanso-wayland
   sudo setcap "cap_dac_override+p" "$(which espanso-wayland)" 2>/dev/null || true
+  espanso service register 
+  espanso service start
 }
 
 section_cli() {
@@ -223,6 +232,7 @@ section_flatpak() {
     com.slack.Slack
     com.mattjakeman.ExtensionManager
     it.mijorus.gearlever
+    com.microsoft.AzureStorageExplorer
   )
 
   for app in "${flatpaks[@]}"; do
