@@ -25,6 +25,8 @@ function gcm { git checkout main @args }
 function gc { git commit -m @args }
 function gti { git @args }  # typo alias
 
+Set-Alias vim nvim
+
 # --- Sync functions ---
 # Resolve symlink target to get actual dotfiles path
 $profileTarget = if ((Get-Item $PSCommandPath).LinkType -eq 'SymbolicLink') {
