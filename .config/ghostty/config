@@ -1,3 +1,4 @@
 mouse-scroll-multiplier = 1
 theme = "GitHub Dark"
 app-notifications=false
+font-family="Fira Mono"

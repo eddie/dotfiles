@@ -52,6 +52,8 @@ alias ccat="/usr/bin/cat"
 alias cat="/usr/bin/bat"
 alias f="fd"
 alias tf="terraform"
+alias pa="php artisan"
+alias espanso="espanso-wayland"
 
 django(){
  python manage.py "$@"
