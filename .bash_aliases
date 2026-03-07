@@ -13,12 +13,10 @@ alias gc='c'
 alias g="git status"
 alias h="history | grep"
 alias tl="tmuxp load -a -2"
-alias dc="docker-compose"
-alias dc="docker-compose"
 alias vim="nvim"
 alias h='history | grep'
-alias dlf='docker compose logs --tail=1000 -f'
-alias dl='docker compose logs --tail=1000 -f'
+alias dlf='podman compose logs --tail=1000 -f'
+alias dl='podman compose logs --tail=1000 -f'
 alias t='tree -a -L 4'
 alias gti="git"
 alias l="ls -al"
@@ -32,14 +30,13 @@ alias ...="cd ../.."
 alias dot="cd ~/dotfiles"
 alias open="xdg-open"
 alias a="./artisan"
-alias su="sail up -d"
 alias sd="sail down"
 alias suud="sail up -d && sail down"
 alias samfs="sail artisan migrate:fresh --seed"
 alias samf="sail artisan migrate:fresh"
 alias m="make"
-alias dc="docker compose"
-alias dcd="docker compose down && docker compose up -d"
+alias dc="podman compose"
+alias dcd="podman compose down && podman compose up -d"
 alias a="vim ~/.bash_aliases && source ~/.bash_aliases"
 alias pp="poetry run python manage.py"
 alias r="git diff --cached --name-only --diff-filter=ACMR | grep '\.py$' | xargs -r ruff check --fix"
@@ -54,6 +51,7 @@ alias f="fd"
 alias tf="terraform"
 alias pa="php artisan"
 alias espanso="espanso-wayland"
+alias highmem="ps aux --sort=-%mem | head -n10"
 
 django(){
  python manage.py "$@"
