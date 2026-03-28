@@ -273,8 +273,15 @@ section_dotfiles() {
     gh repo clone eddie/dotfiles "$HOME/dotfiles"
   fi
 
-  info "Running stow"
-  cd "$HOME/dotfiles" && stow .
+  info "Stowing home dotfiles"
+  cd "$HOME/dotfiles" && stow -t ~ home
+
+  info "Stowing system config"
+  cd "$HOME/dotfiles" && sudo stow -t / system
+
+  info "Enabling working-hours sleep inhibitor"
+  sudo systemctl daemon-reload
+  sudo systemctl enable --now working-hours-inhibit.timer
 }
 
 section_tpm() {

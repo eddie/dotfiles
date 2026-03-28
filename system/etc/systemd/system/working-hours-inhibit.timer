@@ -1,0 +1,10 @@
+[Unit]
+Description=Start working hours sleep inhibitor at 08:00
+
+[Timer]
+OnCalendar=*-*-* 08:00:00
+Persistent=true
+Unit=working-hours-inhibit.service
+
+[Install]
+WantedBy=timers.target

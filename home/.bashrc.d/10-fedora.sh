@@ -7,3 +7,8 @@ function set_dnf_max_parallel() {
   fi
 }
 
+osc52() {
+  local data
+  data=$(openssl base64 | tr -d '\n')
+  printf "\e]52;c;%s\a" "$data"
+}

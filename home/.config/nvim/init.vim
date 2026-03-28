@@ -353,6 +353,15 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
+
+function! s:FormatWithPrettier()
+  call coc#config('prettier.requireConfig', v:false)
+  CocCommand prettier.formatFile
+  call coc#config('prettier.requireConfig', v:true)
+endfunction
+nnoremap <silent> <leader>fp :call <SID>FormatWithPrettier()<CR>
+
+
 " Git integration
 nnoremap <silent> <Leader>lg :CocList gstatus<CR>
 

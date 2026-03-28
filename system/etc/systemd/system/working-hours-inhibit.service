@@ -1,0 +1,12 @@
+[Unit]
+Description=Block sleep during working hours
+StopWhenUnneeded=yes
+
+[Service]
+Type=simple
+ExecStart=systemd-inhibit --what=sleep --who="working-hours" --why="Working hours" --mode=block sleep infinity
+RuntimeMaxSec=39600
+Restart=no
+
+[Install]
+WantedBy=multi-user.target

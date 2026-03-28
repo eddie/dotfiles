@@ -1,7 +1,8 @@
+\.git
+\.gitignore
+README\.md
+LICENSE
 archive
-.gitignore
-README.md
-.git
 scripts
-fedora-setup.sh
 win11
+fedora-setup\.sh
