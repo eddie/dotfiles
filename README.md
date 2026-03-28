@@ -17,6 +17,12 @@ System config (symlinks into `/`):
 
     sudo stow -t / system
 
+If real files already exist at the target, use `--adopt` to let stow take ownership
+(it moves the existing file into the package dir and replaces it with a symlink):
+
+    sudo stow --adopt -t / system
+    git diff system/  # verify nothing drifted
+
 To remove symlinks (e.g. before restowing after a restructure):
 
     stow -D -t ~ home
