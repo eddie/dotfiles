@@ -1,6 +1,5 @@
 [Unit]
 Description=Block sleep during working hours
-StopWhenUnneeded=yes
 
 [Service]
 Type=simple
