@@ -185,7 +185,7 @@ section_cli() {
   info "Core CLI packages"
 
   sudo dnf install -y \
-    stow tmuxp neovim gnome-tweaks \
+    stow neovim gnome-tweaks \
     'mozilla-fira*' 'google-roboto*' ibm-plex-mono-fonts jetbrains-mono-fonts \
     tldr wl-clipboard inxi fd-find ncdu duf diff-so-fancy bat \
     z evtest clang direnv gnome-firmware podman-compose python-neovim \

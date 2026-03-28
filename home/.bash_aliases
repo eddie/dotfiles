@@ -12,7 +12,6 @@ alias c='git commit -m'
 alias gc='c'
 alias g="git status"
 alias h="history | grep"
-alias tl="tmuxp load -a -2"
 alias vim="nvim"
 alias h='history | grep'
 alias dlf='podman compose logs --tail=1000 -f'
