@@ -282,6 +282,9 @@ section_dotfiles() {
   info "Enabling working-hours sleep inhibitor"
   sudo systemctl daemon-reload
   sudo systemctl enable --now working-hours-inhibit.timer
+
+  info "Enabling sshd"
+  sudo systemctl enable --now sshd.service
 }
 
 section_tpm() {

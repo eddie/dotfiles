@@ -53,6 +53,9 @@ alias pa="php artisan"
 alias espanso="espanso-wayland"
 alias highmem="ps aux --sort=-%mem | head -n10"
 
+alias sys="systemctl"
+alias j="journalctl"
+
 django(){
  python manage.py "$@"
 }
