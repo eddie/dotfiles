@@ -305,6 +305,11 @@ section_gnome() {
   gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
   gsettings set org.gnome.desktop.interface show-battery-percentage true
   gsettings set org.gnome.shell.app-switcher current-workspace-only true
+
+  gsettings set org.gnome.desktop.interface font-hinting 'full'
+  gsettings set org.gnome.desktop.interface font-antialiasing 'rgba'
+  gsettings set org.gnome.desktop.interface text-scaling-factor 1.2
+
   dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:escape']"
 
   success "GNOME settings applied"

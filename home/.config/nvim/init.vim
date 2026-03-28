@@ -16,7 +16,7 @@ Plug 'editorconfig/editorconfig-vim'                      " EditorConfig support
 
 " Neovim-specific enhancements
 Plug 'nvim-lua/plenary.nvim'                                " Lua utility functions (dependency)
-Plug 'nvim-telescope/telescope.nvim', {'tag': '0.1.8'}      " Fuzzy finder
+Plug 'nvim-telescope/telescope.nvim'                        " Fuzzy finder
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Better syntax highlighting
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 
@@ -210,7 +210,7 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 " Pretty Airline
 " ---------------------------------
 
-let g:airline_theme='catppuccin'
+"let g:airline_theme='catppuccin'
 "let g:airline_section_error='' " Remove syntastic
 "let g:airline_section_warning=''
 "let g:airline_section_b=''     " Remove hunks and branch
