@@ -169,16 +169,6 @@ EOM
     sudo dnf copr enable -y che/nerd-fonts
   fi
   sudo dnf install -y nerd-fonts
-
-  # Espanso (COPR — preferred over flatpak)
-  if ! repo_exists "eclipseo-espanso"; then
-    info "Enabling Espanso COPR"
-    sudo dnf copr enable -y eclipseo/espanso
-  fi
-  sudo dnf install -y espanso-wayland
-  sudo setcap "cap_dac_override+p" "$(which espanso-wayland)" 2>/dev/null || true
-  espanso service register 
-  espanso service start
 }
 
 section_cli() {
@@ -186,7 +176,7 @@ section_cli() {
 
   sudo dnf install -y \
     stow neovim gnome-tweaks \
-    'mozilla-fira*' 'google-roboto*' ibm-plex-mono-fonts jetbrains-mono-fonts \
+    'google-roboto*' ibm-plex-mono-fonts jetbrains-mono-fonts \
     tldr wl-clipboard inxi fd-find ncdu duf diff-so-fancy bat \
     z evtest clang direnv gnome-firmware podman-compose python-neovim \
     python3-pip dnf5-plugins
@@ -195,15 +185,12 @@ section_cli() {
 
   info "Installing neovim npm package"
   sudo npm install -g neovim
-
-  info "Installing llm CLI"
-  pip install llm
 }
 
 section_desktop() {
   info "Desktop packages"
 
-  sudo dnf install -y google-chrome-stable gimp inkscape minder pomodoro
+  sudo dnf install -y google-chrome-stable gimp inkscape minder 
 
   info "Installing Pop Shell"
   sudo dnf install -y gnome-shell-extension-pop-shell
@@ -274,10 +261,10 @@ section_dotfiles() {
   fi
 
   info "Stowing home dotfiles"
-  cd "$HOME/dotfiles" && stow -t ~ home
+  cd "$HOME/dotfiles" && stow -t ~ home  --adopt
 
   info "Stowing system config"
-  cd "$HOME/dotfiles" && sudo stow -t / system
+  cd "$HOME/dotfiles" && sudo stow -t / system --adopt
 
   info "Enabling working-hours sleep inhibitor"
   sudo systemctl daemon-reload
