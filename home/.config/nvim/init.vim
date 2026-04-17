@@ -236,7 +236,7 @@ let g:NERDTreeChDirMode = 2
 let g:NERDTreeAutoDeleteBuffer = 1
 let g:NERDTreeShowHidden=1
 
-let NERDTreeIgnore=['\~$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.pyc$', 'node_modules', 'bower_components', '__pycache__']
+let NERDTreeIgnore=['\~$', '\.swp$', '\.git$', '\.hg', '\.svn', '\.bzr', '\.pyc$', 'node_modules', 'bower_components', '__pycache__']
 nmap ,e :NERDTreeToggle<CR>
 nmap <F6> :NERDTreeToggle<CR>
 
