@@ -273,7 +273,8 @@ let g:coc_global_extensions = [
   \ 'coc-json',
   \ 'coc-pyright',
   \ 'coc-html',
-  \ 'coc-htmldjango'
+  \ 'coc-htmldjango',
+  \ '@yaegassy/coc-intelephense'
   \ ]
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')

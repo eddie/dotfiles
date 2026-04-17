@@ -174,7 +174,7 @@ EOM
 section_cli() {
   info "Core CLI packages"
 
-  sudo dnf install -y \
+  sudo dnf install -y --skip-unavailable --skip-broken \
     stow neovim gnome-tweaks \
     'google-roboto*' ibm-plex-mono-fonts jetbrains-mono-fonts \
     tldr wl-clipboard inxi fd-find ncdu duf diff-so-fancy bat \
@@ -185,6 +185,21 @@ section_cli() {
 
   info "Installing neovim npm package"
   sudo npm install -g neovim
+
+  # fnm (Node version manager). Installed to ~/.local/share/fnm; shell
+  # integration lives in ~/.bashrc.d/40-fnm.sh via dotfiles.
+  if ! command -v fnm &>/dev/null && [[ ! -x "$HOME/.local/share/fnm/fnm" ]]; then
+    info "Installing fnm"
+    curl -fsSL https://fnm.vercel.app/install | bash -s -- \
+      --skip-shell --install-dir "$HOME/.local/share/fnm"
+  else
+    success "fnm already installed"
+  fi
+
+  # Podman rootless socket (for Docker-compatible clients talking to the
+  # user's podman).
+  info "Enabling podman user socket"
+  systemctl --user enable --now podman.socket || true
 }
 
 section_desktop() {
@@ -344,6 +359,7 @@ section_notes() {
   echo "  POST-SETUP CHECKLIST:"
   echo "    - Check custom keybindings (e.g. Obsidian Ctrl+Shift+P)"
   echo "    - Set Chrome flag: #ozone-platform-hint=wayland"
+  echo "    - Remove any manual fnm block from ~/.bashrc (now in ~/.bashrc.d/40-fnm.sh)"
   echo ""
   echo "================================================================"
 }

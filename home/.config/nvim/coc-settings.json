@@ -33,6 +33,15 @@
   "prettier.enable": true,
   "prettier.requireConfig": true,
   "prettier.printWidth": 80,
-  "prettier.singleQuote": true
+  "prettier.singleQuote": true,
 
+  "languageserver": {
+    "terraform": {
+      "command": "terraform-ls",
+      "args": ["serve"],
+      "filetypes": ["terraform", "tf"],
+      "initializationOptions": {},
+      "settings": {}
+    }
+  }
 }
