@@ -18,7 +18,7 @@ alias dlf='podman compose logs --tail=1000 -f'
 alias dl='podman compose logs --tail=1000 -f'
 alias t='tree -a -L 4'
 alias gti="git"
-alias l="ls -al"
+alias l="ls -alhs"
 alias v="vim"
 alias ag='ag --path-to-ignore ~/.agignore'
 alias lc="llm -m claude"
