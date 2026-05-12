@@ -39,26 +39,9 @@ function parse_git_branch(){
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
-# Determine if we're in an SSH session
-function is_ssh_session() {
-  if [[ -n "$SSH_CONNECTION" || -n "$SSH_CLIENT" || -n "$SSH_TTY" ]]; then
-    return 0  # True, this is an SSH session
-  else
-    return 1  # False, not an SSH session
-  fi
-}
-
-# Set the hostname display based on SSH status
 function set_hostname_display() {
-  if is_ssh_session; then
-    # In SSH session - use a different color
-    HOSTNAME_COLOR="${LIGHT_RED}"
-    HOSTNAME_PREFIX="[SSH] "
-  else
-    # Local session - use the default green
-    HOSTNAME_COLOR="${GREEN}"
-    HOSTNAME_PREFIX=""
-  fi
+  HOSTNAME_COLOR="${GREEN}"
+  HOSTNAME_PREFIX=""
 }
 
 # Determine the branch/state information for this git repository.
@@ -88,38 +71,6 @@ function set_virtualenv () {
   fi
 }
 
-# Update terminal title for tmux integration
-function update_terminal_title() {
-  if [[ "$TERM" == screen* ]] || [[ "$TERM" == tmux* ]]; then
-    # Get current directory basename
-    local current_dir="${PWD##*/}"
-    
-    # Get git branch if available (clean format without parentheses)
-    local git_branch=""
-    if git rev-parse --git-dir >/dev/null 2>&1; then
-      git_branch=$(git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
-      if [[ -n "$git_branch" ]]; then
-        git_branch=":$git_branch"
-      fi
-    fi
-    
-    # Get virtualenv if available
-    local venv=""
-    if [[ -n "$VIRTUAL_ENV" ]]; then
-      venv="[$(basename "$VIRTUAL_ENV")] "
-    fi
-    
-    # Set terminal title: [venv] directory:branch
-    printf "\033]2;%s%s%s\033\\" "$venv" "$current_dir" "$git_branch"
-  fi
-}
-
-# Enhanced cd function that updates terminal title
-cd() {
-  builtin cd "$@"
-  update_terminal_title
-}
-
 # Set the full bash prompt.
 function set_bash_prompt () {
   # Set the PROMPT_SYMBOL variable. We do this first so we don't lose the
@@ -132,11 +83,8 @@ function set_bash_prompt () {
   # Set the BRANCH variable.
   set_git_branch
   
-  # Set the hostname display based on SSH status
+  # Set the hostname display
   set_hostname_display
-  
-  # Update terminal title for tmux
-  update_terminal_title
   
   # Set the bash prompt variable.
   PS1="

@@ -93,7 +93,7 @@ set nobackup
 syntax enable
 set background=dark
 hi Normal guibg=None ctermbg=None
-colorscheme default 
+colorscheme catppuccin
 
 " Editing
 set number
@@ -237,6 +237,7 @@ let g:NERDTreeAutoDeleteBuffer = 1
 let g:NERDTreeShowHidden=1
 
 let NERDTreeIgnore=['\~$', '\.swp$', '\.git$', '\.hg', '\.svn', '\.bzr', '\.pyc$', 'node_modules', 'bower_components', '__pycache__']
+
 nmap ,e :NERDTreeToggle<CR>
 nmap <F6> :NERDTreeToggle<CR>
 
@@ -445,8 +446,8 @@ nmap <leader>gco :!git checkout
 " Enable telescope preview
 let g:telescope_preview = 1
 
-nnoremap <C-p> <cmd>Telescope find_files<cr>
-nnoremap <leader>a <cmd>Telescope live_grep<cr>
+nnoremap <C-p> <cmd>Telescope find_files hidden=true --glob=!.git/<cr>
+nnoremap <leader>a <cmd>lua require('telescope.builtin').live_grep({ additional_args = function() return {'--hidden', '--glob',  '!.git'} end })<cr>
 nnoremap <leader>b <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>gs <cmd>Telescope git_status<cr>
