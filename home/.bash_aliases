@@ -1,7 +1,7 @@
 alias ggp="git push"
 alias ggl="git pull"
 alias g="git pull --all"
-alias gp="git add -p" 
+alias gap="git add -p" 
 alias glp="git log -p --stat"
 alias gl="git log -n 10 --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gs="git status -sb"

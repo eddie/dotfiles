@@ -18,7 +18,6 @@ Plug 'editorconfig/editorconfig-vim'                      " EditorConfig support
 Plug 'nvim-lua/plenary.nvim'                                " Lua utility functions (dependency)
 Plug 'nvim-telescope/telescope.nvim'                        " Fuzzy finder
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Better syntax highlighting
-Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 
 " Navigation & UI
 Plug 'christoomey/vim-tmux-navigator'                      " Tmux integration
@@ -28,7 +27,12 @@ Plug 'vim-airline/vim-airline'                             " Status line
 Plug 'vim-airline/vim-airline-themes'                      " Status line themes
 "Plug 'takac/vim-hardtime'                                  " Hard mode (no arrow keys)
 
+
+" Colorschemes
 Plug 'Skullamortis/forest.nvim'
+Plug 'projekt0n/github-nvim-theme'
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+
 
 " Editing enhancements
 Plug 'tpope/vim-surround'                                  " Surround text objects
@@ -38,6 +42,8 @@ Plug 'Raimondi/delimitMate'                                " Auto-close brackets
 " Git integration
 Plug 'tpope/vim-fugitive'                                  " Git commands
 Plug 'airblade/vim-gitgutter', {'branch': 'main'}          " Git diff in gutter
+Plug 'rhysd/conflict-marker.vim'
+Plug 'tpope/vim-rhubarb'                                   " GitHub integration for fugitive
 
 " Search & utilities
 Plug 'mileszs/ack.vim'                                     " Better search
@@ -93,7 +99,7 @@ set nobackup
 syntax enable
 set background=dark
 hi Normal guibg=None ctermbg=None
-colorscheme catppuccin
+colorscheme ron
 
 " Editing
 set number
@@ -209,23 +215,25 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " Pretty Airline
 " ---------------------------------
-
-"let g:airline_theme='catppuccin'
-"let g:airline_section_error='' " Remove syntastic
-"let g:airline_section_warning=''
-"let g:airline_section_b=''     " Remove hunks and branch
 let g:airline_inactive_collapse=1
 let g:airline_symbols_ascii = 1
 let g:airline_exclude_preview = 0
 
-let g:airline#extensions#tabline#formatter = 'unique_tail'  " Full paths in tabline
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'  " Full paths in tabline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#tabline#show_tab_count = 1
 let g:airline#extensions#coc#enabled = 1
 let g:airline#extensions#coc#show_coc_status = 1
-let g:airline#extensions#branch#enabled = 0
+
+" Show buffer number and git branch in status line
+let g:airline_section_b = airline#section#create(['%n: ', 'branch'])
+
+" Enable fugitive integration in status line
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#branch#format = 2  " Shorten branch components 
+
 
 " NERDTree
 " ---------------------------------
@@ -282,16 +290,15 @@ if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
   let g:coc_global_extensions += ['coc-prettier']
 endif
 
-
 " Helper function to check if cursor is after whitespace
 function! s:CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1] =~# '\s'
 endfunction
 
-" Tab completion behavior
 inoremap <silent><expr> <Tab>
       \ coc#pum#visible() ? coc#pum#next(1) :
+      \ copilot#GetDisplayedSuggestion().text != '' ? copilot#AcceptLine("\<CR>") :
       \ <SID>CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
 
@@ -303,7 +310,6 @@ inoremap <silent><expr> <S-Tab>
 inoremap <silent><expr> <CR> 
       \ coc#pum#visible() ? coc#pum#confirm() :
       \ "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
-
 
 " Remap <C-f> and <C-b> to scroll float windows/popups
 if has('nvim-0.4.0') || has('patch-8.2.0750')
@@ -372,20 +378,11 @@ function! CheckBackspace() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Use tab for trigger completion with characters ahead and navigate
-inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1) :
-      \ CheckBackspace() ? "\<Tab>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
 " Make <CR> to accept selected completion item or notify coc.nvim to format
 " <C-g>u breaks current undo, please make your own choice
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-" Use <Tab> and <S-Tab> to navigate through popup menu
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
 
 " Map function and class text objects
@@ -441,6 +438,8 @@ nmap <leader>gd :Gvdiffsplit<CR>
 nmap <leader>gcm :Gcommit<CR>
 nmap <leader>gco :!git checkout
 
+
+
 " Telescope 
 " ---------------------------------
 " Enable telescope preview
@@ -467,5 +466,4 @@ let g:hardtime_ignore_quickfix = 1
 let g:list_of_visual_keys = [ "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
 
 lua require('config')
-
 
