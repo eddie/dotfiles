@@ -99,7 +99,7 @@ set nobackup
 syntax enable
 set background=dark
 hi Normal guibg=None ctermbg=None
-colorscheme ron
+colorscheme github_dark_high_contrast
 
 " Editing
 set number
