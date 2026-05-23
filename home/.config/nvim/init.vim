@@ -174,7 +174,8 @@ set so=7
 vnoremap < <gv
 vnoremap > >gv
 
-" Tab nav quick
+" Tabs nav quick
+map <leader>t :tabnew<CR>
 nnoremap <leader>1 :tabn 1<CR>
 nnoremap <leader>2 :tabn 2<CR>
 nnoremap <leader>3 :tabn <CR>
@@ -194,14 +195,17 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
+" Resize windows with Ctrl+Alt + arrows (mirrors tmux's Alt+Shift+arrows)
+nnoremap <C-M-Up>    :resize -3<CR>
+nnoremap <C-M-Down>  :resize +3<CR>
+nnoremap <C-M-Left>  :vertical resize -3<CR>
+nnoremap <C-M-Right> :vertical resize +3<CR>
+
 " Reconfigure horizontal mouse scroll, thanks @Administrative_chaos
 nnoremap <ScrollWheelRight> <Nop>
 nnoremap <ScrollWheelLeft> <Nop>
 nnoremap <S-ScrollWheelUp> <ScrollWheelRight>
 nnoremap <S-ScrollWheelDown> <ScrollWheelLeft>
-
-" Navigation
-map <leader>t :tabnew<CR>
 
 " Buffer navigation
 noremap <Leader><Leader> <C-^>  
@@ -209,9 +213,6 @@ noremap <Leader><Leader> <C-^>
 " Completions
 " Select longest by default, always show menu
 set completeopt=longest,menuone
-let g:SuperTabLongestEnhanced=1
-let g:SuperTabDefaultCompletionType = "<c-n>" 
-
 
 " Pretty Airline
 " ---------------------------------
@@ -280,6 +281,7 @@ let g:coc_global_extensions = [
   \ 'coc-eslint',
   \ 'coc-git',
   \ 'coc-json',
+  \ 'coc-clangd',
   \ 'coc-pyright',
   \ 'coc-html',
   \ 'coc-htmldjango',
@@ -302,6 +304,7 @@ inoremap <silent><expr> <Tab>
       \ <SID>CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
 
+
 " Shift-Tab for previous completion
 inoremap <silent><expr> <S-Tab> 
       \ coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
@@ -311,16 +314,6 @@ inoremap <silent><expr> <CR>
       \ coc#pum#visible() ? coc#pum#confirm() :
       \ "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
 
-" Remap <C-f> and <C-b> to scroll float windows/popups
-if has('nvim-0.4.0') || has('patch-8.2.0750')
-  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-endif
-
 
 " Navigation and code actions (using <Plug> mappings)
 
@@ -329,9 +322,19 @@ nmap <silent><nowait> gd <Plug>(coc-definition)
 nmap <silent><nowait> gy <Plug>(coc-type-definition)
 nmap <silent><nowait> gi <Plug>(coc-implementation)
 nmap <silent><nowait> gr <Plug>(coc-references)
-
 nmap <silent><nowait> do <Plug>(coc-codeaction)
 nmap <silent><nowait> rn <Plug>(coc-rename)
+
+" Map function and class text objects
+" e.g vif to select inner function
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
 
 nnoremap <silent> K :call ShowDocumentation()<CR>
 
@@ -344,12 +347,6 @@ function! ShowDocumentation()
 endfunction
 
 " Mappings for CoCList
-" Show all diagnostics
-nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions
-nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
-" Show commands
-nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document
 nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
 " Search workspace symbols
@@ -358,9 +355,6 @@ nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
 nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list
-nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
-
 
 function! s:FormatWithPrettier()
   call coc#config('prettier.requireConfig', v:false)
@@ -383,19 +377,6 @@ endfunction
 " <C-g>u breaks current undo, please make your own choice
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-
-" Map function and class text objects
-" e.g vif to select inner function
-xmap if <Plug>(coc-funcobj-i)
-omap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap af <Plug>(coc-funcobj-a)
-xmap ic <Plug>(coc-classobj-i)
-omap ic <Plug>(coc-classobj-i)
-xmap ac <Plug>(coc-classobj-a)
-omap ac <Plug>(coc-classobj-a)
-
 
 
 
@@ -436,8 +417,6 @@ autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 nmap <leader>gb :Git blame<CR>
 nmap <leader>gd :Gvdiffsplit<CR>
 nmap <leader>gcm :Gcommit<CR>
-nmap <leader>gco :!git checkout
-
 
 
 " Telescope 
