@@ -8,7 +8,6 @@
 #    * the return value of the previous command
 #    * the fact you just came from Windows and are used to having newlines in
 #      your prompts.
-#    * tmux window title integration for better window naming
 #
 # USAGE:
 #
