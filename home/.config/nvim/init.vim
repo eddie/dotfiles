@@ -29,9 +29,10 @@ Plug 'vim-airline/vim-airline-themes'                      " Status line themes
 
 
 " Colorschemes
-Plug 'Skullamortis/forest.nvim'
+"Plug 'Skullamortis/forest.nvim'
 Plug 'projekt0n/github-nvim-theme'
-Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+"Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+Plug 'oxfist/night-owl.nvim'
 
 
 " Editing enhancements
@@ -44,6 +45,8 @@ Plug 'tpope/vim-fugitive'                                  " Git commands
 Plug 'airblade/vim-gitgutter', {'branch': 'main'}          " Git diff in gutter
 Plug 'rhysd/conflict-marker.vim'
 Plug 'tpope/vim-rhubarb'                                   " GitHub integration for fugitive
+Plug 'sindrets/diffview.nvim'                              " Better PR review diffs
+
 
 " Search & utilities
 Plug 'mileszs/ack.vim'                                     " Better search
@@ -57,12 +60,20 @@ Plug 'nikvdp/ejs-syntax'                                   " EJS templates
 Plug 'mustache/vim-mustache-handlebars'                    " Handlebars
 Plug 'fatih/vim-go'                                        " Go
 Plug 'vala-lang/vala.vim'                                  " Vala
+Plug 'isobit/vim-caddyfile'
+
+" Svelte
+Plug 'othree/html5.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'evanleck/vim-svelte', {'branch': 'main'}
+" /Svelte
 
 " Web development
 Plug 'mattn/emmet-vim'                                     " HTML/CSS shortcuts
 
 " Data
 Plug 'chrisbra/csv.vim'
+
 
 call plug#end()
 
@@ -86,7 +97,6 @@ set ttimeoutlen=45   " Time to wait for terminal code
 set hidden
 
 nmap <leader>q <C-W>q
-nmap <leader>x :qa!<cr>
 inoremap jj <Esc>
 nnoremap <leader>bd :bp\|bd #<CR>
 
@@ -99,7 +109,8 @@ set nobackup
 syntax enable
 set background=dark
 hi Normal guibg=None ctermbg=None
-colorscheme github_dark_high_contrast
+colorscheme night-owl
+"github_dark_high_contrast
 
 " Editing
 set number
@@ -188,6 +199,9 @@ nnoremap <A-6> 6gt
 nnoremap <A-7> 7gt
 nnoremap <A-8> 8gt
 nnoremap <A-9> 9gt
+
+" Quick escape to help hands
+inoremap jk <Esc>
 
 " Smart way to move between windows
 map <C-j> <C-W>j
@@ -282,7 +296,6 @@ let g:coc_global_extensions = [
   \ 'coc-git',
   \ 'coc-json',
   \ 'coc-clangd',
-  \ 'coc-pyright',
   \ 'coc-html',
   \ 'coc-htmldjango',
   \ '@yaegassy/coc-intelephense'
@@ -324,6 +337,8 @@ nmap <silent><nowait> gi <Plug>(coc-implementation)
 nmap <silent><nowait> gr <Plug>(coc-references)
 nmap <silent><nowait> do <Plug>(coc-codeaction)
 nmap <silent><nowait> rn <Plug>(coc-rename)
+" <leader>x to show coc error list 
+nmap <silent><nowait> <leader>x :<C-u>CocList diagnostics<cr>
 
 " Map function and class text objects
 " e.g vif to select inner function
@@ -431,8 +446,7 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>gs <cmd>Telescope git_status<cr>
 nnoremap <leader>c <cmd>Telescope registers<cr>
 
-
-nnoremap <silent><space><space>  <cmd>Telescope buffers<CR>
+nnoremap <silent><space><space>  <cmd>Telescope git_status<CR>
 
 " Hardtime
 " -----------------------------------

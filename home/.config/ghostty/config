@@ -1,8 +1,15 @@
 mouse-scroll-multiplier = 1
-theme ="GitHub Dark High Contrast"
+#theme ="GitHub Dark High Contrast"
+theme = Night Owl
 app-notifications=false
 #font-family="IBM Plex Mono"
 font-family="Adwaita Mono"
 font-family-bold = "JetBrains Mono ExtraBold"
 font-thicken = true
+
+adjust-cell-width = "-1%"
+
+background-opacity=0.97
+background-blur=true
+
 

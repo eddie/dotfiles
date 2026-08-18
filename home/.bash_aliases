@@ -56,6 +56,10 @@ alias highmem="ps aux --sort=-%mem | head -n10"
 alias sys="systemctl"
 alias j="journalctl"
 
+alias out="git stash apply stash^{/$1}"
+alias wat="git stash list"
+alias in="git stash push -p -m $1"
+
 django(){
  python manage.py "$@"
 }
