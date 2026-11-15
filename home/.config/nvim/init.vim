@@ -109,8 +109,7 @@ set nobackup
 syntax enable
 set background=dark
 hi Normal guibg=None ctermbg=None
-colorscheme night-owl
-"github_dark_high_contrast
+colorscheme github_dark_high_contrast
 
 " Editing
 set number
@@ -293,6 +292,7 @@ endif
 let g:coc_global_extensions = [
   \ 'coc-tsserver',
   \ 'coc-eslint',
+  \ 'coc-pyright',
   \ 'coc-git',
   \ 'coc-json',
   \ 'coc-clangd',
@@ -362,14 +362,23 @@ function! ShowDocumentation()
 endfunction
 
 " Mappings for CoCList
-" Find symbol of current document
-nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
 " Search workspace symbols
 nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
 " Do default action for next item
 nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
+
+
+function! s:ToggleOutline() abort
+  let winid = coc#window#find('cocViewId', 'OUTLINE')
+  if winid == -1
+    call CocActionAsync('showOutline', 1)
+  else
+    call coc#window#close(winid)
+  endif
+endfunction
+nnoremap <silent><nowait> <leader>o :call <SID>ToggleOutline()<CR>
 
 function! s:FormatWithPrettier()
   call coc#config('prettier.requireConfig', v:false)

@@ -54,11 +54,14 @@ alias espanso="espanso-wayland"
 alias highmem="ps aux --sort=-%mem | head -n10"
 
 alias sys="systemctl"
-alias j="journalctl"
+alias j="just"
 
 alias out="git stash apply stash^{/$1}"
 alias wat="git stash list"
 alias in="git stash push -p -m $1"
+
+alias docker="podman"
+alias d="podman"
 
 django(){
  python manage.py "$@"

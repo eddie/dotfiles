@@ -1,5 +1,22 @@
 {
+  "outline.autoPreview": false,
+  "suggest.snippetIndicator": "►",
+  "diagnostic.virtualText": true,
+  "diagnostic.checkCurrentLine": true,
+  "suggest.noselect": true,
+  "suggest.localityBonus": true,
+  "suggest.snippetIndicator": "►",
+  "diagnostic.virtualText": true,
+  "diagnostic.checkCurrentLine": true,
+  "inlayHint.enable": true,
+  "inlayHint.enableParameter": true,
+  "signature.enable": true,
+  "codeLens.enable": true,
+
   "typescript.showUnused": true,
+  "coc.preferences.bracketEnterImprove": true,
+  "coc.preferences.formatOnSave": true
+
   "editor.codeActionsOnSave": {
     "eslint.fixAll": true
   },
@@ -34,7 +51,6 @@
   "prettier.requireConfig": true,
   "prettier.printWidth": 80,
   "prettier.singleQuote": true,
-
   "languageserver": {
     "terraform": {
       "command": "terraform-ls",
